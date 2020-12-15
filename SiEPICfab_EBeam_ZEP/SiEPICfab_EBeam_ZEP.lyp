@@ -18,7 +18,7 @@
   <source>*/*@*</source>
   
   <group-members>
-   <name>Si_draw_highres</name>
+   <name>Si_core</name>
    <source>1/0@1</source>
    <frame-color>#ff80a8</frame-color>
    <fill-color>#ff80a8</fill-color>
@@ -32,22 +32,6 @@
    <marked>false</marked>
    <animation>0</animation>
    <width>2.0</width>
-  </group-members>
-
-  <group-members>
-   <name>Si_draw_lowres</name>
-   <source>1/1@1</source>
-   <frame-color>#ff0000</frame-color>
-   <fill-color>#ff0000</fill-color>
-   <frame-brightness>0</frame-brightness>
-   <fill-brightness>0</fill-brightness>
-   <dither-pattern>I9</dither-pattern>
-   <valid>true</valid>
-   <visible>true</visible>
-   <transparent>false</transparent>
-   <width>1</width>
-   <marked>false</marked>
-   <animation>0</animation>
   </group-members>
 
   <group-members>
@@ -171,6 +155,22 @@
   <animation>0</animation>
   <name>SiEPIC</name>
   <source>*/*@*</source>
+
+  <group-members>
+   <frame-color>#ff80a8</frame-color>
+   <fill-color>#ff80a8</fill-color>
+   <frame-brightness>0</frame-brightness>
+   <fill-brightness>0</fill-brightness>
+   <dither-pattern>I5</dither-pattern>
+   <valid>true</valid>
+   <visible>true</visible>
+   <transparent>false</transparent>
+   <width>1</width>
+   <marked>false</marked>
+   <animation>0</animation>
+   <name>Waveguide</name>
+   <source>1/99@1</source>
+  </group-members>
   
  <group-members>
   <frame-color>#004080</frame-color>
@@ -281,21 +281,6 @@
   <animation>0</animation>
   <name>Extra</name>
   <source>*/*@*</source>
-  <group-members>
-   <frame-color>#ff80a8</frame-color>
-   <fill-color>#ff80a8</fill-color>
-   <frame-brightness>0</frame-brightness>
-   <fill-brightness>0</fill-brightness>
-   <dither-pattern>I5</dither-pattern>
-   <valid>true</valid>
-   <visible>true</visible>
-   <transparent>false</transparent>
-   <width>1</width>
-   <marked>false</marked>
-   <animation>0</animation>
-   <name>Waveguide</name>
-   <source>1/99@1</source>
-  </group-members>
   <group-members>
    <frame-color>#ff80a8</frame-color>
    <fill-color>#ff80a8</fill-color>

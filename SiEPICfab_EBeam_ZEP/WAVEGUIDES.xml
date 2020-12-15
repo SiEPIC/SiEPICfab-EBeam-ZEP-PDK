@@ -51,7 +51,7 @@
   	    <offset>0</offset>
   	  </component>
 	  <component>
-	    <layer>Si_draw_highres</layer>
+	    <layer>Si_core</layer>
 	    <width>0.35</width>
 	    <offset>0.0</offset>
 	  </component>

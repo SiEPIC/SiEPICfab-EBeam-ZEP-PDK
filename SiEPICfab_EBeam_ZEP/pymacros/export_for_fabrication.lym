@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <klayout-macro>
- <description>Export design for fabrication</description>
+ <description>Export design for SiEPICfab-ZEP fabrication</description>
  <version/>
  <category>pymacros</category>
  <prolog/>
@@ -17,6 +17,93 @@
  <text>
 import pya
 
+
+
+def boolean_layer_operations(topcell_in):
+
+    p = pya.AbsoluteProgress("SiEPICfab EBeam ZEP layer boolean operations")
+    p.format_unit = topcell_in.layout().cells()+1
+    
+    # input
+    layout_in = topcell_in.layout()
+    flag_longcellnames = False
+    
+    # Create a new layout
+    layout = Layout()
+    topcell = layout.create_cell(topcell_in.name)
+
+    # Create new layers for the inverted layout
+    layer_etch_high = layout.layer(pya.LayerInfo(100, 0))
+    layer_etch_low = layout.layer(pya.LayerInfo(101, 0))
+    layer_draw_high=layout.layer(pya.LayerInfo(1, 0))
+    layer_draw_low = layout.layer(pya.LayerInfo(1, 1))
+    layer_clad = layout.layer(pya.LayerInfo(1, 2))
+    layer_temp = layout.layer(pya.LayerInfo(1, 455))
+    layer_temp2 = layout.layer(pya.LayerInfo(1, 456))
+
+    # copy layout
+    topcell.copy_tree(topcell_in)    
+    p.inc
+    
+    # scan through all cells
+    for i in range(0,layout.cells()):
+        cell = layout.cell(i)
+
+        print(" - cell: %s" % cell.name)
+        if len(cell.name)&gt;64:
+            # mark this layout as containing long cells names, to deal with during save
+            flag_longcellnames = True
+            print("   - WARNING: too many characters in cell name")
+
+        # shape containers            
+        shapes_etch_high = cell.shapes(layer_etch_high)
+        shapes_etch_low = cell.shapes(layer_etch_low)
+        shapes_draw_high = cell.shapes(layer_draw_high)
+        shapes_draw_low = cell.shapes(layer_draw_low)
+        shapes_clad = cell.shapes(layer_clad)
+        shapes_temp = cell.shapes(layer_temp)
+        shapes_temp2 = cell.shapes(layer_temp2)
+        
+        # 2020/12: process currently only uses high resolution
+        # merge high and low etch layers, into high layer
+        pya.ShapeProcessor().boolean(
+            layout,cell,layer_etch_high,
+            layout,cell,layer_etch_low,
+            shapes_temp,pya.EdgeProcessor.ModeOr,False,True,True)
+        shapes_etch_high.clear()
+        shapes_etch_low.clear()
+        
+        # merge high and low draw layers, into high layer
+        pya.ShapeProcessor().boolean(
+            layout,cell,layer_draw_high,
+            layout,cell,layer_draw_low,
+            shapes_draw_high,pya.EdgeProcessor.ModeOr,False,True,True)
+        shapes_draw_low.clear()   
+
+        # NOT draw with clad
+        pya.ShapeProcessor().boolean(
+            layout,cell,layer_draw_high,
+            layout,cell,layer_clad,
+            shapes_temp2,pya.EdgeProcessor.ModeBNotA,False,True,True)
+        shapes_draw_high.clear()   
+        shapes_clad.clear()
+        
+        # OR etch with calculated etch
+        pya.ShapeProcessor().boolean(
+            layout,cell,layer_temp,
+            layout,cell,layer_temp2,
+            shapes_etch_high,pya.EdgeProcessor.ModeOr,False,True,True)
+        shapes_temp.clear()
+        shapes_temp2.clear()
+        
+        p.inc
+        
+    p.destroy
+
+    return layout, flag_longcellnames
+
+
+
 def export_for_fabrication():
  
     extra = "static" # what to append at the end of the filename.
@@ -30,16 +117,52 @@ def export_for_fabrication():
     if mw.manager().has_undo():
         mw.cm_save()
     layout_filename = mw.current_view().active_cellview().filename()
+
     if len(layout_filename) == 0:
         raise Exception("Please save your layout before exporting.")
    
+    # check if the currently selected cell is a top cell
+    if topcell in ly.top_cells():
+#    if topcell.name in [n.name for n in ly.top_cells()]:
+        if len(ly.top_cells()) &gt; 1:
+            print(' - Warning: You may only have one top cell in your hierarchy. Clean up using SiEPIC &gt; Layout &gt; Delete Extra Top Cells.')
+            print(' - Warning: Exporting top cell: %s' % topcell.name)
+    else:
+        if len(ly.top_cells()) == 1:
+            # choose the single top cell for export
+            topcell = ly.top_cells()[0]
+        else:
+            raise Exception("You may only have one top cell in your hierarchy. \nClean up using SiEPIC &gt; Layout &gt; Delete Extra Top Cells. \nOr, select the desired top cell using Show as New Top.")
+        
+    ly, flag_longcellnames = boolean_layer_operations(topcell)
+
 
     # Save the layout, without PCell info, for fabrication
     save_options = pya.SaveLayoutOptions()
-    save_options.write_context_info=False  # remove $$$CONTEXT_INFO$$$
-    save_options.format='OASIS' # smaller file size
-    save_options.oasis_compression_level=10
-    save_options.oasis_permissive=True
+
+    # remove $$$CONTEXT_INFO$$$ PCells
+    save_options.write_context_info=False  
+
+    # file format
+    if flag_longcellnames:
+        # GDS save option allows for a max cell name
+        save_options.format='GDS2'
+        save_options.gds2_no_zero_length_paths = True
+        save_options.gds2_max_cellname_length = 64
+        save_options.gds2_write_cell_properties = False
+        save_options.gds2_write_file_properties = False
+    else:
+        save_options.format='OASIS' # smaller file size
+        save_options.oasis_compression_level = 10
+        save_options.oasis_permissive = True
+        save_options.oasis_recompress = True
+        save_options.oasis_substitution_char = "-"
+
+    # only export the layers that will be fabricated
+    save_options.add_layer(ly.layer(LayerInfo(100,0)), LayerInfo())
+    save_options.add_layer(ly.layer(LayerInfo(101,0)), LayerInfo())
+
+    # filename
     file_out = os.path.join(os.path.dirname(layout_filename), os.path.splitext(os.path.basename(layout_filename))[0]+'_%s.'%extra+save_options.format[0:3].lower())
     print("saving output %s: %s" % (save_options.format, file_out) )
 
@@ -48,7 +171,7 @@ def export_for_fabrication():
     except:
         raise Exception("Problem exporting your layout.")
  
-    pya.MessageBox.warning("Success.", "Layout exported successfully: \n%s" %file_out, pya.MessageBox.Ok)
+#    pya.MessageBox.warning("Success.", "Layout exported successfully: \n%s" %file_out, pya.MessageBox.Ok)
 
 export_for_fabrication()
 </text>

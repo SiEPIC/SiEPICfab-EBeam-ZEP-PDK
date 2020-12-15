@@ -30,7 +30,7 @@ SiEPIC Program EBeam PDK for the ZEP process
  
    - On Mac:
 
-      $ mkdir ~/.klayout/tech
+			$ mkdir ~/.klayout/tech
 			$ ln -s ~/Documents/GitHub/SiEPICfab_EBeam_ZEP_PDK/SiEPICfab_EBeam_ZEP ~/.klayout/tech
 			
    - On Windows:

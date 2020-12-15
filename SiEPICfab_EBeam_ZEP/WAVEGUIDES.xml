@@ -7,6 +7,11 @@
 	  <bezier>0.20</bezier>
       <radius>5.0</radius>
       <width>0.5</width>
+ 	  <component>
+ 	    <layer>Waveguide</layer>
+ 	    <width>0.5</width>
+ 	    <offset>0</offset>
+ 	  </component>
 	  <component>
 	    <layer>Si_etch_highres</layer>
 	    <width>0.2</width>
@@ -40,6 +45,11 @@
 	  <bezier>0.20</bezier>
       <radius>5.0</radius>
       <width>0.35</width>
+  	  <component>
+  	    <layer>Waveguide</layer>
+  	    <width>0.35</width>
+  	    <offset>0</offset>
+  	  </component>
 	  <component>
 	    <layer>Si_draw_highres</layer>
 	    <width>0.35</width>

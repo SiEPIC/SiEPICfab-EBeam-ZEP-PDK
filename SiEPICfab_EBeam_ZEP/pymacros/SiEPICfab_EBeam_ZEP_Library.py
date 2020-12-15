@@ -41,15 +41,12 @@ class SiEPICfab_EBeam_ZEP_Library(Library):
 
   
     # Import all the GDS files from the tech folder "gds"
-    import os, fnmatch
-    dir_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "../fixed")
-    search_str = '*' + '.gds'
-    for root, dirnames, filenames in os.walk(dir_path, followlinks=True):
-        for filename in fnmatch.filter([f.lower() for f in filenames], search_str):
-            file1=os.path.join(root, filename)
-            print(" - reading %s" % file1 )
-            self.layout().read(file1)
-    
+    from pathlib import Path
+    dir_path = Path(__file__).parent/ "SiEPICfab_EBeam_ZEP_fixed"
+    for file1 in dir_path.rglob('*.gds'):
+        file1 = file1.as_posix()
+        print(" - reading %s" % file1 )
+        self.layout().read(file1)    
        
     # Create the PCell declarations
     for attr, value in SiEPICfab_EBeam_ZEP_pcells.__dict__.items():
@@ -68,8 +65,8 @@ class SiEPICfab_EBeam_ZEP_Library(Library):
     if int(Application.instance().version().split('.')[1]) > 24:
       # KLayout v0.25 introduced technology variable:
       self.technology=tech_name
-
-    self.layout().add_meta_info(LayoutMetaInfo("path",os.path.realpath(__file__)))
+      
+    self.layout().add_meta_info(LayoutMetaInfo("path",str(Path(__file__))))
     self.layout().add_meta_info(LayoutMetaInfo("technology",tech_name))
  
 # Instantiate and register the library

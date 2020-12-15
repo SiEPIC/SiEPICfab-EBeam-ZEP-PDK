@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<klayout-macro>
+ <description>KLayout Design Rule Check (DRC) - SiEPICfab-ZEP</description>
+ <version/>
+ <category>drc</category>
+ <prolog/>
+ <epilog/>
+ <doc/>
+ <autorun>false</autorun>
+ <autorun-early>false</autorun-early>
+ <shortcut>D</shortcut>
+ <show-in-menu>true</show-in-menu>
+ <group-name/>
+ <menu-path>siepic_menu.verification.begin</menu-path>
+ <interpreter>dsl</interpreter>
+ <dsl-interpreter-name>drc-dsl-xml</dsl-interpreter-name>
+ <text># Basic DRC deck for SiEPICfab_EBeam_ZEP_PDK
+# Lukas Chrostowski, 2020
+
+# Read about DRC scripts in the User Manual under "Design Rule Check (DRC)"
+# http://klayout.de/doc/manual/drc_basic.html
+
+report("SiEPICfab_EBeam_ZEP_PDK DRC")
+
+# enable deep (hierarchical) operations
+deep
+
+# Layers:
+Layer_Si_core=input(1,0)
+Layer_Si_clad=input(1,2)
+Layer_Si_etch_highres=input(100,0)
+Layer_Si_etch_lowres=input(101,0)
+
+DevRec=source.polygons(68,0)  # only shapes that can be turned into polygons, ignore text labels
+LayerFP=input(99)
+
+
+#################
+# non-physical checks
+#################
+
+# Check device overlaps (functional check)
+overlaps = DevRec.merged(2)
+output(overlaps, "Device Overlap","Devices cannot be overlapping")
+
+# make sure the devices are within the floor plan layer region;
+Layer_Si_core.outside(LayerFP).output("Boundary","devices are out of boundary")
+Layer_Si_clad.outside(LayerFP).output("Boundary","devices are out of boundary")
+
+#################
+# physical checks
+#################
+
+tol = 1e-3  # if a design uses exactly the min feature size,
+            # for curves, this typically leads to many false errors.
+
+# minimum feature size of Si is 60 nm and minimum exclusion between Si is 60 nm
+Layer_Si_core.width(0.06-tol, angle_limit(80)).output("Si width","Si minimum feature size violation; min 60 nm")
+Layer_Si_core.space(0.06-tol, angle_limit(80)).output("Si space","Si minimum space violation; min 60 nm")
+Layer_Si_etch_highres.width(0.06-tol, angle_limit(80)).output("Etch width","Etch minimum feature size violation; min 60 nm")
+Layer_Si_etch_highres.space(0.06-tol, angle_limit(80)).output("Etch space","Etch minimum space violation; min 60 nm")
+Layer_Si_etch_lowres.width(0.06-tol, angle_limit(80)).output("Etch width","Etch minimum feature size violation; min 60 nm")
+Layer_Si_etch_lowres.space(0.06-tol, angle_limit(80)).output("Etch space","Etch minimum space violation; min 60 nm")
+
+######################
+# logical layer checks
+######################
+
+# core/cladding
+Layer_Si_core.select_not_inside(Layer_Si_clad).output("Core inside Clad","Core needs to be surrounded by a Clad")
+
+</text>
+</klayout-macro>

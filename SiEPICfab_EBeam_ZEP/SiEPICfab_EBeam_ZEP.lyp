@@ -20,8 +20,8 @@
   <group-members>
    <name>Si_core</name>
    <source>1/0@1</source>
-   <frame-color>#ff80a8</frame-color>
-   <fill-color>#ff80a8</fill-color>
+   <frame-color>#d12b31</frame-color>
+   <fill-color>#d12b31</fill-color>
    <frame-brightness>0</frame-brightness>
    <fill-brightness>0</fill-brightness>
    <dither-pattern>I6</dither-pattern>
@@ -37,8 +37,8 @@
   <group-members>
    <name>Si_clad</name>
    <source>1/2@1</source>
-   <frame-color>#80a8ff</frame-color>
-   <fill-color>#80a8ff</fill-color>
+   <frame-color>#fe2f36</frame-color>
+   <fill-color>#fe2f36</fill-color>
    <frame-brightness>0</frame-brightness>
    <fill-brightness>0</fill-brightness>
    <dither-pattern>I9</dither-pattern>
@@ -55,8 +55,8 @@
   <group-members>
    <name>Si_etch_highres</name>
    <source>100/0@1</source>
-   <frame-color>#55aaff</frame-color>
-   <fill-color>#55aaff</fill-color>
+   <frame-color>#112233</frame-color>
+   <fill-color>#112233</fill-color>
    <frame-brightness>0</frame-brightness>
    <fill-brightness>0</fill-brightness>
    <dither-pattern>I14</dither-pattern>
@@ -71,8 +71,8 @@
   <group-members>
    <name>Si_etch_lowres</name>
    <source>101/0@1</source>
-   <frame-color>#55aaff</frame-color>
-   <fill-color>#55aaff</fill-color>
+   <frame-color>#273e52</frame-color>
+   <fill-color>#273e52</fill-color>
    <frame-brightness>0</frame-brightness>
    <fill-brightness>0</fill-brightness>
    <dither-pattern>I15</dither-pattern>

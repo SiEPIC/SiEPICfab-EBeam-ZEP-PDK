@@ -37,12 +37,12 @@ class SiEPICfab_EBeam_ZEP_Library(Library):
 # windows only allows for a fixed width, short description 
     self.description = ""
 # OSX does a resizing:
-    self.description = "v0.0.1, Mature Components"
+    self.description = "v0.0.1, Beta Fixed Components"
 
   
     # Import all the GDS files from the tech folder "gds"
     from pathlib import Path
-    dir_path = Path(__file__).parent/ "SiEPICfab_EBeam_ZEP_fixed"
+    dir_path = Path(__file__).parent/ "SiEPICfab_EBeam_ZEP_beta_fixed"
     for file1 in dir_path.rglob('*.gds'):
         file1 = file1.as_posix()
         print(" - reading %s" % file1 )

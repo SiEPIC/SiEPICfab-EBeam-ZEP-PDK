@@ -91,7 +91,7 @@
    <multi-xy-records>false</multi-xy-records>
    <max-vertex-count>8000</max-vertex-count>
    <max-cellname-length>32000</max-cellname-length>
-   <libname>EBeam</libname>
+   <libname>SiEPICfab_EBeam_ZEP</libname>
   </gds2>
   <cif>
    <polygon-mode>0</polygon-mode>

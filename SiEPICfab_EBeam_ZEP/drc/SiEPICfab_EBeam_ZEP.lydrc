@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <klayout-macro>
- <description>KLayout Design Rule Check (DRC) - SiEPICfab-ZEP</description>
+ <description>Design Rule Check (DRC) - SiEPICfab-ZEP</description>
  <version/>
  <category>drc</category>
  <prolog/>

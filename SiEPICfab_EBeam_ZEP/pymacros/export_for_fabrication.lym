@@ -22,7 +22,7 @@ import pya
 #  True: high and low resolution layers exported
 #  False: high and low resolution layers merged into one high res layer
 # 2020/12: process currently only uses high resolution
-HighandLowRes = True
+HighandLowRes = False
 
 def boolean_layer_operations(topcell_in):
 

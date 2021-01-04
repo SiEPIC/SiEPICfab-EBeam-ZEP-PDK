@@ -89,12 +89,7 @@ class Waveguide(pya.PCellDeclarationHelper):
     self.cell.shapes(LayerPinRecN).insert(Text("pin2", t, 0.3/dbu, -1))
 
     LayerDevRecN = self.layout.layer(TECHNOLOGY['DevRec'])
-    LayerSicladN = self.layout.layer(TECHNOLOGY['Si_clad'])
-    
-    # get each shape on devrec
-    shapes_devrec = self.cell.each_shape(LayerDevRecN)
-    for each_shape in shapes_devrec:
-            self.cell.shapes(LayerSicladN).insert(each_shape.polygon)
+
 
     # Compact model information
     angle_vec = angle_vector(pts[0]-pts[1])/90

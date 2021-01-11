@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<klayout-macro>
+ <description/>
+ <version/>
+ <category>pymacros</category>
+ <prolog/>
+ <epilog/>
+ <doc/>
+ <autorun>true</autorun>
+ <autorun-early>false</autorun-early>
+ <shortcut/>
+ <show-in-menu>false</show-in-menu>
+ <group-name/>
+ <menu-path/>
+ <interpreter>python</interpreter>
+ <dsl-interpreter-name/>
+ <text># Python script
+
+"""
+This file is part of the SiEPICfab_EBeam_ZEP_PDK
+by Jaspreet Jhoja, Lukas Chrostowski (c) 2020
+
+This Python file implements a library called "SiEPICfab_EBeam_ZEP_beta", consisting of mature components that have Layouts and Compact Models for circuit simulations:
+ - Fixed GDS cell components: imported from fixed/*
+ - PCells: imported from pcells/*
+
+Crash warning:
+ https://www.klayout.de/forum/discussion/734
+ This library has nested PCells. Running this macro with a layout open may
+ cause it to crash. Close the layout first before running.
+
+Version history:
+
+Lukas Chrostowski           2020/12/14
+ - initial version based on SiEPIC-EBeam-PDK
+ - Waveguide
+
+"""
+
+import math
+from SiEPIC.utils import get_technology, get_technology_by_name
+
+# Import KLayout Python API methods:
+# Box, Point, Polygon, Text, Trans, LayerInfo, etc
+from pya import *
+import os, sys
+
+dir_path = os.path.dirname(os.path.realpath(__file__))
+if dir_path not in sys.path:
+    sys.path.append(dir_path)
+
+#import SiEPICfab_EBeam_ZEP_beta_Library
+#SiEPICfab_EBeam_ZEP_beta_Library = reload(SiEPICfab_EBeam_ZEP_beta_Library)
+
+from SiEPICfab_EBeam_ZEP_beta_Library import *
+
+SiEPICfab_EBeam_ZEP_beta_Library()
+
+</text>
+</klayout-macro>

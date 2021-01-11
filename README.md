@@ -6,6 +6,20 @@ SiEPIC Program EBeam PDK for the ZEP process
 - Single full etch, using a positive resist (ZEP)
 - No cladding
 
+## Layer table
+| Name            | Layer/datatype | Description                                                                          |
+|-----------------|----------------|--------------------------------------------------------------------------------------|
+| Si_core         | 1/0            |             Layer to draw silicon waveguides; will be XORed with Si_clad.            |
+| Si_clad         | 1/2            |         Layer to draw the extent of the Si etch, including cladding and core.        |
+| Si_etch_highres | 100/0          | High Resolution Layer to draw fully etched trenches, but use SLS/Shape PEC. (trench) |
+| Si_etch_lowres  | 101/0          | Low Resolution Layer to draw fully etched trenches but use no-SLS or PEC. (trench)   |
+| Floorplan       | 99/0           |                             Marks the layout design area.                            |
+| text            | 10/0           | Text labels for automated measurements.                                              |
+| DevRec          | 68/0           |                           Device recognition layer for DRC.                          |
+| PinRec          | 1/10           | Port/pins recognition layer for snapping and connectivity checks.                    |
+| Waveguide       | 1/99           | Virtual layer, guiding shape for waveguide, used for length calculation              |
+| SEM             | 200/0          | Requests for SEM images. Rectangles in a 4:3 aspect.                                 |
+
 ## People
 - Fabrication performed at UBC by Kashif Awan
 - PDK support provided by Jaspreet Jhoja

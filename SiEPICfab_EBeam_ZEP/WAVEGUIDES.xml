@@ -14,27 +14,27 @@
  	  </component>
 	  <component>
 	    <layer>Si_etch_highres</layer>
-	    <width>0.2</width>
-	    <offset>0.35</offset>
+	    <width>0.8</width>
+	    <offset>0.65</offset>
 	  </component>
 	  <component>
 	    <layer>Si_etch_highres</layer>
-	    <width>0.2</width>
-	    <offset>-0.35</offset>
+	    <width>0.8</width>
+	    <offset>-0.65</offset>
 	  </component>
 	  <component>
 	    <layer>Si_etch_lowres</layer>
-	    <width>0.4</width>
-	    <offset>0.55</offset>
+	    <width>1.6</width>
+	    <offset>1.45</offset>
 	  </component>
 	  <component>
 	    <layer>Si_etch_lowres</layer>
-	    <width>0.4</width>
-	    <offset>-0.55</offset>
+	    <width>1.6</width>
+	    <offset>-1.45</offset>
 	  </component>
 	  <component>
 	    <layer>DevRec</layer>
-	    <width>1.5</width>
+	    <width>4.5</width>
 	    <offset>0.0</offset>
 	  </component>
 	</waveguide>

@@ -161,6 +161,11 @@ def export_for_fabrication():
         save_options.oasis_recompress = True
         save_options.oasis_substitution_char = "-"
 
+    if SiEPIC.__version__ &lt; '0.3.73':
+        pya.MessageBox.warning("Errors", "Please upgrade to SiEPIC-Tools version 0.3.73 or greater.", pya.MessageBox.Ok)
+    else:
+        ly.cell_character_replacement(forbidden_cell_characters = '=', replacement_cell_character = '_')
+
     # only export the layers that will be fabricated
     save_options.add_layer(ly.layer(LayerInfo(100,0)), LayerInfo())
     save_options.add_layer(ly.layer(LayerInfo(101,0)), LayerInfo())

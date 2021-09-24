@@ -45,12 +45,12 @@ SiEPIC Program EBeam PDK for the ZEP process
    - On Mac:
 
 			$ mkdir ~/.klayout/tech
-			$ ln -s ~/Documents/GitHub/SiEPICfab_EBeam_ZEP_PDK/SiEPICfab_EBeam_ZEP ~/.klayout/tech
+			$ ln -s ~/Documents/GitHub/SiEPICfab-EBeam-ZEP-PDK/SiEPICfab_EBeam_ZEP ~/.klayout/tech
 			
    - On Windows:
    			
 			$ cd C:\Users\<username>\KLayout\tech
-			$ mklink /J SiEPICfab_EBeam_ZEP "C:\Users\<username>\Documents\GitHub\SiEPICfab_EBeam_ZEP_PDK\SiEPICfab_EBeam_ZEP"
+			$ mklink /J SiEPICfab_EBeam_ZEP "C:\Users\<username>\Documents\GitHub\SiEPICfab-EBeam-ZEP-PDK\SiEPICfab_EBeam_ZEP"
 			
  - Start KLayout, and create a new layout choosing Technology = SiEPICfab_EBeam_ZEP
    - you should see the layer table, and the SiEPIC menu
@@ -68,10 +68,11 @@ SiEPIC Program EBeam PDK for the ZEP process
 - Design Rule check: please check using both:
   - KLayout SiEPIC > Verification > Design Rule Check (DRC) - SiEPICfab-ZEP
   - KLayout SiEPIC > Verification > Functional Layout Check
-    - you may ignore "Missing compact model"
   - All the design rules should be considered as "warnings", and you do not need to obtain Waivers for violations
 - File format: GDS or OASIS.  Use the KLayout SiEPIC > Export for SiEPICfab-ZEP fabrication
    - this script performs the required layer boolean operations and basic clean-up
+
+### For SiEPICfab members:
  - Please fill in the form here: https://docs.google.com/forms/d/e/1FAIpQLSeFrlBozNWQ5TLEB5X2LdBlOMgfqfcz9K8cZBww6_-Xg-Zsag/viewform
    - choose "Process Development"
  - Designs should be uploaded to the UBC Nextcloud server (links provided in the Google form)

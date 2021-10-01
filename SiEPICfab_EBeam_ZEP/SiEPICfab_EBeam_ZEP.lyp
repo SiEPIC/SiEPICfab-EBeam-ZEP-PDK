@@ -283,7 +283,6 @@
   <name>Errors</name>
   <source>999/0@1</source>
  </group-members>
- 
  <group-members>
   <frame-color>#800057</frame-color>
   <fill-color>#800057</fill-color>
@@ -300,6 +299,7 @@
   <source>733/0@1</source>
  </group-members>
  </properties>
+ 
  <properties>
   <frame-color/>
   <fill-color/>
@@ -307,8 +307,8 @@
   <fill-brightness>0</fill-brightness>
   <dither-pattern/>
   <valid>true</valid>
-  <visible>false</visible>
-  <transparent>false</transparent>
+  <visible>true</visible>
+  <transparent>true</transparent>
   <width/>
   <marked>false</marked>
   <animation>0</animation>
@@ -476,6 +476,23 @@
   <animation>0</animation>
   <name>Oxide open (to BOX)</name>
   <source>6/0@1</source>
+ </group-members>
+
+ <group-members>
+  <frame-color>#0000ff</frame-color>
+  <fill-color>#0000ff</fill-color>
+  <frame-brightness>0</frame-brightness>
+  <fill-brightness>0</fill-brightness>
+  <dither-pattern>I1</dither-pattern>
+  <line-style>I4</line-style>
+  <valid>true</valid>
+  <visible>true</visible>
+  <transparent>false</transparent>
+  <width>4</width>
+  <marked>false</marked>
+  <animation>0</animation>
+  <name>EBL-Regions</name>
+  <source>8100/0@1</source>
  </group-members>
 
 

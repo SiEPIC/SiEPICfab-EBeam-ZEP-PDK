@@ -8,7 +8,7 @@ class Waveguide(pya.PCellDeclarationHelper):
     super(Waveguide, self).__init__()
     # declare the parameters
     from SiEPIC.utils import get_technology_by_name
-    TECHNOLOGY = get_technology_by_name('EBeam')
+    TECHNOLOGY = get_technology_by_name('SiEPICfab_EBeam_ZEP')
     self.param("path", self.TypeShape, "Path", default = DPath([DPoint(0,0), DPoint(10,0), DPoint(10,10)], 0.5))
     self.param("radius", self.TypeDouble, "Radius", default = 5)
     self.param("width", self.TypeDouble, "Width", default = 0.5)

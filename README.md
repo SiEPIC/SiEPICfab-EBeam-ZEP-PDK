@@ -19,6 +19,7 @@ SiEPIC Program EBeam PDK for the ZEP process
 | PinRec          | 1/10           | Port/pins recognition layer for snapping and connectivity checks.                    |
 | Waveguide       | 1/99           | Virtual layer, guiding shape for waveguide, used for length calculation              |
 | SEM             | 200/0          | Requests for SEM images. Rectangles in a 4:3 aspect.                                 |
+| EBL-Regions     | 8100/0         | EBL Litho Manual Write Field Regions                                                 |
 
 ## People
 - Fabrication performed at UBC by Kashif Awan

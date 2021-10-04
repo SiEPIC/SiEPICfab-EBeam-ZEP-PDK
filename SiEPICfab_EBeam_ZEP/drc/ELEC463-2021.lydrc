@@ -41,12 +41,12 @@ DevRec=input(68,0)
 LayerFP=input(99)
 
 # minimum feature size of 60nm
-LayerSi.width(0.06, angle_limit(80)).output("Si_width","Si minimum feature size violation; min 60 nm")
-LayerSi.space(0.06).output("Si_space","Si minimum space violation; min 60 nm")
+LayerSi.width(0.2, angle_limit(80)).output("Si_width","Si minimum feature size violation; min 200 nm")
+LayerSi.space(2.0).output("Si_space","Si minimum space violation; min 2 um")
 
 # minimum feature size of 3 µm
-LayerM.width(3.0, angle_limit(80)).output("M_width","Si minimum feature size violation; min 3 µm")
-LayerM.space(3.0).output("M_space","Metal minimum space violation; min 3 µm")
+LayerM.width(5.0, angle_limit(80)).output("M_width","Si minimum feature size violation; min 5 µm")
+LayerM.space(5.0).output("M_space","Metal minimum space violation; min 5 µm")
 
 # make sure the devices are within the floor plan layer region;
 LayerSi.outside(LayerFP).output("Boundary","devices are out of boundary")

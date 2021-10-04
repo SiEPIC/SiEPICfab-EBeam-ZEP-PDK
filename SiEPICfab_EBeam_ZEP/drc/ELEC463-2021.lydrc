@@ -40,11 +40,11 @@ LayerM=input(11,0)
 DevRec=input(68,0)
 LayerFP=input(99)
 
-# minimum feature size of 60nm
+# minimum feature size of 200nm
 LayerSi.width(0.2, angle_limit(80)).output("Si_width","Si minimum feature size violation; min 200 nm")
 LayerSi.space(2.0).output("Si_space","Si minimum space violation; min 2 um")
 
-# minimum feature size of 3 µm
+# minimum feature size of 5 µm
 LayerM.width(5.0, angle_limit(80)).output("M_width","Si minimum feature size violation; min 5 µm")
 LayerM.space(5.0).output("M_space","Metal minimum space violation; min 5 µm")
 

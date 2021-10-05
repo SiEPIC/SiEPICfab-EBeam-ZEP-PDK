@@ -29,9 +29,9 @@ SiEPIC Program EBeam PDK for the ZEP process
 - SiEPICfab process development runs, typically bi-weekly or monthly
 - Contact Steven Gou for scheduling
 
-## PDK installation instructions:
+# PDK installation instructions:
 
-### Software - KLayout, SiEPIC-Tools
+## Software - KLayout, SiEPIC-Tools
 - Install KLayout version 0.26 or greater: http://www.klayout.de/build.html
 - Install SiEPIC-Tools versus 0.3.71 or higher, using the Package Manager [(instructions)](https://github.com/SiEPIC/SiEPIC-Tools/wiki/Installation)
 
@@ -64,7 +64,18 @@ SiEPIC Program EBeam PDK for the ZEP process
 
 - If you encounter problems, notice errors or omissions, or have suggestions, please post them here: [new Issue](https://github.com/siepic/SiEPICfab-EBeam-ZEP-PDK/issues). You may copy and paste a screenshot into the Issue.
 
-## Submission
+## Waveguides:
+
+- Draw a Path on the layer "Waveguide"
+- menu SiEPIC > Waveguides > Path to Waveguides ("W"), choose one of the waveguide types
+
+## Library:
+- The SiEPICfab_EBeam_ZEP library contains true geometry fixed cells including a 50/50 splitter (ebeam_bdc_te1550), y-branch (ebeam_y_1550), and terminator. 
+- The SiEPICfab_EBeam_ZEP library contains hidden geometry (black box) fixed cells: GC_1550_220_Blackbox; these will be replaced prior to fabrication
+- The SiEPICfab_EBeam_ZEP library contains parameterized cells including Waveguide and taper
+
+
+# Submission
 
 - Design Rule check: please check using both:
   - KLayout SiEPIC > Verification > Design Rule Check (DRC) - SiEPICfab-ZEP
@@ -73,11 +84,11 @@ SiEPIC Program EBeam PDK for the ZEP process
 - File format: GDS or OASIS.  Use the KLayout SiEPIC > Export for SiEPICfab-ZEP fabrication
    - this script performs the required layer boolean operations and basic clean-up
 
-### For SiEPICfab members:
+## For SiEPICfab members:
  - Please fill in the form here: https://docs.google.com/forms/d/e/1FAIpQLSeFrlBozNWQ5TLEB5X2LdBlOMgfqfcz9K8cZBww6_-Xg-Zsag/viewform
    - choose "Process Development"
  - Designs should be uploaded to the UBC Nextcloud server (links provided in the Google form)
 
-## Contributions to the PDK
+# Contributions to the PDK
 - Please make contributions, preferably using a Pull request.
 

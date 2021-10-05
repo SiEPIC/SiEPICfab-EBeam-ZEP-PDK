@@ -35,12 +35,12 @@ SiEPIC Program EBeam PDK for the ZEP process
 - Install KLayout version 0.26 or greater: http://www.klayout.de/build.html
 - Install SiEPIC-Tools versus 0.3.71 or higher, using the Package Manager [(instructions)](https://github.com/SiEPIC/SiEPIC-Tools/wiki/Installation)
 
-## PDK Installation via GitHub Desktop (most suitable for developers):
+## PDK Installation via GitHub Desktop (easiest way to receive updates):
 
 - Install GitHub Desktop, https://desktop.github.com
 - Clone this repostory using GitHub Desktop.  Do this by clicking on the green "Code" button, then "Open with GitHub Desktop"
     - Example below assumes it is installed in your Documents folder. 
-- There are different branches, "main" and "experimental". Choose the branch in GitHub Desktop via the "Current Branch" button
+- There are different branches, "main" and "experimental". Choose the branch in GitHub Desktop via the "Default Branch" button
 - Create a symbolic link from the repo PDK folder into your KLayout tech folder. If the tech folder does not exist, create it, ensuring the name of the folder is "tech". 
  
    - On Mac:

@@ -37,22 +37,78 @@ Lukas Chrostowski           2020/12/14
 
 """
 
-import math
-from SiEPIC.utils import get_technology, get_technology_by_name
+print('SiEPICfab_EBeam_ZEP_Library')
 
-# Import KLayout Python API methods:
-# Box, Point, Polygon, Text, Trans, LayerInfo, etc
+import pya
 from pya import *
-import os, sys
+from SiEPIC.utils import get_technology_by_name
+import os
+import pathlib
+import sys
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 if dir_path not in sys.path:
     sys.path.append(dir_path)
 
-#import SiEPICfab_EBeam_ZEP_beta_Library
-#SiEPICfab_EBeam_ZEP_beta_Library = reload(SiEPICfab_EBeam_ZEP_beta_Library)
+files = [f for f in os.listdir(os.path.join(os.path.dirname(
+    os.path.realpath(__file__)),'SiEPICfab_EBeam_ZEP_beta_pcells')) if '.py' in pathlib.Path(f).suffixes  and '__init__' not in f]
+import SiEPICfab_EBeam_ZEP_beta_pcells ### folder name ###
+import importlib
+importlib.invalidate_caches()
+pcells_=[]
+for f in files:
+    module = 'SiEPICfab_EBeam_ZEP_beta_pcells.%s' % f.replace('.py','')  ### folder name ###
+    print(' - found module: %s' % module)
+    m = importlib.import_module(module) 
+    print(m)
+    pcells_.append(importlib.reload(m))
 
-from SiEPICfab_EBeam_ZEP_beta_Library import *
+
+class SiEPICfab_EBeam_ZEP_beta_Library(Library):
+  """
+  The library where we will put the PCells and GDS into 
+  """
+
+  def __init__(self):
+  
+    tech_name = 'SiEPICfab_EBeam_ZEP'
+    library = 'SiEPICfab_EBeam_ZEP_beta'
+
+    print("Initializing '%s' Library." % library)
+
+    # Set the description
+    self.description = "v0.0.1, Beta Components"
+
+  
+    # Import all the GDS files from the tech folder "gds"
+    import pathlib
+    dir_path = pathlib.Path(__file__).parent/ "SiEPICfab_EBeam_ZEP_beta_fixed"
+    for file1 in dir_path.rglob('*.gds'):
+        file1 = file1.as_posix()
+        print(" - reading %s" % file1 )
+        self.layout().read(file1)    
+
+    # Create the PCell declarations
+    for m in pcells_:
+        mm = m.__name__.replace('SiEPICfab_EBeam_ZEP_beta_pcells.','')
+        mm2 = m.__name__+'.'+mm+'()'
+        print(' - register_pcell %s, %s' % (mm,mm2))
+        self.layout().register_pcell(mm, eval(mm2))
+    print(' done with SiEPICfab_EBeam_ZEP_beta_pcells')
+
+    # Register us the library with the technology name
+    # If a library with that name already existed, it will be replaced then.
+    self.register(library)
+
+    if int(Application.instance().version().split('.')[1]) &gt; 24:
+      # KLayout v0.25 introduced technology variable:
+      self.technology=tech_name
+      
+    self.layout().add_meta_info(LayoutMetaInfo("path",str(pathlib.Path(__file__))))
+    self.layout().add_meta_info(LayoutMetaInfo("technology",tech_name))
+ 
+# Instantiate and register the library
+
 
 SiEPICfab_EBeam_ZEP_beta_Library()
 

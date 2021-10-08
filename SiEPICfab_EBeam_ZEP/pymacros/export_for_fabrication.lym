@@ -167,10 +167,11 @@ def export_for_fabrication():
         ly.cell_character_replacement(forbidden_cell_characters = '=', replacement_cell_character = '_')
 
     # only export the layers that will be fabricated
-    save_options.add_layer(ly.layer(LayerInfo(100,0)), LayerInfo())
-    save_options.add_layer(ly.layer(LayerInfo(101,0)), LayerInfo())
-    save_options.add_layer(ly.layer(LayerInfo(11,0)), LayerInfo())
-    save_options.add_layer(ly.layer(LayerInfo(12,0)), LayerInfo())
+    save_options.add_layer(ly.layer(LayerInfo(100,0)), LayerInfo())# Si etch
+    save_options.add_layer(ly.layer(LayerInfo(101,0)), LayerInfo())# Si etch
+    save_options.add_layer(ly.layer(LayerInfo(11,0)), LayerInfo()) # M1
+    save_options.add_layer(ly.layer(LayerInfo(12,0)), LayerInfo()) # M2
+    save_options.add_layer(ly.layer(LayerInfo(99,0)), LayerInfo()) # Floorplan
 
     # filename
     file_out = os.path.join(os.path.dirname(layout_filename), os.path.splitext(os.path.basename(layout_filename))[0]+'_%s.'%extra+save_options.format[0:3].lower())

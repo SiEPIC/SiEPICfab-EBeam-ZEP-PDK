@@ -5,7 +5,7 @@
 	  <CML>SiEPICfab_EBeam_ZEP</CML>
 	  <model>wg_strip_1550</model>
 	  <bezier>0.20</bezier>
-      <radius>5.0</radius>
+      <radius>10.0</radius>
       <width>0.5</width>
  	  <component>
  	    <layer>Waveguide</layer>
@@ -43,7 +43,7 @@
 	  <CML>SiEPICfab_EBeam_ZEP</CML>
 	  <model>wg_strip_1310</model>
 	  <bezier>0.20</bezier>
-      <radius>5.0</radius>
+      <radius>10.0</radius>
       <width>0.35</width>
   	  <component>
   	    <layer>Waveguide</layer>

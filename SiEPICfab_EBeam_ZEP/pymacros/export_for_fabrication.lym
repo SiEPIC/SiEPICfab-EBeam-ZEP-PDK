@@ -173,6 +173,7 @@ def export_for_fabrication():
     save_options.add_layer(ly.layer(LayerInfo(12,0)), LayerInfo()) # M2
     save_options.add_layer(ly.layer(LayerInfo(99,0)), LayerInfo()) # Floorplan
     save_options.add_layer(ly.layer(LayerInfo(8100,0)), LayerInfo()) # EBL regions
+    save_options.add_layer(ly.layer(LayerInfo(10,0)), LayerInfo()) # Text
 
     # filename
     file_out = os.path.join(os.path.dirname(layout_filename), os.path.splitext(os.path.basename(layout_filename))[0]+'_%s.'%extra+save_options.format[0:3].lower())

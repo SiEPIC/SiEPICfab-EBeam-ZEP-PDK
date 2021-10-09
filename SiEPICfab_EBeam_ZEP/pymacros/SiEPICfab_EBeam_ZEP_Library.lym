@@ -76,12 +76,12 @@ class SiEPICfab_EBeam_ZEP_Library(Library):
     print("Initializing '%s' Library." % library)
 
     # Set the description
-    self.description = "v0.0.1, Components"
+    self.description = "v0.0.2, Components"
 
   
     # Import all the GDS files from the tech folder "gds"
     import pathlib
-    dir_path = pathlib.Path(__file__).parent/ "SiEPICfab_EBeam_ZEP_beta_fixed"
+    dir_path = pathlib.Path(__file__).parent/ "SiEPICfab_EBeam_ZEP_fixed"
     for file1 in dir_path.rglob('*.gds'):
         file1 = file1.as_posix()
         print(" - reading %s" % file1 )

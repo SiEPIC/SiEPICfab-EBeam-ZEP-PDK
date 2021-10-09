@@ -13,11 +13,11 @@ class Waveguide_SBend(pya.PCellDeclarationHelper):
     TECHNOLOGY = get_technology_by_name('SiEPICfab_EBeam_ZEP')
 
     # declare the parameters
-    self.param("length", self.TypeDouble, "Waveguide length", default = 10.0)     
+    self.param("length", self.TypeDouble, "Waveguide minimum length", default = 10.0)     
     self.param("height", self.TypeDouble, "Waveguide offset height", default = 2)     
     self.param("wg_width", self.TypeDouble, "Waveguide width (microns)", default = 0.5)     
     self.param("clad_width", self.TypeDouble, "Waveguide cladding width (microns)", default = 2)     
-    self.param("radius", self.TypeDouble, "Waveguide bend radius (microns)", default = 5)     
+    self.param("radius", self.TypeDouble, "Waveguide bend radius (microns)", default = 10)     
     self.param("layer", self.TypeLayer, "Layer - Waveguide", default = TECHNOLOGY['Si_core'])
     self.param("layer_clad", self.TypeLayer, "Layer - Cladding", default = TECHNOLOGY['Si_clad'])
     self.param("pinrec", self.TypeLayer, "PinRec Layer", default = TECHNOLOGY['PinRec'])

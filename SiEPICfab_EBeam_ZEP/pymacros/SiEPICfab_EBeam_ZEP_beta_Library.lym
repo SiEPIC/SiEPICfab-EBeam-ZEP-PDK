@@ -96,16 +96,16 @@ class SiEPICfab_EBeam_ZEP_beta_Library(Library):
         self.layout().register_pcell(mm, eval(mm2))
     print(' done with SiEPICfab_EBeam_ZEP_beta_pcells')
 
-    # Register us the library with the technology name
-    # If a library with that name already existed, it will be replaced then.
-    self.register(library)
-
     if int(Application.instance().version().split('.')[1]) &gt; 24:
       # KLayout v0.25 introduced technology variable:
       self.technology=tech_name
       
     self.layout().add_meta_info(LayoutMetaInfo("path",str(pathlib.Path(__file__))))
     self.layout().add_meta_info(LayoutMetaInfo("technology",tech_name))
+
+    # Register us the library with the technology name
+    # If a library with that name already existed, it will be replaced then.
+    self.register(library)
  
 # Instantiate and register the library
 

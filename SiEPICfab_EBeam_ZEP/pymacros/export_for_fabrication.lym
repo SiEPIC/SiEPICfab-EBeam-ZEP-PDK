@@ -14,7 +14,13 @@
  <menu-path>siepic_menu.end</menu-path>
  <interpreter>python</interpreter>
  <dsl-interpreter-name/>
- <text>
+ <text>'''
+Export layout for fabrication, by stripping it of problematic characters, removing pcells, doing boolean operations
+by Lukas Chrostowski, 2021
+
+'''
+
+
 import pya
 
 
@@ -184,7 +190,7 @@ def export_for_fabrication():
     except:
         raise Exception("Problem exporting your layout.")
  
-#    pya.MessageBox.warning("Success.", "Layout exported successfully: \n%s" %file_out, pya.MessageBox.Ok)
+    pya.MessageBox.warning("Success.", "Layout exported successfully: \n%s" %file_out, pya.MessageBox.Ok)
 
 export_for_fabrication()
 </text>

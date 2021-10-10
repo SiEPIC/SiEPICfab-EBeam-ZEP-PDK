@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<klayout-macro>
+ <description>Extract EBL Write Field Regions</description>
+ <version/>
+ <category>pymacros</category>
+ <prolog/>
+ <epilog/>
+ <doc/>
+ <autorun>false</autorun>
+ <autorun-early>false</autorun-early>
+ <shortcut/>
+ <show-in-menu>true</show-in-menu>
+ <group-name/>
+ <menu-path>siepic_menu.end</menu-path>
+ <interpreter>python</interpreter>
+ <dsl-interpreter-name/>
+ <text>'''
+Function to extract the EBL Write Field regions, in an order such that adjacent fields are exported sequentially
+by Lukas Chrostowski, 2021
+
+'''
+
+def extract_EBL_regions():
+    # example usage:
+    # topcell = pya.Application.instance().main_window().current_view().active_cellview().cell
+    # LayerSEM = pya.LayerInfo(200, 0)
+    # LayerSEMN = topcell.layout().layer(LayerSEM)
+    # find_SEM_labels(topcell, LayerSEMN)
+    import string
+
+    from SiEPIC.utils import get_technology, find_paths
+    TECHNOLOGY = get_technology()
+    dbu = TECHNOLOGY['dbu']
+
+    Layer = TECHNOLOGY['EBL-Regions']
+
+    lv = pya.Application.instance().main_window().current_view()
+    if lv == None:
+        print("No view selected")
+        raise UserWarning("No view selected. Make sure you have an open layout.")
+    # Find the currently selected layout.
+    ly = pya.Application.instance().main_window().current_view().active_cellview().layout()
+    if ly == None:
+        raise UserWarning("No layout. Make sure you have an open layout.")
+    # find the currently selected cell:
+    cv = pya.Application.instance().main_window().current_view().active_cellview()
+    topcell = pya.Application.instance().main_window().current_view().active_cellview().cell
+    if topcell == None:
+        raise UserWarning("No cell. Make sure you have an open layout.")
+
+
+    layout_filename = cv.filename()
+
+
+    text_out = 'EBL Write field Regions (x1, y1; x2, y2), ordered to maintain connected sequences:\n'
+    text_out = '#MANUAL FIELD CONTROL FILE\n'
+    dbu = topcell.layout().dbu
+    iter = topcell.begin_shapes_rec(topcell.layout().layer(Layer))
+    regions = Region()  
+    regions.merged_semantics=False
+    while not(iter.at_end()):
+        if iter.shape().is_box():
+            box = iter.shape().box
+            box2 = iter.shape().box.transformed(iter.itrans())
+            regions += Region(box2)
+        iter.next()
+
+    
+    print('- starting regions: (%s, area: %s) %s' %(regions.count(), regions.area(), regions))
+    
+    extracted=Region()
+    extracted.merged_semantics=False
+    count = 0
+    points = []
+    while regions.count()&gt;0:
+        # pick one polygon
+        b = Region(next(regions.each()))
+        b.merged_semantics=False
+        print(' - each polygon (area: %s): %s' %(b.area(), b))
+        count+=1
+        text_out += "%s\t%s\t%s\t%s\tR%s\n" % (int(b.bbox().left * dbu), int(b.bbox().bottom * dbu), int(b.bbox().right * dbu), int(b.bbox().top * dbu), count )
+        points.append (Point(b.bbox().center().x, b.bbox().center().y))
+        
+        # find polygons touching b; it can be several in a cluster; loop to grow the cluster to find all touching ones.
+        cluster = b
+        while regions.interacting(cluster).area() &gt; cluster.area():
+            old_cluster = cluster
+            cluster = regions.interacting(cluster)
+            cluster.merged_semantics=False
+            print('  - touching polygons (%s), next (%s)' %(cluster.count(), regions.interacting(cluster).count()))
+            new_cluster = cluster.outside(old_cluster)
+            new_cluster.merged_semantics=False
+            for b in new_cluster:
+                count+=1
+                text_out += "%s\t%s\t%s\t%s\tR%s\n" % (int(b.bbox().left * dbu), int(b.bbox().bottom * dbu), int(b.bbox().right * dbu), int(b.bbox().top * dbu), count )
+                points.append (Point(b.bbox().center().x, b.bbox().center().y))
+                            
+
+        extracted += cluster
+        regions = regions.outside(cluster)
+        regions.merged_semantics=False
+
+        print('  - cluster: (%s, area: %s) %s' %(cluster.count(), cluster.area(), cluster))
+        print('  - extracted: (%s, area: %s) %s' %(extracted.count(), extracted.area(), extracted))
+        print('  - regions left: (%s, area: %s) %s' %(regions.count(), regions.area(), regions))
+
+    print(text_out)
+    print(points)
+    topcell.shapes(ly.layer(Layer)).insert(Path(points,1e3))
+
+    # filename
+    extra = 'EBLfields.txt'
+    file_out = os.path.join(os.path.dirname(layout_filename), os.path.splitext(os.path.basename(layout_filename))[0]+'_%s'%extra)
+    if len(layout_filename) == 0:
+        raise Exception("Please save your layout before exporting.")
+    print("saving output %s" % (file_out) )
+    with open(file_out, 'w') as f:
+        f.write(text_out)
+
+    pya.MessageBox.warning("Success.", "EBL regions exported successfully: \n%s" %file_out, pya.MessageBox.Ok)
+   
+    return text_out
+    
+
+extract_EBL_regions()
+</text>
+</klayout-macro>

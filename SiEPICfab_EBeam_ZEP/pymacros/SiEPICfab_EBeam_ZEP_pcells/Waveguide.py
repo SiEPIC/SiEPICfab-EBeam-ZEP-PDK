@@ -19,15 +19,18 @@ class Waveguide(pya.PCellDeclarationHelper):
     self.param("offsets", self.TypeList, "Offsets", default = [0])
     self.param("CML", self.TypeString, "Compact Model Library (CML)", default = 'SiEPICfab_EBeam_ZEP')
     self.param("model", self.TypeString, "CML Model name", default = 'wg') 
+    self.param("waveguide_length", self.TypeDouble, "Waveguide Length", readonly = True, default = 0) 
     self.cellName="Waveguide"
+    self.waveguide_length1 = 0
     
   def display_text_impl(self):
     # Provide a descriptive text for the cell
-    return "%s_%s" % (self.cellName, self.path)
+    return "%s_%s" % (self.cellName, self.waveguide_path)
   
   def coerce_parameters_impl(self):
     from SiEPIC.extend import to_itype
     print("EBeam.Waveguide coerce parameters")
+    self.waveguide_length = self.waveguide_length1
     
     if 0:
         TECHNOLOGY = get_technology_by_name('SiEPICfab_EBeam_ZEP')
@@ -70,12 +73,13 @@ class Waveguide(pya.PCellDeclarationHelper):
     path = self.path.to_itype(dbu)
 
     if not (len(self.layers)==len(self.widths) and len(self.layers)==len(self.offsets) and len(self.offsets)==len(self.widths)):
-      raise Exception("There must be an equal number of layers, widths and offsets")
+      raise Exception("PDK configuration error - Waveguides - There must be an equal number of layers, widths and offsets")
     path.unique_points()
     pts = path.get_points()
     
     # Draw the waveguide geometry, new in SiEPIC-Tools v0.3.64
     waveguide_length = layout_waveguide2(TECHNOLOGY, self.layout, self.cell, self.layers, self.widths, self.offsets, pts, self.radius, self.adiab, self.bezier)
+    self.waveguide_length1 = waveguide_length
 
     pts = path.get_points()
     LayerPinRecN = self.layout.layer(TECHNOLOGY['PinRec'])

@@ -67,11 +67,18 @@ def extract_EBL_regions():
 
     
     print('- starting regions: (%s, area: %s) %s' %(regions.count(), regions.area(), regions))
+
+    for r in regions:
+        if r.bbox().width() &gt;1e6 or r.bbox().height() &gt; 1e6:
+            raise Exception("Maximum region width/height of 1 mm, exceeded.")
+
     
     extracted=Region()
     extracted.merged_semantics=False
     count = 0
     points = []
+    area = 0
+    area_region = regions.area()
     while regions.count()&gt;0:
         # pick one polygon
         b = Region(next(regions.each()))
@@ -80,6 +87,7 @@ def extract_EBL_regions():
         count+=1
         text_out += "%s\t%s\t%s\t%s\tR%s\n" % (int(b.bbox().left * dbu), int(b.bbox().bottom * dbu), int(b.bbox().right * dbu), int(b.bbox().top * dbu), count )
         points.append (Point(b.bbox().center().x, b.bbox().center().y))
+        area += b.bbox().area()
         
         # find polygons touching b; it can be several in a cluster; loop to grow the cluster to find all touching ones.
         cluster = b
@@ -93,6 +101,7 @@ def extract_EBL_regions():
             for b in new_cluster:
                 count+=1
                 text_out += "%s\t%s\t%s\t%s\tR%s\n" % (int(b.bbox().left * dbu), int(b.bbox().bottom * dbu), int(b.bbox().right * dbu), int(b.bbox().top * dbu), count )
+                area += b.bbox().area()
                 points.append (Point(b.bbox().center().x, b.bbox().center().y))
                             
 
@@ -106,6 +115,11 @@ def extract_EBL_regions():
 
     print(text_out)
     print(points)
+
+    if area != area_region:
+        raise Exception("Problem with the regions.  The areas of the regions don't agree.  Possibly overlapping regions.")
+
+
     topcell.shapes(ly.layer(Layer)).insert(Path(points,1e3))
 
     # filename

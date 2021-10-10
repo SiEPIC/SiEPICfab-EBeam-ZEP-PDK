@@ -18,7 +18,9 @@ class Waveguide_SWG_Assist(pya.PCellDeclarationHelper):
     self.param("swg_wg_width", self.TypeDouble, "SWG Waveguide width", default = 0.5)     
     self.param("strip_wg_width", self.TypeDouble, "Strip Waveguide width", default = 0.06)     
     self.param("duty", self.TypeDouble, "Duty Cycle (0 to 1)", default = 0.5)
-    self.param("layer", self.TypeLayer, "Layer", default = TECHNOLOGY['Waveguide'])
+    self.param("layer", self.TypeLayer, "Layer", default = TECHNOLOGY['Si_core'])
+    self.param("layer_clad", self.TypeLayer, "Layer - Cladding", default = TECHNOLOGY['Si_clad'])
+    self.param("clad_width", self.TypeDouble, "Cladding Width", default = 2)
     self.param("pinrec", self.TypeLayer, "PinRec Layer", default = TECHNOLOGY['PinRec'])
     self.param("devrec", self.TypeLayer, "DevRec Layer", default = TECHNOLOGY['DevRec'])
 #    self.param("textl", self.TypeLayer, "Text Layer", default = LayerInfo(10, 0))
@@ -105,8 +107,15 @@ class Waveguide_SWG_Assist(pya.PCellDeclarationHelper):
     shape = shapes(LayerDevRecN).insert(text)
     shape.text_size = 0.1/dbu
 
-    # Create the device recognition layer -- make it 1 * wg_width away from the waveguides.
+    # Create the device recognition layer
     points = [pya.Point(0,0), pya.Point(length, 0)]
-    path = pya.Path(points,w)
-    path = pya.Path(points,w*3)
+    path = pya.Path(points,(self.swg_wg_width+self.clad_width*2)/dbu)
     shapes(LayerDevRecN).insert(path.simple_polygon())
+
+    # waveguide cladding
+    points = [pya.Point(0,0), pya.Point(length, 0)]
+    path = pya.Path(points,(self.swg_wg_width+self.clad_width*2)/dbu)
+    shapes(ly.layer(self.layer_clad)).insert(path.simple_polygon())
+
+    print(' - done: Waveguide_SWG_Assist')
+    

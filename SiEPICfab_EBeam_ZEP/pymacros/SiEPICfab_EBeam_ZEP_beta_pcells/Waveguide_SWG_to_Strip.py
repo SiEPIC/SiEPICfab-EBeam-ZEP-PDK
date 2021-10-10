@@ -28,7 +28,9 @@ class Waveguide_SWG_to_Strip(pya.PCellDeclarationHelper):
     self.param("wg_width_taper", self.TypeDouble, "Nanotaper width at taper end (microns)", default = 0.06)     
     self.param("duty_strip", self.TypeDouble, "SWG duty cycle at strip end (0 to 1)", default = 0.500)     
     self.param("duty_swg", self.TypeDouble, "SWG duty cycle at SWG end (0 to 1)", default = 0.700)     
-    self.param("layer", self.TypeLayer, "Layer", default = TECHNOLOGY['Waveguide'])
+    self.param("layer", self.TypeLayer, "Layer", default = TECHNOLOGY['Si_core'])
+    self.param("layer_clad", self.TypeLayer, "Layer - Cladding", default = TECHNOLOGY['Si_clad'])
+    self.param("clad_width", self.TypeDouble, "Cladding Width", default = 2)
     self.param("pinrec", self.TypeLayer, "PinRec Layer", default = TECHNOLOGY['PinRec'])
     self.param("devrec", self.TypeLayer, "DevRec Layer", default = TECHNOLOGY['DevRec'])
 
@@ -156,7 +158,15 @@ class Waveguide_SWG_to_Strip(pya.PCellDeclarationHelper):
     blabla
     '''
     
-    # Create the device recognition layer -- make it 1 * wg_width away from the waveguides.
+    # Create the device recognition layer
     points = [pya.Point(0,0), pya.Point(length, 0)]
-    path = pya.Path(points,w*5)
+    path = pya.Path(points,(self.wg_width_strip+self.clad_width*2)/dbu)
     shapes(LayerDevRecN).insert(path.simple_polygon())
+
+    # waveguide cladding
+    points = [pya.Point(0,0), pya.Point(length, 0)]
+    path = pya.Path(points,(self.wg_width_strip+self.clad_width*2)/dbu)
+    shapes(ly.layer(self.layer_clad)).insert(path.simple_polygon())
+
+    print(' - done: Waveguide_SWG_to_Strip')
+    

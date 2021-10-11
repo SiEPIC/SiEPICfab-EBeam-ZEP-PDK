@@ -122,8 +122,8 @@ def extract_EBL_regions():
     rdb_i = lv.create_rdb("EBL write field region order: %s technology" %
                           TECHNOLOGY['technology_name'])
     rdb = lv.rdb(rdb_i)
-    rdb.top_cell_name = cell.name
-    rdb_cell = rdb.create_cell(cell.name)
+    rdb.top_cell_name = topcell.name
+    rdb_cell = rdb.create_cell(topcell.name)
 
     # Waveguide checking
     rdb_cell = next(rdb.each_cell())

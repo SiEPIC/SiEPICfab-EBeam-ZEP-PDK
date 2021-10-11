@@ -25,7 +25,7 @@ class Waveguide(pya.PCellDeclarationHelper):
     
   def display_text_impl(self):
     # Provide a descriptive text for the cell
-    return "%s_%s" % (self.cellName, self.waveguide_path)
+    return "%s_%s" % (self.cellName, self.path)
   
   def coerce_parameters_impl(self):
     from SiEPIC.extend import to_itype
@@ -145,3 +145,5 @@ class Waveguide(pya.PCellDeclarationHelper):
       'Length=%.3fu' %(waveguide_length), t, 0.5*wg_width, -1  )
     text.halign=halign
     shape = self.cell.shapes(LayerDevRecN).insert(text)
+    
+    print(' - done: SiEPICfab_EBeam_ZEP_pcells:Waveguide')

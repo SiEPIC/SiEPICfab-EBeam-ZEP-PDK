@@ -68,10 +68,6 @@ def extract_EBL_regions():
     
     print('- starting regions: (%s, area: %s) %s' %(regions.count(), regions.area(), regions))
 
-    for r in regions:
-        if r.bbox().width() &gt;1e6 or r.bbox().height() &gt; 1e6:
-            raise Exception("Maximum region width/height of 1 mm, exceeded.")
-
     
     extracted=Region()
     extracted.merged_semantics=False
@@ -79,12 +75,15 @@ def extract_EBL_regions():
     points = []
     area = 0
     area_region = regions.area()
+    cluster_count = 0
     while regions.count()&gt;0:
+        cluster_count += 1
         # pick one polygon
         b = Region(next(regions.each()))
         b.merged_semantics=False
         print(' - each polygon (area: %s): %s' %(b.area(), b))
         count+=1
+        text_out += "%s\t%s\t%s\t%s\tR%s-%s\n" % (int(b.bbox().left * dbu), int(b.bbox().bottom * dbu), int(b.bbox().right * dbu), int(b.bbox().top * dbu), count, cluster_count )
         text_out += "%s\t%s\t%s\t%s\tR%s\n" % (int(b.bbox().left * dbu), int(b.bbox().bottom * dbu), int(b.bbox().right * dbu), int(b.bbox().top * dbu), count )
         points.append (Point(b.bbox().center().x, b.bbox().center().y))
         area += b.bbox().area()
@@ -100,6 +99,7 @@ def extract_EBL_regions():
             new_cluster.merged_semantics=False
             for b in new_cluster:
                 count+=1
+                text_out += "%s\t%s\t%s\t%s\tR%s-%s\n" % (int(b.bbox().left * dbu), int(b.bbox().bottom * dbu), int(b.bbox().right * dbu), int(b.bbox().top * dbu), count, cluster_count )
                 text_out += "%s\t%s\t%s\t%s\tR%s\n" % (int(b.bbox().left * dbu), int(b.bbox().bottom * dbu), int(b.bbox().right * dbu), int(b.bbox().top * dbu), count )
                 area += b.bbox().area()
                 points.append (Point(b.bbox().center().x, b.bbox().center().y))
@@ -116,11 +116,26 @@ def extract_EBL_regions():
     print(text_out)
     print(points)
 
-    if area != area_region:
-        raise Exception("Problem with the regions.  The areas of the regions don't agree.  Possibly overlapping regions.")
 
 
-    topcell.shapes(ly.layer(Layer)).insert(Path(points,1e3))
+    # Create a Results Database
+    rdb_i = lv.create_rdb("EBL write field region order: %s technology" %
+                          TECHNOLOGY['technology_name'])
+    rdb = lv.rdb(rdb_i)
+    rdb.top_cell_name = cell.name
+    rdb_cell = rdb.create_cell(cell.name)
+
+    # Waveguide checking
+    rdb_cell = next(rdb.each_cell())
+    rdb_cat_id_ebl = rdb.create_category("EBL-Regions")
+    rdb_cat_id_ebl_path = rdb.create_category(rdb_cat_id_ebl, "EBL Field write order")
+    rdb_cat_id_ebl_path.description = "The path shows the order in which the EBL fields will be written."
+
+    rdb_item = rdb.create_item(rdb_cell.rdb_id(), rdb_cat_id_ebl_path.rdb_id())
+    rdb_item.add_value(pya.RdbItemValue(Path(points,1e3).to_dtype(dbu)))
+    lv.show_rdb(rdb_i, cv.cell_index)
+
+    # topcell.shapes(ly.layer(Layer)).insert(Path(points,1e3))
 
     # filename
     extra = 'EBLfields.txt'
@@ -130,6 +145,14 @@ def extract_EBL_regions():
     print("saving output %s" % (file_out) )
     with open(file_out, 'w') as f:
         f.write(text_out)
+
+    for r in extracted:
+        if r.bbox().width() &gt;1e6 or r.bbox().height() &gt; 1e6:
+            raise Exception("Maximum region width/height of 1 mm, exceeded.")
+
+    if area != area_region:
+        print(' area: %s, area_region: %s' % ( area, area_region) )
+        raise Exception("Problem with the regions.  The areas of the regions don't agree.  Possibly overlapping regions.")
 
     pya.MessageBox.warning("Success.", "EBL regions exported successfully: \n%s" %file_out, pya.MessageBox.Ok)
    

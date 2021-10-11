@@ -83,7 +83,7 @@ def extract_EBL_regions():
         b.merged_semantics=False
         print(' - each polygon (area: %s): %s' %(b.area(), b))
         count+=1
-        text_out += "%s\t%s\t%s\t%s\tR%s-%s\n" % (int(b.bbox().left * dbu), int(b.bbox().bottom * dbu), int(b.bbox().right * dbu), int(b.bbox().top * dbu), count, cluster_count )
+        #text_out += "%s\t%s\t%s\t%s\tR%s-%s\n" % (int(b.bbox().left * dbu), int(b.bbox().bottom * dbu), int(b.bbox().right * dbu), int(b.bbox().top * dbu), count, cluster_count )
         text_out += "%s\t%s\t%s\t%s\tR%s\n" % (int(b.bbox().left * dbu), int(b.bbox().bottom * dbu), int(b.bbox().right * dbu), int(b.bbox().top * dbu), count )
         points.append (Point(b.bbox().center().x, b.bbox().center().y))
         area += b.bbox().area()
@@ -99,7 +99,7 @@ def extract_EBL_regions():
             new_cluster.merged_semantics=False
             for b in new_cluster:
                 count+=1
-                text_out += "%s\t%s\t%s\t%s\tR%s-%s\n" % (int(b.bbox().left * dbu), int(b.bbox().bottom * dbu), int(b.bbox().right * dbu), int(b.bbox().top * dbu), count, cluster_count )
+                #text_out += "%s\t%s\t%s\t%s\tR%s-%s\n" % (int(b.bbox().left * dbu), int(b.bbox().bottom * dbu), int(b.bbox().right * dbu), int(b.bbox().top * dbu), count, cluster_count )
                 text_out += "%s\t%s\t%s\t%s\tR%s\n" % (int(b.bbox().left * dbu), int(b.bbox().bottom * dbu), int(b.bbox().right * dbu), int(b.bbox().top * dbu), count )
                 area += b.bbox().area()
                 points.append (Point(b.bbox().center().x, b.bbox().center().y))

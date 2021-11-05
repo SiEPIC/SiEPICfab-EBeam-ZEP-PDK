@@ -93,7 +93,7 @@ class Waveguide_SWG_Assist(pya.PCellDeclarationHelper):
 
     # Compact model information
     t = Trans(Trans.R0, 0, 0)
-    text = Text ('Lumerical_INTERCONNECT_library=Design kits/ebeam', t)
+    text = Text ('Lumerical_INTERCONNECT_library=Design kits/SiEPICfab_EBeam_ZEP', t)
     shape = shapes(LayerDevRecN).insert(text)
     shape.text_size = 0.1/dbu
     t = Trans(Trans.R0, length/10, 0)

@@ -15,7 +15,7 @@
  <interpreter>dsl</interpreter>
  <dsl-interpreter-name>drc-dsl-xml</dsl-interpreter-name>
  <text># Basic DRC deck for SiEPICfab_EBeam_ZEP_PDK
-# Lukas Chrostowski, 2020
+# Jaspreet Jhoja, Lukas Chrostowski, 2022
 
 # Read about DRC scripts in the User Manual under "Design Rule Check (DRC)"
 # http://klayout.de/doc/manual/drc_basic.html
@@ -28,9 +28,7 @@ deep
 # Layers:
 Layer_Si_core=input(1,0)
 Layer_Si_clad=input(1,2)
-Layer_Si_etch_highres=input(100,0)
-Layer_Si_etch_lowres=input(101,0)
-
+LayerM=input(11,0)
 DevRec=source.polygons(68,0)  # only shapes that can be turned into polygons, ignore text labels
 LayerFP=input(99)
 
@@ -54,17 +52,15 @@ Layer_Si_clad.outside(LayerFP).output("Boundary","devices are out of boundary")
 tol = 1e-3  # if a design uses exactly the min feature size,
             # for curves, this typically leads to many false errors.
 
-# minimum feature size of Si is 60 nm and minimum exclusion between Si is 60 nm
-Layer_Si_core.width(0.06-tol, angle_limit(80)).output("Si width","Si minimum feature size violation; min 60 nm")
-Layer_Si_core.space(0.06-tol, angle_limit(80)).output("Si space","Si minimum space violation; min 60 nm")
-Layer_Si_etch_highres.width(0.06-tol, angle_limit(80)).output("Etch width","Etch minimum feature size violation; min 60 nm")
-Layer_Si_etch_highres.space(0.06-tol, angle_limit(80)).output("Etch space","Etch minimum space violation; min 60 nm")
-Layer_Si_etch_lowres.width(0.06-tol, angle_limit(80)).output("Etch width","Etch minimum feature size violation; min 60 nm")
-Layer_Si_etch_lowres.space(0.06-tol, angle_limit(80)).output("Etch space","Etch minimum space violation; min 60 nm")
+Layer_Si_core.width(0.2-tol, angle_limit(80)).output("Si_width","Si minimum feature size violation; min 200 nm")
+Layer_Si_core.space(2.0-tol).output("Si_space","Si minimum space violation; min 2 um")
 
-######################
-# logical layer checks
-######################
+# Metal  minimum feature size and spacing
+LayerM.width(5.0, angle_limit(80)).output("M_width","Metal minimum feature size violation; min 5 µm")
+LayerM.space(5.0).output("M_space","Metal minimum space violation; min 5 µm")
+
+# Metal-Si-core spacing
+Layer_Si_core.separation(LayerM, 5.0).output("Si - Metal spacing","Si - Metal minimum space violation; min 5 µm")
 
 # core/cladding
 Layer_Si_core.select_not_inside(Layer_Si_clad).output("Core inside Clad","Core needs to be surrounded by a Clad")

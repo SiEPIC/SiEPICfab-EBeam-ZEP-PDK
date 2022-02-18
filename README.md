@@ -13,7 +13,7 @@ SiEPIC Program EBeam PDK for the ZEP process
 | Si_clad         | 1/2            |         Layer to draw the extent of the Si etch, including cladding and core.        |
 | Si_etch_highres | 100/0          | High Resolution Layer to draw fully etched trenches, but use SLS/Shape PEC. (trench) |
 | Si_etch_lowres  | 101/0          | Low Resolution Layer to draw fully etched trenches but use no-SLS or PEC. (trench)   |
-| M1              | 11/0           | Layer to draw metal wire-guides, heaters, etc				          |
+| M1              | 11/0           | Layer to draw metal routing, heaters, etc  				          |
 | Floorplan       | 99/0           |                             Marks the layout design area.                            |
 | text            | 10/0           | Text labels for automated measurements.                                              |
 | DevRec          | 68/0           |                           Device recognition layer for DRC.                          |

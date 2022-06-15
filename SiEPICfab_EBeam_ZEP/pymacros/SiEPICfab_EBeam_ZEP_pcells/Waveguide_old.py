@@ -1,96 +1,25 @@
 """
-This file is part of the SiEPIC-Tools and SiEPIC-AMF PDK
+This file is part of the SiEPIC-Tools and SiEPICfab_EBeam_ZEP PDK
 
-This Python file implements a library called "AMF" 
+This Python file implements a Waveguide PCell
 
 Version history:
 
-Lukas Chrostowski 2022/04/01
- - PCell takes an input of the waveguide type from a dropdown list, rather than 
-   detailed parameters.  Loaded from Waveguides.xml
+Pre-2022: Waveguide geometric parameters are specified as inputs
+
 """
 
-from pya import *
-import pya
-
-class Waveguide(pya.PCellDeclarationHelper):
-
-  def __init__(self):
-    # Important: initialize the super class
-    super(Waveguide, self).__init__()
-    
-    from SiEPIC.utils import get_technology_by_name, load_Waveguides_by_Tech
-
-    '''
-    # https://github.com/KLayout/klayout/issues/879
-    tech = self.layout.library().technology
-    if not tech:
-       tech = 'EBeam'
-    self.technology_name = tech
-    '''
-    self.technology_name = 'SiEPICfab_EBeam_ZEP'
-            
-    # Load all strip waveguides
-    self.waveguide_types = load_Waveguides_by_Tech(self.technology_name)   
-        
-    # declare the parameters
-
-    p = self.param("waveguide_type", self.TypeList, "Waveguide Type", default = self.waveguide_types[0]['name'])
-    for wa in self.waveguide_types:
-        p.add_choice(wa['name'],wa['name'])
-    self.param("path", self.TypeShape, "Path", default = DPath([DPoint(0,0), DPoint(10,0), DPoint(10,10)], 0.5))
-
-    # self.param("length", self.TypeDouble, "Length", default = 0, readonly=True)
-    ''' todo - can add calculated values and parameters for user info
-    self.param("radius", self.TypeDouble, "Bend Radius", default = 0, readonly=True)
-    '''
-    
-    self.cellName="Waveguide"
-
-  def display_text_impl(self):
-    # Provide a descriptive text for the cell
-    return "%s_%s" % (self.cellName, self.path)
-  
-  def coerce_parameters_impl(self):
-#    self.length = self.waveguide_length
-    pass                  
-  def can_create_from_shape_impl(self):
-    return self.shape.is_path()
-
-  def transformation_from_shape_impl(self):
-    return Trans(Trans.R0,0,0)
-
-  def parameters_from_shape_impl(self):
-    self.path = self.shape.path
-        
-  def produce_impl(self):
-
-    # https://github.com/KLayout/klayout/issues/879
-    # tech = self.layout.library().technology
-        
-    # Make sure the technology name is associated with the layout
-    #  PCells don't seem to know to whom they belong!
-    if self.layout.technology_name == '':
-        self.layout.technology_name = self.technology_name
-
-    # Draw the waveguide geometry, new function in SiEPIC-Tools v0.3.90
-    from SiEPIC.utils.layout import layout_waveguide4
-    self.waveguide_length = layout_waveguide4(self.cell, self.path, self.waveguide_type)
-
-    print("SiEPICfab_EBeam_ZEP.%s: length %.3f um, complete" % (self.cellName, self.waveguide_length))
-
-'''
 import pya
 from pya import *
 
-class Waveguide(pya.PCellDeclarationHelper):
+class Waveguide_old(pya.PCellDeclarationHelper):
 
   def __init__(self):
     # Important: initialize the super class
-    super(Waveguide, self).__init__()
+    super(Waveguide_old, self).__init__()
     # declare the parameters
     from SiEPIC.utils import get_technology_by_name
-    TECHNOLOGY = get_technology_by_name('EBeam')
+    TECHNOLOGY = get_technology_by_name('SiEPICfab_EBeam_ZEP')
     self.param("path", self.TypeShape, "Path", default = DPath([DPoint(0,0), DPoint(10,0), DPoint(10,10)], 0.5))
     self.param("radius", self.TypeDouble, "Radius", default = 5)
     self.param("width", self.TypeDouble, "Width", default = 0.5)
@@ -99,9 +28,11 @@ class Waveguide(pya.PCellDeclarationHelper):
     self.param("layers", self.TypeList, "Layers", default = ['Waveguide'])
     self.param("widths", self.TypeList, "Widths", default =  [0.5])
     self.param("offsets", self.TypeList, "Offsets", default = [0])
-    self.param("CML", self.TypeString, "Compact Model Library (CML)", default = 'EBeam')
-    self.param("model", self.TypeString, "CML Model name", default = 'ebeam_wg_integral_1550') 
-    self.cellName="Waveguide"
+    self.param("CML", self.TypeString, "Compact Model Library (CML)", default = 'SiEPICfab_EBeam_ZEP')
+    self.param("model", self.TypeString, "CML Model name", default = 'wg') 
+    self.param("waveguide_length", self.TypeDouble, "Waveguide Length", readonly = True, default = 0) 
+    self.cellName="Waveguide_old"
+    self.waveguide_length1 = 0
     
   def display_text_impl(self):
     # Provide a descriptive text for the cell
@@ -109,10 +40,11 @@ class Waveguide(pya.PCellDeclarationHelper):
   
   def coerce_parameters_impl(self):
     from SiEPIC.extend import to_itype
-    print("EBeam.Waveguide coerce parameters")
+    print("EBeam.Waveguide_old coerce parameters")
+    self.waveguide_length = self.waveguide_length1
     
     if 0:
-        TECHNOLOGY = get_technology_by_name('EBeam')
+        TECHNOLOGY = get_technology_by_name('SiEPICfab_EBeam_ZEP')
         dbu = self.layout.dbu
         wg_width = to_itype(self.width,dbu)
         for lr in range(0, len(self.layers)):
@@ -144,35 +76,35 @@ class Waveguide(pya.PCellDeclarationHelper):
     import pya
     from SiEPIC.extend import to_itype
     
-    # print("EBeam.Waveguide")
-    
     from SiEPIC.utils import get_technology_by_name
-    TECHNOLOGY = get_technology_by_name('EBeam')
+    TECHNOLOGY = get_technology_by_name('SiEPICfab_EBeam_ZEP')
     
     dbu = self.layout.dbu
     wg_width = to_itype(self.width,dbu)
     path = self.path.to_itype(dbu)
 
     if not (len(self.layers)==len(self.widths) and len(self.layers)==len(self.offsets) and len(self.offsets)==len(self.widths)):
-      raise Exception("There must be an equal number of layers, widths and offsets")
+      raise Exception("PDK configuration error - Waveguides - There must be an equal number of layers, widths and offsets")
     path.unique_points()
     pts = path.get_points()
     
     # Draw the waveguide geometry, new in SiEPIC-Tools v0.3.64
     waveguide_length = layout_waveguide2(TECHNOLOGY, self.layout, self.cell, self.layers, self.widths, self.offsets, pts, self.radius, self.adiab, self.bezier)
+    self.waveguide_length1 = waveguide_length
 
     pts = path.get_points()
     LayerPinRecN = self.layout.layer(TECHNOLOGY['PinRec'])
     
     t1 = Trans(angle_vector(pts[0]-pts[1])/90, False, pts[0])
-    self.cell.shapes(LayerPinRecN).insert(Path([Point(-5, 0), Point(5, 0)], wg_width).transformed(t1))
+    self.cell.shapes(LayerPinRecN).insert(Path([Point(-50, 0), Point(50, 0)], wg_width).transformed(t1))
     self.cell.shapes(LayerPinRecN).insert(Text("pin1", t1, 0.3/dbu, -1))
     
     t = Trans(angle_vector(pts[-1]-pts[-2])/90, False, pts[-1])
-    self.cell.shapes(LayerPinRecN).insert(Path([Point(-5, 0), Point(5, 0)], wg_width).transformed(t))
+    self.cell.shapes(LayerPinRecN).insert(Path([Point(-50, 0), Point(50, 0)], wg_width).transformed(t))
     self.cell.shapes(LayerPinRecN).insert(Text("pin2", t, 0.3/dbu, -1))
 
     LayerDevRecN = self.layout.layer(TECHNOLOGY['DevRec'])
+
 
     # Compact model information
     angle_vec = angle_vector(pts[0]-pts[1])/90
@@ -224,4 +156,5 @@ class Waveguide(pya.PCellDeclarationHelper):
       'Length=%.3fu' %(waveguide_length), t, 0.5*wg_width, -1  )
     text.halign=halign
     shape = self.cell.shapes(LayerDevRecN).insert(text)
-'''
+    
+    print(' - done: SiEPICfab_EBeam_ZEP_pcells:Waveguide_old')

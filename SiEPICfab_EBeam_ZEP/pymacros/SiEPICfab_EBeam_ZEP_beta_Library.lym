@@ -78,7 +78,7 @@ class SiEPICfab_EBeam_ZEP_beta_Library(Library):
     print("Initializing '%s' Library." % library)
 
     # Set the description
-    self.description = "v0.0.2, Beta Components"
+    self.description = "v0.0.3, Beta Components"
 
     # Save the path, used for loading WAVEGUIDES.XML
     import os

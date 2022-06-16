@@ -6,6 +6,25 @@ SiEPIC Program EBeam PDK for the ZEP process
 - Single full etch, using a positive resist (ZEP)
 - No cladding
 
+### Wafer details:
+- 200mm 
+- Top Silicon:
+  - CZ grown P type Boron doped
+  - 30-60 ohm cm
+  - 110 orientation
+  - Notched within 1 degree
+  - 220 nm thick+-12.5nm, all measured points, 5mm edge exclusion
+- BOX: 
+  - 3500 nm+-150nm all points, 5mm edge exclusion
+- Handle:
+  - CZ, P type Boron doped
+  - 500-1000 ohm cm
+  - 100 orientation
+  - 725 um thick +-15 um
+  - Backside etched with oxide
+  - Max 50 um warp
+ 
+
 ## Layer table
 | Name            | Layer/datatype | Description                                                                          |
 |-----------------|----------------|--------------------------------------------------------------------------------------|

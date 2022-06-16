@@ -10,7 +10,7 @@ SiEPIC Program EBeam PDK for the ZEP process
 - 200mm 
 - Top Silicon:
   - CZ grown P type Boron doped
-  - 30-60 ohm cm
+  - 30-60 ohm cm. (approx 5e14 cm^-3, see https://www.pvlighthouse.com.au/resistivity)
   - 110 orientation
   - Notched within 1 degree
   - 220 nm thick+-12.5nm, all measured points, 5mm edge exclusion

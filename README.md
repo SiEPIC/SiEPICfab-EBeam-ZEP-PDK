@@ -41,8 +41,15 @@ SiEPIC Program EBeam PDK for the ZEP process
 | SEM             | 200/0          | Requests for SEM images. Rectangles in a 4:3 aspect.                                 |
 | EBL-Regions     | 8100/0         | EBL Litho Manual Write Field Regions                                                 |
 
+### EBL Write Field Regions
+- layer “EBL-Regions”: Designer draws a rectangle to designate a write field. Maximum size of 1x1 mm. Everything inside is written in one EBL field. 
+- Designer chooses their own fields to avoid field stitching boundaries, or to choose where the boundaries are placed
+- Can have adjacent fields touching. Exported in order so that they are written as a group, which reduces stitching errors due to machine drift
+- Run DRC check to make sure the EBL regions are defined correctly
+- SiEPIC > "Export EBL Write Field Regions" - Script that exports EBL regions. Beamer will import and use for manual field placement. 
+
 ## People
-- Fabrication performed at UBC by Kashif Awan
+- Fabrication performed at UBC
 - PDK support provided by Jaspreet Jhoja
 
 ## Run schedule

@@ -39,6 +39,16 @@ LayerSi=input(1,0)
 LayerM=input(11,0)
 DevRec=input(68,0)
 LayerFP=input(99)
+LayerEBLregions=input(8100)
+
+# EBL regions
+# overlap check
+overlaps = LayerEBLregions.merged(2)
+output(overlaps, "EBL-Regions_overlap","EBL-Regions can be touching, but cannot overlap")
+# Max size 1 mm
+overlaps = LayerEBLregions.with_bbox_min(1000)
+output(overlaps, "EBL-Regions_max","EBL-Regions must be 1 mm or smaller")
+
 
 # minimum feature size of 200nm
 LayerSi.width(0.2, angle_limit(80)).output("Si_width","Si minimum feature size violation; min 200 nm")

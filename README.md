@@ -82,6 +82,13 @@ SiEPIC Program EBeam PDK for the ZEP process
 			
  - Start KLayout, and create a new layout choosing Technology = SiEPICfab_EBeam_ZEP
    - you should see the layer table, and the SiEPIC menu
+   
+ - Note, if that doesn't work, do this:
+	* Menu Tools > Manage Technologies
+	* In the window on the left (Technologies), right click, then Import Technology
+	* Navigate to your GitHub folder and select GitHub / SiEPIC_... / and find the .lyt file, then OK.
+	* Create a new layout, menu File > New Layout, Technology = SiEPIC ...
+
 
 ## PDK Updates:
  - subscribe to commits and release updates using the "Watch" button, https://github.com/SiEPIC/SiEPICfab-EBeam-ZEP-PDK

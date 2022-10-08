@@ -17,7 +17,8 @@ class taper(pya.PCellDeclarationHelper):
     self.param("clad", self.TypeLayer, "Cladding Layer", default = TECHNOLOGY['Si_clad'])
     self.param("wg_width1", self.TypeDouble, "Waveguide Width1", default = 0.5)
     self.param("wg_width2", self.TypeDouble, "Waveguide Width2", default = 3)
-    self.param("wg_length", self.TypeDouble, "Waveguide Length", default = 10)
+    self.param("wg_length", self.TypeDouble, "Waveguide Length", default = 10, readonly=True)
+    self.param("wg_length_multiplier", self.TypeDouble, "Multiplier (X) for Waveguide Length  = X * width difference", default = 20, readonly=False)
     self.param("clad_width", self.TypeDouble, "Cladding Width", default = 2)
     self.param("pinrec", self.TypeLayer, "PinRec Layer", default = TECHNOLOGY['PinRec'])
     self.param("devrec", self.TypeLayer, "DevRec Layer", default = TECHNOLOGY['DevRec'])
@@ -29,6 +30,9 @@ class taper(pya.PCellDeclarationHelper):
   def display_text_impl(self):
     # Provide a descriptive text for the cell
     return "taper(R=" + ('%.3f-%.3f-%.3f' % (self.wg_width1,self.wg_width2,self.wg_length) ) + ")"
+
+  def coerce_parameters_impl(self):
+    self.wg_length = self.wg_length_multiplier * abs(self.wg_width1 - self.wg_width2)  
 
   def can_create_from_shape_impl(self):
     return False
@@ -44,6 +48,7 @@ class taper(pya.PCellDeclarationHelper):
     self.layout = layout
     shapes = self.cell.shapes
 
+    from SiEPIC.extend import to_itype
 
     # cell: layout cell to place the layout
     # LayerSiN: which layer to use
@@ -58,11 +63,11 @@ class taper(pya.PCellDeclarationHelper):
     LayerSiN = self.silayer_layer
     LayerPinRecN = ly.layer(self.pinrec)
     LayerDevRecN = ly.layer(self.devrec)
-    
-    w1 = int(round(self.wg_width1/dbu))
-    w2 = int(round(self.wg_width2/dbu))
-    length = int(round(self.wg_length/dbu))
-    clad_width = int(round(self.clad_width/dbu))
+
+    w1 = to_itype(self.wg_width1,dbu)
+    w2 = to_itype(self.wg_width2,dbu)
+    length = to_itype(self.wg_length,dbu)
+    clad_width = to_itype(self.clad_width, dbu)
 
     pts = [Point(0,-w1/2), Point(0,w1/2), Point(length,w2/2), Point(length,-w2/2)]
     shapes(LayerSiN).insert(Polygon(pts))

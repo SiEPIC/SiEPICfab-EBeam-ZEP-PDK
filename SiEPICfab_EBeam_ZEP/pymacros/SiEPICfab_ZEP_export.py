@@ -138,6 +138,7 @@ def export_for_fabrication(flatten=False, replace_IP=False):
         ly.technology_name='SiEPICfab_EBeam_ZEP'
         cell_list = [
         ['GC_1550_220_Blackbox', 'GC_1550_te_220', 'SiEPICfab_EBeam_ZEP_UBC'],
+        ['ebeam_gc_te1550', 'GC_1550_te_220', 'SiEPICfab_EBeam_ZEP_UBC'],
         ]
         from SiEPIC.scripts import replace_cell
         text_out = ''

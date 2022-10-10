@@ -164,7 +164,7 @@ def export_for_fabrication(flatten=False):
     # only export the layers that will be fabricated
     save_options.add_layer(ly.layer(LayerInfo(100,0)), LayerInfo())# Si etch
     save_options.add_layer(ly.layer(LayerInfo(101,0)), LayerInfo())# Si etch
-    save_options.add_layer(ly.layer(LayerInfo(11,0)), LayerInfo()) # M1
+    save_options.add_layer(ly.layer(LayerInfo(11,0)), LayerInfo(12,0)) # M1
     save_options.add_layer(ly.layer(LayerInfo(12,0)), LayerInfo()) # M2
     save_options.add_layer(ly.layer(LayerInfo(99,0)), LayerInfo()) # Floorplan
     save_options.add_layer(ly.layer(LayerInfo(8100,0)), LayerInfo()) # EBL regions

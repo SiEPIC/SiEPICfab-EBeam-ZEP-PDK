@@ -31,6 +31,16 @@ Layer_Si_clad=input(1,2)
 LayerM=input(11,0)
 DevRec=source.polygons(68,0)  # only shapes that can be turned into polygons, ignore text labels
 LayerFP=input(99)
+LayerEBLregions=input(8100)
+
+
+# EBL regions
+# overlap check
+overlaps = LayerEBLregions.merged(2)
+output(overlaps, "EBL-Regions_overlap","EBL-Regions can be touching, but cannot overlap")
+# Max size 1 mm
+overlaps = LayerEBLregions.with_bbox_min(1000)
+output(overlaps, "EBL-Regions_max","EBL-Regions must be 1 mm or smaller")
 
 
 #################

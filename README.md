@@ -33,6 +33,7 @@ SiEPIC Program EBeam PDK for the ZEP process
 | Si_etch_highres | 100/0          | High Resolution Layer to draw fully etched trenches, but use SLS/Shape PEC. (trench) |
 | Si_etch_lowres  | 101/0          | Low Resolution Layer to draw fully etched trenches but use no-SLS or PEC. (trench)   |
 | M1              | 11/0           | Layer to draw metal routing, heaters, etc  				          |
+| DeepTrench	  | 201/0          | Layer to define deep trench etch regions. For edge couplers			  |
 | Floorplan       | 99/0           |                             Marks the layout design area.                            |
 | text            | 10/0           | Text labels for automated measurements.                                              |
 | DevRec          | 68/0           |                           Device recognition layer for DRC.                          |

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<klayout-macro>
+ <description>Export design for SiEPICfab-ZEP fabrication (with IP replacement, flat)</description>
+ <version/>
+ <category>pymacros</category>
+ <prolog/>
+ <epilog/>
+ <doc/>
+ <autorun>false</autorun>
+ <autorun-early>false</autorun-early>
+ <shortcut/>
+ <show-in-menu>true</show-in-menu>
+ <group-name/>
+ <menu-path>siepic_menu.end</menu-path>
+ <interpreter>python</interpreter>
+ <dsl-interpreter-name/>
+ <text>'''
+with IP replacement
+Export layout for fabrication, by stripping it of problematic characters, removing pcells, doing boolean operations
+by Lukas Chrostowski, 2022
+
+'''
+import SiEPICfab_ZEP_export
+
+from importlib import reload
+SiEPICfab_ZEP_export = reload(SiEPICfab_ZEP_export)
+
+from SiEPICfab_ZEP_export import export_for_fabrication
+
+export_for_fabrication(flatten=True, replace_IP=True)
+</text>
+</klayout-macro>

@@ -132,18 +132,20 @@ def export_for_fabrication(flatten=False, replace_IP=False):
         else:
             raise Exception("You may only have one top cell in your hierarchy. \nClean up using SiEPIC > Layout > Delete Extra Top Cells. \nOr, select the desired top cell using Show as New Top.")
         
-    ly, flag_longcellnames = boolean_layer_operations(topcell, flatten=flatten)
-
     if replace_IP:
         ly.technology_name='SiEPICfab_EBeam_ZEP'
         cell_list = [
         ['GC_1550_220_Blackbox', 'GC_1550_te_220', 'SiEPICfab_EBeam_ZEP_UBC'],
         ['ebeam_gc_te1550', 'GC_1550_te_220', 'SiEPICfab_EBeam_ZEP_UBC'],
+        ['y_splitter_1310', 'drp_o_y_splitter', 'SiEPICfab_EBeam_ZEP_UBC'],
+        ['GC_1270_te_220','GC_1270_te_220', 'SiEPICfab_EBeam_ZEP_UBC'], 
         ]
         from SiEPIC.scripts import replace_cell
         text_out = ''
         for i in range(len(cell_list)):
             text_out = replace_cell(ly, cell_x_name=cell_list[i][0], cell_y_name=cell_list[i][1], cell_y_library=cell_list[i][2], Exact = False)
+
+    ly, flag_longcellnames = boolean_layer_operations(topcell, flatten=flatten)
 
 
     # Save the layout, without PCell info, for fabrication
@@ -180,6 +182,7 @@ def export_for_fabrication(flatten=False, replace_IP=False):
     save_options.add_layer(ly.layer(LayerInfo(99,0)), LayerInfo()) # Floorplan
     save_options.add_layer(ly.layer(LayerInfo(8100,0)), LayerInfo()) # EBL regions
     save_options.add_layer(ly.layer(LayerInfo(10,0)), LayerInfo()) # Text
+    save_options.add_layer(ly.layer(LayerInfo(201,0)), LayerInfo())# Deep trench etch
 
     # filename
     file_out = os.path.join(os.path.dirname(layout_filename), os.path.splitext(os.path.basename(layout_filename))[0]+'_%s.'%extra+save_options.format[0:3].lower())

@@ -3,6 +3,7 @@
 import math
 from SiEPIC.utils import get_technology, get_technology_by_name
 from pya import *
+import pya
 import numpy as np
 
 
@@ -33,7 +34,7 @@ class ZEP_PWB_surface_taper(pya.PCellDeclarationHelper):
     #self.param("Grouse_Run", self.TypeBoolean, "Fabrication using ANT Grouse Run", default = False)
 
     # declare the layers
-    self.param("silayer", self.TypeLayer, "Si Layer", default=[TECHNOLOGY['Si_core']])
+    self.param("silayer", self.TypeLayer, "Si Layer", default=TECHNOLOGY['Si_core'])
     self.param("pinrec", self.TypeLayer, "PinRec Layer", default=TECHNOLOGY['PinRec'])
     self.param("devrec", self.TypeLayer, "DevRec Layer", default=TECHNOLOGY['DevRec'])
     self.param("oxopen", self.TypeLayer, "OxOpen Layer", default=TECHNOLOGY['Oxide open (to BOX)'])
@@ -220,24 +221,4 @@ class ZEP_PWB_surface_taper(pya.PCellDeclarationHelper):
     else:
         return "PWB_taper (tip_width=" + ('%.2f' % self.Wtip) + ",waveguide_width=" + ('%.2f' % self.Wwaveguide) + ",taper_length=" + ('%.1f' % self.taper_length) + ",Angle=" + ('%s' % self.OxOp_angle) + ")"      
 '''
-class ZEP_PWB(Library):
 
-
-  def __init__(self):
-  
-    tech_name = 'ZEP_PWB'
-    library = tech_name
-    
-    print("Initializing '%s' Library." % library)
-    
-    self.description = ""
-    self.description = 'Surface_Taper_PCell'
-    # self.layout().register_pcell("AMF_reg_CDC",AMF_reg_CDC())
-    # self.layout().register_pcell("Strip_To_slot", Strip_To_Slot())
-    # self.layout().register_pcell("AMF_sin_CDC",AMF_sin_CDC())
-    self.layout().register_pcell("ZEP_Photonics_Wirebond_Surface_Taper",ZEP_PWB_surface_taper())
-    #self.layout().register_pcell("Spiral",Spiral())
-    self.register(library)
-    self.technology='SiEPICfab_EBeam_ZEP'
-    
-ZEP_PWB()

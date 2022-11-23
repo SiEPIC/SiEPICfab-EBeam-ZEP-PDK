@@ -62,7 +62,7 @@ class Waveguide_Straight(pya.PCellDeclarationHelper):
 #    print(path)
     shapes(LayerSiN).insert(path.simple_polygon())
 
-    path = Path([Point(-length/2,0),Point(length/2,0)],w*3)
+    path = Path([Point(-length/2,0),Point(length/2,0)],w*10)
     shapes(LayerSiClad).insert(path.simple_polygon())
 
     

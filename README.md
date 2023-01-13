@@ -5,6 +5,7 @@ SiEPIC Program EBeam PDK for the ZEP process
 - SOI wafer, 220 nm silicon
 - Single full etch, using a positive resist (ZEP)
 - No cladding
+- [Process documentation, including process bias] (https://docs.google.com/document/d/1HpU0Z95oETRH_fx-z4YNDfZ5-b3SPxWYZX6zVMYroiM/edit?usp=sharing)
 
 ### Wafer details:
 - 200mm 

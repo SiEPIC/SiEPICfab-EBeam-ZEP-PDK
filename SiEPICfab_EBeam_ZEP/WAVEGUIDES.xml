@@ -30,6 +30,36 @@
 	  </component>
 	</waveguide>
 	<waveguide>
+	  <name>Strip 1550 nm, w=410 nm (core-clad)</name>
+	  <CML>SiEPICfab_EBeam_ZEP</CML>
+	  <model>wg_strip_1550</model>
+    <wavelength>1550</wavelength>
+	  <bezier>0.20</bezier>
+      <radius>20.0</radius>
+      <width>0.41</width>
+	  <sbends>true</sbends>
+ 	  <component>
+ 	    <layer>Waveguide</layer>
+ 	    <width>0.41</width>
+ 	    <offset>0</offset>
+ 	  </component>
+	  <component>
+	    <layer>Si_core</layer>
+	    <width>0.41</width>
+	    <offset>0.0</offset>
+	  </component>
+	  <component>
+	    <layer>Si_clad</layer>
+	    <width>4.41</width>
+	    <offset>0.0</offset>
+	  </component>
+	  <component>
+	    <layer>DevRec</layer>
+	    <width>4.41</width>
+	    <offset>0.0</offset>
+	  </component>
+	</waveguide>
+	<waveguide>
 	  <name>Strip 1550 nm, w=500 nm (etch)</name>
 	  <CML>SiEPICfab_EBeam_ZEP</CML>
 	  <model>wg_strip_1550</model>

@@ -10,7 +10,7 @@ SiEPIC Program EBeam PDK for the ZEP process
   - Shuksan laser integration (deep trench, laser attach, photonic wire bonds)
   - Metals
   - Oxide release etch for NEMS devices
-- [Process documentation, including process bias] (https://docs.google.com/document/d/1HpU0Z95oETRH_fx-z4YNDfZ5-b3SPxWYZX6zVMYroiM/edit?usp=sharing)
+- [Process documentation, including process bias](https://docs.google.com/document/d/1HpU0Z95oETRH_fx-z4YNDfZ5-b3SPxWYZX6zVMYroiM/edit?usp=sharing)
 
 ### Wafer details:
 - 200mm 

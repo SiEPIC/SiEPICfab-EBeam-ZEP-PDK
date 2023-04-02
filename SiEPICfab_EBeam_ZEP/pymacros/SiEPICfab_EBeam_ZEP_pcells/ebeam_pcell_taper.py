@@ -1,15 +1,15 @@
 from . import *
 from pya import *
 
-class taper(pya.PCellDeclarationHelper):
+class ebeam_pcell_taper(pya.PCellDeclarationHelper):
   """
-  The PCell declaration for the strip waveguide taper.
+  The PCell declaration for the strip waveguide ebeam_pcell_taper.
   """
 
   def __init__(self):
 
     # Important: initialize the super class
-    super(taper, self).__init__()
+    super(ebeam_pcell_taper, self).__init__()
     TECHNOLOGY = get_technology_by_name('SiEPICfab_EBeam_ZEP')
 
     # declare the parameters
@@ -29,7 +29,7 @@ class taper(pya.PCellDeclarationHelper):
 
   def display_text_impl(self):
     # Provide a descriptive text for the cell
-    return "taper(R=" + ('%.3f-%.3f-%.3f' % (self.wg_width1,self.wg_width2,self.wg_length) ) + ")"
+    return "ebeam_pcell_taper(R=" + ('%.3f-%.3f-%.3f' % (self.wg_width1,self.wg_width2,self.wg_length) ) + ")"
 
   def coerce_parameters_impl(self):
     self.wg_length = self.wg_length_multiplier * abs(self.wg_width1 - self.wg_width2)  
@@ -112,11 +112,11 @@ class taper(pya.PCellDeclarationHelper):
 
     # Compact model information
     t = Trans(Trans.R0, w1/10, 0)
-    text = Text ("Lumerical_INTERCONNECT_library=Design kits/ebeam", t)
+    text = Text ("Lumerical_INTERCONNECT_library=Design kits/SiEPICfab_EBeam", t)
     shape = shapes(LayerDevRecN).insert(text)
     shape.text_size = length/100
     t = Trans(Trans.R0, length/10, w1/4)
-    text = Text ('Component=ebeam_taper_te1550', t)
+    text = Text ('Component=ebeam_ebeam_pcell_taper_te1550', t)
     shape = shapes(LayerDevRecN).insert(text)
     shape.text_size = length/100
     t = Trans(Trans.R0, length/10, w1/2)
@@ -124,4 +124,4 @@ class taper(pya.PCellDeclarationHelper):
     shape = shapes(LayerDevRecN).insert(text)
     shape.text_size = length/100
 
-    return "taper(" + ('%.3f-%.3f-%.3f' % (self.wg_width1,self.wg_width2,self.wg_length) ) + ")"
+    return "ebeam_pcell_taper(" + ('%.3f-%.3f-%.3f' % (self.wg_width1,self.wg_width2,self.wg_length) ) + ")"

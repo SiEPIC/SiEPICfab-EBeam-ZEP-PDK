@@ -98,8 +98,8 @@ class SiEPICfab_EBeam_ZEP_Library(Library):
         mm = m.__name__.replace('SiEPICfab_EBeam_ZEP_pcells.','')
         mm2 = m.__name__+'.'+mm+'()'
         print(' - register_pcell %s, %s' % (mm,mm2))
-        if mm == 'ebeam_waveguide_spiral':
-          self.layout().register_pcell(mm, SiEPICfab_EBeam_ZEP_pcells.ebeam_waveguide_spiral.ebeam_waveguide_spiral(tech_name, 'Strip TE 1550 nm, w=500 nm (core-clad)'))
+        if mm == 'ebeam_pcell_waveguide_spiral':
+          self.layout().register_pcell(mm, SiEPICfab_EBeam_ZEP_pcells.ebeam_pcell_waveguide_spiral.ebeam_pcell_waveguide_spiral(tech_name, 'Strip TE 1550 nm, w=500 nm (core-clad)'))
         else:
           self.layout().register_pcell(mm, eval(mm2))
     print(' done with SiEPICfab_EBeam_ZEP_pcells')

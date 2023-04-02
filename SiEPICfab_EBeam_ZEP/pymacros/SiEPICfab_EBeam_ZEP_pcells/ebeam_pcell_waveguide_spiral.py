@@ -3,7 +3,7 @@ import pya
 from pya import *
 import math
 
-class ebeam_waveguide_spiral(pya.PCellDeclarationHelper):
+class ebeam_pcell_waveguide_spiral(pya.PCellDeclarationHelper):
   """
   Input: 
   """
@@ -12,7 +12,7 @@ class ebeam_waveguide_spiral(pya.PCellDeclarationHelper):
 
     from SiEPIC.utils import   load_Waveguides_by_Tech 
     # Important: initialize the super class
-    super(ebeam_waveguide_spiral, self).__init__()
+    super(ebeam_pcell_waveguide_spiral, self).__init__()
     self.tech_name = tech
     TECHNOLOGY = get_technology_by_name(self.tech_name)
     self.waveguides =  load_Waveguides_by_Tech(self.tech_name)
@@ -29,18 +29,16 @@ class ebeam_waveguide_spiral(pya.PCellDeclarationHelper):
     self.param("devrec", self.TypeLayer, "DevRec Layer", default = TECHNOLOGY['DevRec'], hidden = True)
     self.param("option", self.TypeString, "WG Option", default =  wg_option, choices = (self.optionsParameter) )
     self.param("text", self.TypeLayer, "Text Layer", default = TECHNOLOGY['Text'], hidden = True)
-    self.param("cover_layers", self.TypeList, "Cover Layers", default = [])
-    self.param("cover_extent", self.TypeList, "Cover Layer extents", default =  [])
-    self.param("CML", self.TypeString, "CML", default = 'SiEPIC_EBeam_PDK', hidden = True)
-    self.param("model", self.TypeString, "model", default = 'WG_Spiral', hidden = True)
+    self.param("CML", self.TypeString, "CML", default = 'SiEPICfab_EBeam', hidden = True)
+    self.param("model", self.TypeString, "model", default = 'ebeam_pcell_waveguide_spiral', hidden = True)
     
   def display_text_impl(self):
     # Provide a descriptive text for the cell
-    return "spiral_%.1f-%.1f-%.1f" % \
+    return "ebeam_pcell_waveguide_spiral%.1f-%.1f-%.1f" % \
     (self.length, self.min_radius, self.wg_spacing)
   
   def coerce_parameters_impl(self):
-    print("SiEPICfab_EBeam_ZEP.ebeam_waveguide_spiral coerce parameters")
+    print("SiEPICfab_EBeam_ZEP.ebeam_pcell_waveguide_spiral coerce parameters")
         
     if 0:
         TECHNOLOGY = get_technology_by_name(self.tech_name)
@@ -264,19 +262,6 @@ class ebeam_waveguide_spiral(pya.PCellDeclarationHelper):
     for i in range(0, npoints+1):
       pts.append(Point.from_dpoint(DPoint(r*cos(i*da), r*sin(i*da))))
     shapes(LayerDevRecN).insert(Polygon(pts))
-    
+   
 
-    # Create cover layers
-    if not (len(self.cover_layers)==len(self.cover_extent)) :
-      raise Exception("There must be an equal number of cover layers and cover layer extent")
-    for lr in range(0, len(self.cover_layers)):
-      if self.cover_layers[lr].strip() != '':
-        layer = self.layout.layer(TECHNOLOGY[self.cover_layers[lr].strip()])      
-        extent = int(float(self.cover_extent[lr].strip())/dbu)
-        r=x + extent
-        pts = []
-        for i in range(0, npoints+1):
-          pts.append(Point.from_dpoint(DPoint(r*cos(i*da), r*sin(i*da))))
-        shapes(layer).insert(Polygon(pts))
-
-    print("spiral done.")
+    print("ebeam_pcell_waveguide_spiral done.")

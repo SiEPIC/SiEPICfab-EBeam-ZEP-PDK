@@ -5,7 +5,7 @@ from . import *
 import pya
 from pya import *
 import math
-class Bragg_grating(pya.PCellDeclarationHelper):
+class ebeam_pcell_bragg_grating(pya.PCellDeclarationHelper):
   """
   Input: length, width
   """
@@ -13,7 +13,7 @@ class Bragg_grating(pya.PCellDeclarationHelper):
   def __init__(self):
 
     # Important: initialize the super class
-    super(Bragg_grating, self).__init__()
+    super(ebeam_pcell_bragg_grating, self).__init__()
     from SiEPIC.utils import get_technology_by_name, load_Waveguides_by_Tech
     self.technology_name = 'SiEPICfab_EBeam_ZEP'
     TECHNOLOGY = get_technology_by_name(self.technology_name)
@@ -42,7 +42,7 @@ class Bragg_grating(pya.PCellDeclarationHelper):
 
   def display_text_impl(self):
     # Provide a descriptive text for the cell
-    return "Bragg_grating_%s-%.3f-%.3f-%.3f" % \
+    return "ebeam_pcell_bragg_grating_%s-%.3f-%.3f-%.3f" % \
     (self.number_of_periods, self.grating_period, self.corrugation_width, self.misalignment)
   
   def coerce_parameters_impl(self):
@@ -144,11 +144,11 @@ class Bragg_grating(pya.PCellDeclarationHelper):
 
     # Compact model information
     t = Trans(Trans.R0, 0, 0)
-    text = Text ('Lumerical_INTERCONNECT_library=Custom', t)
+    text = Text ('Lumerical_INTERCONNECT_library=SiEPICfab_EBeam', t)
     shape = shapes(LayerDevRecN).insert(text)
     shape.text_size = 0.1/dbu
     t = Trans(Trans.R0, length/10, 0)
-    text = Text ('Component=Bragg_waveguide_grating', t)
+    text = Text ('Component=ebeam_pcell_bragg_grating', t)
     shape = shapes(LayerDevRecN).insert(text)
     shape.text_size = 0.1/dbu
     t = Trans(Trans.R0, length/9, 0)
@@ -189,4 +189,4 @@ class Bragg_grating(pya.PCellDeclarationHelper):
     # Create the device recognition layer -- make it 1 * wg_width away from the waveguides.
 
 
-    print('Done: Bragg_waveguide_grating')
+    print('Done: ebeam_pcell_bragg_grating')

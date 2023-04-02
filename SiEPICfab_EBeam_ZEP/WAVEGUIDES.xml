@@ -3,9 +3,9 @@
 
 
 	<waveguide>
-	  <name>Strip 1310 nm, w=370 nm (core-clad)</name>
-	  <CML>SiEPICfab_EBeam_ZEP</CML>
-	  <model>wg_strip_1310</model>
+	  <name>Strip TE 1310 nm, w=370 nm (core-clad)</name>
+	  <CML>SiEPICfab_EBeam</CML>
+	  <model>ebeam_wg_strip_TE_1310</model>
     <wavelength>1310</wavelength>
 	  <bezier>0.20</bezier>
       <radius>10.0</radius>
@@ -35,9 +35,9 @@
 
 
 	<waveguide>
-	  <name>Strip 1550 nm, w=500 nm (core-clad)</name>
-	  <CML>SiEPICfab_EBeam_ZEP</CML>
-	  <model>wg_strip_1550</model>
+	  <name>Strip TE 1550 nm, w=500 nm (core-clad)</name>
+	  <CML>SiEPICfab_EBeam</CML>
+	  <model>ebeam_wg_strip_TE_1550</model>
     <wavelength>1550</wavelength>
 	  <bezier>0.20</bezier>
       <radius>10.0</radius>
@@ -64,9 +64,9 @@
 	  </component>
 	</waveguide>
 	<waveguide>
-	  <name>Strip 1550 nm, w=410 nm (core-clad)</name>
-	  <CML>SiEPICfab_EBeam_ZEP</CML>
-	  <model>wg_strip_1550</model>
+	  <name>Strip TE 1550 nm, w=410 nm (core-clad)</name>
+	  <CML>SiEPICfab_EBeam</CML>
+	  <model>ebeam_wg_strip_TE_1550</model>
     <wavelength>1550</wavelength>
 	  <bezier>0.20</bezier>
       <radius>20.0</radius>
@@ -94,9 +94,9 @@
 	  </component>
 	</waveguide>
 	<waveguide>
-	  <name>Strip 1550 nm, w=500 nm (etch)</name>
-	  <CML>SiEPICfab_EBeam_ZEP</CML>
-	  <model>wg_strip_1550</model>
+	  <name>Strip TE 1550 nm, w=500 nm (etch)</name>
+	  <CML>SiEPICfab_EBeam</CML>
+	  <model>ebeam_wg_strip_TE_1550</model>
     <wavelength>1550</wavelength>
 	  <bezier>0.20</bezier>
       <radius>10.0</radius>
@@ -133,9 +133,9 @@
 	  </component>
 	</waveguide>
 	<waveguide>
-	  <name>Strip 1310 nm, w=350 nm (core-clad)</name>
-	  <CML>SiEPICfab_EBeam_ZEP</CML>
-	  <model>wg_strip_1310</model>
+	  <name>Strip TE 1310 nm, w=350 nm (core-clad)</name>
+	  <CML>SiEPICfab_EBeam</CML>
+	  <model>ebeam_wg_strip_TE_1310</model>
     <wavelength>1310</wavelength>
 	  <bezier>0.20</bezier>
       <radius>10.0</radius>
@@ -162,9 +162,9 @@
 	  </component>
 	</waveguide>
 	<waveguide>
-	  <name>Strip 1310 nm, w=385 nm (core-clad)</name>
-	  <CML>SiEPICfab_EBeam_ZEP</CML>
-	  <model>wg_strip_1310</model>
+	  <name>Strip TE 1310 nm, w=385 nm (core-clad)</name>
+	  <CML>SiEPICfab_EBeam</CML>
+	  <model>ebeam_wg_strip_TE_1310</model>
     <wavelength>1310</wavelength>
 	  <bezier>0.20</bezier>
       <radius>10.0</radius>
@@ -191,9 +191,9 @@
 	  </component>
 	</waveguide>
 	<waveguide>
-	  <name>Strip 1270 nm, w=450 nm (core-clad)</name>
-	  <CML>SiEPICfab_EBeam_ZEP</CML>
-	  <model>wg_strip_1270</model>
+	  <name>Strip TE 1270 nm, w=450 nm (core-clad)</name>
+	  <CML>SiEPICfab_EBeam</CML>
+	  <model>ebeam_wg_strip_TE_1270</model>
     <wavelength>1270</wavelength>
 	  <bezier>0.20</bezier>
       <radius>10.0</radius>
@@ -220,9 +220,9 @@
 	  </component>
 	</waveguide>
 	<waveguide>
-	  <name>Strip 1270 nm, w=450 nm (etch)</name>
-	  <CML>SiEPICfab_EBeam_ZEP</CML>
-	  <model>wg_strip_1270</model>
+	  <name>Strip TE 1270 nm, w=450 nm (etch)</name>
+	  <CML>SiEPICfab_EBeam</CML>
+	  <model>ebeam_wg_strip_TE_1270</model>
     <wavelength>1270</wavelength>
 	  <bezier>0.20</bezier>
       <radius>10.0</radius>
@@ -249,31 +249,31 @@
 	  </component>
 	</waveguide>
 	<waveguide>
-	  <name>Multimode Strip TE 1550 nm, w=2000 nm</name>
-	  <CML>SiEPICfab_EBeam_ZEP</CML>
+	  <name>Multimode Strip TE 1550 nm, w=3000 nm</name>
+	  <CML>SiEPICfab_EBeam</CML>
 	  <model>NONE</model>
 	  <bezier>0.20</bezier>
       <radius>300.0</radius>
-      <width>2.0</width>
+      <width>3.0</width>
    	  <component>
    	    <layer>Waveguide</layer>
-   	    <width>2.0</width>
+   	    <width>3.0</width>
    	    <offset>0</offset>
    	  </component>
 	  <component>
 	    <layer>Si_core</layer>
-	    <width>2.0</width>
+	    <width>3.0</width>
 	    <offset>0.0</offset>
 	  </component>
 	  <component>
 	    <layer>Si_clad</layer>
-	    <width>6.5</width>
+	    <width>4</width>
 	    <offset>0.0</offset>
 	  </component>
 	</waveguide>
 	<waveguide>
 	  <name>Multimode Strip TE 1310 nm, w=3000 nm</name>
-	  <CML>SiEPICfab_EBeam_ZEP</CML>
+	  <CML>SiEPICfab_EBeam</CML>
 	  <model>NONE</model>
 	  <bezier>0.20</bezier>
       <radius>300.0</radius>
@@ -296,7 +296,7 @@
 	</waveguide>
 	<waveguide>
 	  <name>Multimode Strip TE 1310 nm, w=1000 nm</name>
-	  <CML>SiEPICfab_EBeam_ZEP</CML>
+	  <CML>SiEPICfab_EBeam</CML>
 	  <model>NONE</model>
 	  <bezier>0.20</bezier>
       <radius>300.0</radius>
@@ -319,7 +319,7 @@
 	</waveguide>
 	<waveguide>
 	  <name>Multimode Strip TE 1310 nm, w=2000 nm</name>
-	  <CML>SiEPICfab_EBeam_ZEP</CML>
+	  <CML>SiEPICfab_EBeam</CML>
 	  <model>NONE</model>
 	  <bezier>0.20</bezier>
       <radius>300.0</radius>
@@ -342,7 +342,7 @@
 	</waveguide>
 	<waveguide>
 	  <name>Slot TE 1550 nm, w=500 nm, gap=100nm</name>
-	  <CML>SiEPICfab_EBeam_ZEP</CML>
+	  <CML>SiEPICfab_EBeam</CML>
 	  <model>NONE</model>
 	  <bezier>0.20</bezier>
       <radius>50.0</radius>
@@ -377,14 +377,25 @@
   <waveguide>
     <name>Si routing TE 1550 nm (compound waveguide)</name>
     <compound_waveguide>
-      <singlemode>Strip 1550 nm, w=500 nm (core-clad)</singlemode>
-      <multimode>Multimode Strip TE 1550 nm, w=2000 nm</multimode>
+      <singlemode>Strip TE 1550 nm, w=500 nm (core-clad)</singlemode>
+      <multimode>Multimode Strip TE 1310 nm, w=2000 nm</multimode>
       <taper_library>SiEPICfab_EBeam_ZEP</taper_library>
-      <taper_cell>taper_si_simm_1550</taper_cell>
+      <taper_cell>ebeam_taper_500nm_2000nm_te1550</taper_cell>
       <taper_pin_sm>opt1</taper_pin_sm>
       <taper_pin_mm>opt2</taper_pin_mm>
     </compound_waveguide>
   </waveguide>
 
+  <waveguide>
+    <name>Si routing TE 1310 nm (compound waveguide)</name>
+    <compound_waveguide>
+      <singlemode>Strip TE 1310 nm, w=350 nm (core-clad)</singlemode>
+      <multimode>Multimode Strip TE 1310 nm, w=2000 nm</multimode>
+      <taper_library>SiEPICfab_EBeam_ZEP</taper_library>
+      <taper_cell>ebeam_taper_350nm_2000nm_te1310</taper_cell>
+      <taper_pin_sm>opt1</taper_pin_sm>
+      <taper_pin_mm>opt2</taper_pin_mm>
+    </compound_waveguide>
+  </waveguide>
 
 </waveguides>

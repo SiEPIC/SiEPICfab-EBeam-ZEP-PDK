@@ -8,7 +8,7 @@ class ebeam_pcell_waveguide_spiral_square(pya.PCellDeclarationHelper):
 
   def __init__(self, tech, wg_option):
 
-    from SiEPIC.utils import   load_Waveguides_by_Tech 
+    from SiEPIC.utils import   load_Waveguides_by_Tech, get_technology_by_name
     # Important: initialize the super class
     super(ebeam_pcell_waveguide_spiral_square, self).__init__()
     self.tech_name = tech

@@ -1,16 +1,13 @@
-from . import *
 import pya
 from pya import *
-import math
-
 class ebeam_pcell_waveguide_spiral(pya.PCellDeclarationHelper):
   """
   Input: 
   """
 
   def __init__(self, tech, wg_option):
-
-    from SiEPIC.utils import   load_Waveguides_by_Tech 
+    
+    from SiEPIC.utils import   load_Waveguides_by_Tech, get_technology_by_name
     # Important: initialize the super class
     super(ebeam_pcell_waveguide_spiral, self).__init__()
     self.tech_name = tech
@@ -29,27 +26,29 @@ class ebeam_pcell_waveguide_spiral(pya.PCellDeclarationHelper):
     self.param("devrec", self.TypeLayer, "DevRec Layer", default = TECHNOLOGY['DevRec'], hidden = True)
     self.param("option", self.TypeString, "WG Option", default =  wg_option, choices = (self.optionsParameter) )
     self.param("text", self.TypeLayer, "Text Layer", default = TECHNOLOGY['Text'], hidden = True)
+    self.param("cover_layers", self.TypeList, "Cover Layers", default = [])
+    self.param("cover_extent", self.TypeList, "Cover Layer extents", default =  [])
     self.param("CML", self.TypeString, "CML", default = 'SiEPICfab_EBeam', hidden = True)
     self.param("model", self.TypeString, "model", default = 'ebeam_pcell_waveguide_spiral', hidden = True)
-    
+
   def display_text_impl(self):
     # Provide a descriptive text for the cell
-    return "ebeam_pcell_waveguide_spiral%.1f-%.1f-%.1f" % \
+    return "ebeam_pcell_waveguide_spiral_%.1f-%.1f-%.1f" % \
     (self.length, self.min_radius, self.wg_spacing)
   
   def coerce_parameters_impl(self):
-    print("SiEPICfab_EBeam_ZEP.ebeam_pcell_waveguide_spiral coerce parameters")
-        
+    print("ebeam_pcell_waveguide_spiral.spiral coerce parameters")
+
     if 0:
         TECHNOLOGY = get_technology_by_name(self.tech_name)
 
   def can_create_from_shape(self, layout, shape, layer):
     return False
-    
-  def produce_impl(self):
-    from SiEPIC.utils import arc_wg, arc_wg_xy, arc_to_waveguide, points_per_circle
-    from SiEPIC.extend import to_itype
 
+  def produce_impl(self):
+    from SiEPIC.utils import arc_wg, arc_wg_xy, points_per_circle
+    from pya import Point, DPoint, Polygon, Trans, Path, Text
+    from SiEPIC.utils import   load_Waveguides_by_Tech, get_technology_by_name
     TECHNOLOGY = get_technology_by_name(self.tech_name) 
     
     # fetch the parameters
@@ -197,7 +196,7 @@ class ebeam_pcell_waveguide_spiral(pya.PCellDeclarationHelper):
           shapes(wg_layer).insert(polygon)
           turn = turn - 1
           # waveguide length:
-          spiral_length = area / self.wg_width * dbu*dbu + 2 * pi * self.min_radius
+          spiral_length = area / w * dbu*dbu + 2 * pi * self.min_radius
 
         # Centre S-shape connecting waveguide        
         #layout_arc_wg_dbu(self.cell, LayerSiN, -b/dbu, 0, b/dbu, self.wg_width/dbu, 0, 180)
@@ -262,6 +261,19 @@ class ebeam_pcell_waveguide_spiral(pya.PCellDeclarationHelper):
     for i in range(0, npoints+1):
       pts.append(Point.from_dpoint(DPoint(r*cos(i*da), r*sin(i*da))))
     shapes(LayerDevRecN).insert(Polygon(pts))
-   
+    
 
-    print("ebeam_pcell_waveguide_spiral done.")
+    # Create cover layers
+    if not (len(self.cover_layers)==len(self.cover_extent)) :
+      raise Exception("There must be an equal number of cover layers and cover layer extent")
+    for lr in range(0, len(self.cover_layers)):
+      if self.cover_layers[lr].strip() != '':
+        layer = self.layout.layer(TECHNOLOGY[self.cover_layers[lr].strip()])      
+        extent = int(float(self.cover_extent[lr].strip())/dbu)
+        r=x + extent
+        pts = []
+        for i in range(0, npoints+1):
+          pts.append(Point.from_dpoint(DPoint(r*cos(i*da), r*sin(i*da))))
+        shapes(layer).insert(Polygon(pts))
+
+    print("spiral done.")

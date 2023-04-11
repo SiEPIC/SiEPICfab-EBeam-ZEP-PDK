@@ -20,11 +20,11 @@ class ebeam_pcell_bragg_grating(pya.PCellDeclarationHelper):
     self.TECHNOLOGY = TECHNOLOGY
             
     # Load all strip waveguides
-    self.waveguide_types = load_Waveguides_by_Tech(self.technology_name)   
+    waveguide_types = load_Waveguides_by_Tech(self.technology_name)   
         
     # declare the parameters
-    p = self.param("waveguide_type", self.TypeList, "Waveguide Type", default = 'Strip 1310 nm, w=350 nm (core-clad)' ) # self.waveguide_types[0]['name'])
-    for wa in self.waveguide_types:
+    p = self.param("waveguide_type", self.TypeList, "Waveguide Type", default = waveguide_types[0]['name'])
+    for wa in waveguide_types:
         p.add_choice(wa['name'],wa['name'])
     self.param("layer", self.TypeLayer, "Layer - Waveguide", default = TECHNOLOGY['Si_core'])
 

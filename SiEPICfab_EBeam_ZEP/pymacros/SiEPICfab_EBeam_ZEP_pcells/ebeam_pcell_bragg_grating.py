@@ -173,7 +173,7 @@ class ebeam_pcell_bragg_grating(pya.PCellDeclarationHelper):
     else:
         print('error: waveguide type not found in PDK waveguides')
         raise Exception('error: waveguide type (%s) not found in PDK waveguides' %
-                        waveguide_type)
+                        self.waveguide_type)
     # compound waveguide types:
     if 'compound_waveguide' in params:
         raise Exception('Cannot use compound waveguide type for the Bragg grating cell')

@@ -144,11 +144,11 @@ class ebeam_pcell_directional_coupler(pya.PCellDeclarationHelper):
     make_pin(self.cell, "opt4", [x4_pin,y4_pin], width, -pin_length, LayerPinRecN)
 
     # Draw the DevRec box
-    spacer = 3*width # Box extension beyond device area
+    spacer = 6*width # Box extension beyond device area
     DevRecBox = Box(x1_pin, y1_pin+spacer, x4_pin, y4_pin-spacer)
     shapes(LayerDevRecN).insert(DevRecBox) 
     region_devrec = Region(DevRecBox)
-    region_devrec2 = Region(DevRecBox).size(1000)
+    region_devrec2 = Region(DevRecBox).size(2000)
 
 
     # Draw the waveguide layer
@@ -156,7 +156,7 @@ class ebeam_pcell_directional_coupler(pya.PCellDeclarationHelper):
       shapes(LayerSiN).insert(shapes_wg)
     else: # turn shape into a rib waveguide
       shapes_rib += shapes_wg
-      shapeRib = shapes_rib.size(790) - (region_devrec2-region_devrec)
+      shapeRib = shapes_rib.size(2000) - (region_devrec2-region_devrec)
       shapeCore = shapes_wg - (region_devrec2-region_devrec)
 
       shapes(LayerRib).insert(shapeRib)

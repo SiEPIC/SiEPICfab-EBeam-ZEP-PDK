@@ -314,7 +314,7 @@ class ebeam_pcell_contra_directional_coupler(pya.PCellDeclarationHelper):
             make_pin(self.cell, "opt4", [int(x), y], w2, LayerPinRecN, 0)
 
         # Compact model information. Create the devrec library labels
-        make_devrec_label(self.cell, "SiEPICfab_EBeam_ZEP", "ebeam_pcell_contra_directional_coupler",
+        make_devrec_label(self.cell, "SiEPICfab_EBeam", "ebeam_pcell_contra_directional_coupler",
                           ly.layer(self.devrec))
 
         text = Text('Spice_param:number_of_periods=%s grating_period=%.4fu wg1_width=%.3fu wg2_width=%.3fu corrugation1_width=%.3fu corrugation2_width=%.3fu gap=%.3fu apodization_index=%.3f AR=%s sinusoidal=%s accuracy=%s' %

@@ -10,6 +10,7 @@
 	  <bezier>0.20</bezier>
       <radius>10.0</radius>
       <width>0.37</width>
+	  <sbends>true</sbends>
   	  <component>
   	    <layer>Waveguide</layer>
   	    <width>0.37</width>
@@ -40,6 +41,7 @@
 	  <bezier>0.20</bezier>
       <radius>20.0</radius>
       <width>0.5</width>
+	  <sbends>true</sbends>
  	  <component>
  	    <layer>Waveguide</layer>
  	    <width>0.5</width>
@@ -70,6 +72,7 @@
 	  <bezier>0.20</bezier>
       <radius>10.0</radius>
       <width>0.5</width>
+	  <sbends>true</sbends>
  	  <component>
  	    <layer>Waveguide</layer>
  	    <width>0.5</width>
@@ -129,6 +132,7 @@
 	  <bezier>0.20</bezier>
       <radius>10.0</radius>
       <width>0.5</width>
+	  <sbends>true</sbends>
  	  <component>
  	    <layer>Waveguide</layer>
  	    <width>0.5</width>
@@ -168,6 +172,7 @@
 	  <bezier>0.20</bezier>
       <radius>10.0</radius>
       <width>0.35</width>
+	  <sbends>true</sbends>
   	  <component>
   	    <layer>Waveguide</layer>
   	    <width>0.35</width>
@@ -197,6 +202,7 @@
 	  <bezier>0.20</bezier>
       <radius>20.0</radius>
       <width>0.35</width>
+	  <sbends>true</sbends>
   	  <component>
   	    <layer>Waveguide</layer>
   	    <width>0.35</width>

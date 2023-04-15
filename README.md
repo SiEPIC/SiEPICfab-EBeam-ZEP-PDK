@@ -63,7 +63,7 @@ SiEPIC Program EBeam PDK for the ZEP process
 - Matthew Mitchell
 - Sheri Jahan Chowdhury
 
-### Designers
+### UBC Designers
 - Ben Cohen (polymer modulators, biosensor)
 - Iman Taghavi (polymer modulators)
 - Mohammed Al-Qadasi (biosensor)

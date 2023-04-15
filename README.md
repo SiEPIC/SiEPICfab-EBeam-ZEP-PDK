@@ -10,8 +10,8 @@ SiEPIC Program EBeam PDK for the ZEP process
   - Shuksan laser integration (deep trench, laser attach, photonic wire bonds)
   - Metals
   - Oxide release etch for NEMS devices
-- ZEP 520A - 550 nm thick[Process documentation, including process bias for Thick Zep](https://docs.google.com/document/d/1HpU0Z95oETRH_fx-z4YNDfZ5-b3SPxWYZX6zVMYroiM/edit?usp=sharing)
-- Zep 520A-7 -300 nm thick [State of the Art Component Information] (https://docs.google.com/presentation/d/1wvqqQx43QHyrFrG-PHEsHgS-wRCvHhIj8itgyzXlN-U/edit#slide=id.g22e1a8c71b6_0_35) 
+- ZEP 520A - 550 nm thick [Process documentation, including process bias for Thick Zep](https://docs.google.com/document/d/1HpU0Z95oETRH_fx-z4YNDfZ5-b3SPxWYZX6zVMYroiM/edit?usp=sharing)
+- Zep 520A-7 -300 nm thick [State of the Art Component Information](https://docs.google.com/presentation/d/1wvqqQx43QHyrFrG-PHEsHgS-wRCvHhIj8itgyzXlN-U/edit#slide=id.g22e1a8c71b6_0_35) 
 
 ### Wafer details:
 - 200mm 

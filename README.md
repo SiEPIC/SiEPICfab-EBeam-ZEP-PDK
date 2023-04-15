@@ -10,7 +10,8 @@ SiEPIC Program EBeam PDK for the ZEP process
   - Shuksan laser integration (deep trench, laser attach, photonic wire bonds)
   - Metals
   - Oxide release etch for NEMS devices
-- [Process documentation, including process bias](https://docs.google.com/document/d/1HpU0Z95oETRH_fx-z4YNDfZ5-b3SPxWYZX6zVMYroiM/edit?usp=sharing)
+- ZEP 520A - 550 nm thick[Process documentation, including process bias for Thick Zep](https://docs.google.com/document/d/1HpU0Z95oETRH_fx-z4YNDfZ5-b3SPxWYZX6zVMYroiM/edit?usp=sharing)
+- Zep 520A-7 -300 nm thick [State of the Art Component Information] (https://docs.google.com/presentation/d/1wvqqQx43QHyrFrG-PHEsHgS-wRCvHhIj8itgyzXlN-U/edit#slide=id.g22e1a8c71b6_0_35) 
 
 ### Wafer details:
 - 200mm 
@@ -56,7 +57,19 @@ SiEPIC Program EBeam PDK for the ZEP process
 - SiEPIC > "Export EBL Write Field Regions" - Script that exports EBL regions. Beamer will import and use for manual field placement. 
 
 ## People
-- Fabrication performed at UBC
+### UBC FAB Team 
+- Davin Birdie
+- Matthias Kroug
+- Matthew Mitchell
+- Sheri Jahan Chowdhury
+
+### Designers
+- Ben Cohen (polymer modulators, biosensor)
+- Iman Taghavi (polymer modulators)
+- Mohammed Al-Qadasi (biosensor)
+- Mustafa Hammood (PCM)
+- Sheri Jahan Chowdhury (laser integration to biosensor)
+- Wangning Cai (inverse design)
 
 ## Run schedule
 - SiEPICfab process development runs, typically monthly

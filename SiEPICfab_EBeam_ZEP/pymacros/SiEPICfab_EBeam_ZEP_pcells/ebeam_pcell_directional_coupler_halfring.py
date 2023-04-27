@@ -90,14 +90,14 @@ class ebeam_pcell_directional_coupler_halfring(pya.PCellDeclarationHelper):
     # Pins on the bus waveguide side:
     pin = Path([Point(-r-2*w-w+PIN_LENGTH/2-Lc/2, 0), Point(-r-2*w-w-PIN_LENGTH/2-Lc/2, 0)], w)
     shapes(LayerPinRecN).insert(pin)
-    t = Trans(Trans.R0, -r-w/2-w-Lc/2, 0)
+    t = Trans(Trans.R0, -r-2*w-w-Lc/2, 0)
     text = Text ("opt1", t)
     shape = shapes(LayerPinRecN).insert(text)
     shape.text_size = 0.4/dbu
 
     pin = Path([Point(r+2*w+w-PIN_LENGTH/2+Lc/2, 0), Point(r+2*w+w+PIN_LENGTH/2+Lc/2, 0)], w)
     shapes(LayerPinRecN).insert(pin)
-    t = Trans(Trans.R0, r+w/2+w+Lc/2, 0)
+    t = Trans(Trans.R0, r+2*w+w+Lc/2, 0)
     text = Text ("opt3", t)
     shape = shapes(LayerPinRecN).insert(text)
     shape.text_size = 0.4/dbu
@@ -112,7 +112,7 @@ class ebeam_pcell_directional_coupler_halfring(pya.PCellDeclarationHelper):
     self.cell.shapes(layer_temp).clear()
 
     # Create the device recognition layer -- make it 1 * wg_width away from the waveguides.
-    dev = Box(-r-2*w-w-Lc/2, -w/2-w, r+2*w+w+Lc/2, y )
+    dev = Box(-r-2*w-w-Lc/2, -4*w-w, r+2*w+w+Lc/2, y )
     shapes(LayerDevRecN).insert(dev)
 
     # create cladding layer

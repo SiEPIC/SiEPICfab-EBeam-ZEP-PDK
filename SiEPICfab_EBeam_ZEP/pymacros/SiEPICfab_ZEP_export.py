@@ -6,7 +6,7 @@ from pya import *
 #  True: high and low resolution layers exported
 #  False: high and low resolution layers merged into one high res layer
 # 2020/12: process currently only uses high resolution
-HighandLowRes = False
+HighandLowRes = True
 
 def boolean_layer_operations(topcell_in, flatten=False):
 
@@ -175,8 +175,8 @@ def export_for_fabrication(flatten=False, replace_IP=False):
         ly.cell_character_replacement(forbidden_cell_characters = '=', replacement_cell_character = '_')
 
     # only export the layers that will be fabricated
-    save_options.add_layer(ly.layer(LayerInfo(100,0)), LayerInfo())# Si etch
-    save_options.add_layer(ly.layer(LayerInfo(101,0)), LayerInfo())# Si etch
+    save_options.add_layer(ly.layer(LayerInfo(100,0)), LayerInfo())# Si etch high res
+    save_options.add_layer(ly.layer(LayerInfo(101,0)), LayerInfo())# Si etch low res
     save_options.add_layer(ly.layer(LayerInfo(11,0)), LayerInfo(12,0)) # M1
     save_options.add_layer(ly.layer(LayerInfo(12,0)), LayerInfo()) # M2
     save_options.add_layer(ly.layer(LayerInfo(99,0)), LayerInfo()) # Floorplan

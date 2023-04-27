@@ -140,13 +140,13 @@
  	  </component>
 	  <component>
 	    <layer>Si_etch_highres</layer>
-	    <width>0.8</width>
-	    <offset>0.65</offset>
+	    <width>0.5</width>
+	    <offset>0.5</offset>
 	  </component>
 	  <component>
 	    <layer>Si_etch_highres</layer>
-	    <width>0.8</width>
-	    <offset>-0.65</offset>
+	    <width>0.5</width>
+	    <offset>-0.5</offset>
 	  </component>
 	  <component>
 	    <layer>Si_etch_lowres</layer>

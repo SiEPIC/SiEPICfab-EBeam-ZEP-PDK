@@ -127,7 +127,7 @@ class Ring(pya.PCellDeclarationHelper):
     xp1 = -0.05/self.layout.dbu
     xp2 = 0.05/self.layout.dbu
     yp1 = ya+2/dbu+w/2
-    p1 = [Point(xa+xp1,yp1),Point(xa+xp2,yp1)]
+    p1 = [Point(xa+xp2,yp1),Point(xa+xp1,yp1)]
     p1c = Point(xa,yp1)
     self.set_p1=p1c
     self.p1=p1c
@@ -143,7 +143,7 @@ class Ring(pya.PCellDeclarationHelper):
     self.set_p2=p2c
     self.p2=p2c
     pin=Path(p2,w)
-    t = Trans(Trans.R0,xb,yp1)
+    t = Trans(Trans.R180,xb,yp1)
     self.cell.shapes(self.p_layer).insert(pin)
     text=Text("pin2",t)
     self.cell.shapes(self.p_layer).insert(text)
@@ -170,7 +170,7 @@ class Ring(pya.PCellDeclarationHelper):
       xp1 = -0.05/self.layout.dbu
       xp2 = 0.05/self.layout.dbu
       yp1 = ya+w/2+2/dbu
-      p1 = [Point(xa+xp1,yp1),Point(xa+xp2,yp1)]
+      p1 = [Point(xa+xp2,yp1),Point(xa+xp1,yp1)]
       p1c = Point(xa,yp1)
       self.set_p1=p1c
       self.p1=p1c
@@ -186,7 +186,7 @@ class Ring(pya.PCellDeclarationHelper):
       self.set_p2=p2c
       self.p2=p2c
       pin=Path(p2,w)
-      t = Trans(Trans.R0,xb,yp1)
+      t = Trans(Trans.R180,xb,yp1)
       self.cell.shapes(self.p_layer).insert(pin)
       text=Text("pin4",t)
       self.cell.shapes(self.p_layer).insert(text)

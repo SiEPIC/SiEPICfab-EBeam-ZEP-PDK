@@ -126,7 +126,7 @@ class Ring(pya.PCellDeclarationHelper):
    #add the left bus pin
     xp1 = -0.05/self.layout.dbu
     xp2 = 0.05/self.layout.dbu
-    yp1 = ya+w/2
+    yp1 = ya+2/dbu+w/2
     p1 = [Point(xa+xp1,yp1),Point(xa+xp2,yp1)]
     p1c = Point(xa,yp1)
     self.set_p1=p1c
@@ -169,7 +169,7 @@ class Ring(pya.PCellDeclarationHelper):
       #add the left drop pin
       xp1 = -0.05/self.layout.dbu
       xp2 = 0.05/self.layout.dbu
-      yp1 = ya+w/2
+      yp1 = ya+w/2+2/dbu
       p1 = [Point(xa+xp1,yp1),Point(xa+xp2,yp1)]
       p1c = Point(xa,yp1)
       self.set_p1=p1c

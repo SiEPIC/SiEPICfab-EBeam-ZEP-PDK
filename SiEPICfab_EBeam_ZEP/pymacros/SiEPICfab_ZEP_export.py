@@ -138,7 +138,10 @@ def export_for_fabrication(flatten=False, replace_IP=False):
         ['GC_1550_220_Blackbox', 'GC_1550_te_220', 'SiEPICfab_EBeam_ZEP_UBC'],
         ['ebeam_gc_te1550', 'GC_1550_te_220', 'SiEPICfab_EBeam_ZEP_UBC'],
         ['y_splitter_1310', 'drp_o_y_splitter', 'SiEPICfab_EBeam_ZEP_UBC'],
-        ['GC_1270_te_220','GC_1270_te_220', 'SiEPICfab_EBeam_ZEP_UBC'], 
+        ['GC_1270_te_220_Blackbox','GC_1270_te_220', 'SiEPICfab_EBeam_ZEP_UBC'], 
+        ['GC_1290_te_220_Blackbox','GC_1290_te_220', 'SiEPICfab_EBeam_ZEP_UBC'], 
+        ['GC_1310_te_220_Blackbox','GC_1310_te_220', 'SiEPICfab_EBeam_ZEP_UBC'], 
+        ['GC_1550_te_220_Blackbox','GC_1550_te_220', 'SiEPICfab_EBeam_ZEP_UBC'], 
         ]
         from SiEPIC.scripts import replace_cell
         text_out = ''

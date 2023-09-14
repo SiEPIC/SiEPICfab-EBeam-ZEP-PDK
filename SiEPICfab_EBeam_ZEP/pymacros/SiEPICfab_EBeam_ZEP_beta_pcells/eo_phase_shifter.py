@@ -21,9 +21,11 @@ class eo_phase_shifter(pya.PCellDeclarationHelper):
         # Load all waveguides
         self.waveguide_types = load_Waveguides_by_Tech(self.technology_name)   
 
-        # Button to launch separate window
-        self.param("documentation", self.TypeCallback, "Open documentation in web browser")
-        self.param("simulation", self.TypeCallback, "Open simulation in web browser")
+        from SiEPIC._globals import KLAYOUT_VERSION
+        if KLAYOUT_VERSION >= 28:
+            # Button to launch separate window
+            self.param("documentation", self.TypeCallback, "Open documentation in web browser")
+            self.param("simulation", self.TypeCallback, "Open simulation in web browser")
 
 
         # different configurations

@@ -8,6 +8,7 @@
  <doc/>
  <autorun>true</autorun>
  <autorun-early>false</autorun-early>
+ <priority>0</priority>
  <shortcut/>
  <show-in-menu>false</show-in-menu>
  <group-name/>
@@ -38,6 +39,12 @@ Lukas Chrostowski           2020/12/14
 """
 
 print('SiEPICfab_EBeam_ZEP_Library')
+
+
+from SiEPIC._globals import KLAYOUT_VERSION
+if KLAYOUT_VERSION &lt; 28:
+    pya.MessageBox.warning(
+    "KLayout version &gt; 0.28", "Warning: The SiEPICfab_EBeam_ZEP PDK makes use of features only available in KLayout v0.28 or greater. Not all functionality will be operational. We recommend upgrading KLayout.",  pya.MessageBox.Ok)
 
 import pya
 from pya import *

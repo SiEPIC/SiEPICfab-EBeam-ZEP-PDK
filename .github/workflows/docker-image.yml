@@ -5,6 +5,7 @@ on:
     types:
       - created
     repository:
+      - 'SiEPIC/SiEPIC_EBeam_PDK'
       - 'SiEPIC/SiEPICfab-EBeam-ZEP-PDK'
       - 'SiEPIC/SiEPIC-Tools'
   

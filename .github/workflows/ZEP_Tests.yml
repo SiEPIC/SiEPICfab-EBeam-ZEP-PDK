@@ -25,11 +25,11 @@ jobs:
       - name: Copy pymacros folder to docker container
         run: docker cp $GITHUB_WORKSPACE/SiEPICfab_EBeam_ZEP/pymacros zep_test:/home/pymacros
 
-      - name: Install python and pip in container
-        run: docker exec zep_test dnf -y install python3 python3-pip
+      #- name: Install python and pip in container
+      #  run: docker exec zep_test dnf -y install python3 python3-pip
 
-      - name: Install numpt in container
-        run: docker exec zep_test pip3 install numpy
+      #- name: Install numpy in container
+      #  run: docker exec zep_test pip3 install numpy
 
       - name: Run ZEP Library registration script
         run: docker exec zep_test klayout -zz -r pymacros/SiEPICfab_EBeam_ZEP_Library.lym

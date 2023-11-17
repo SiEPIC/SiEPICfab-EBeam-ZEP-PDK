@@ -1,0 +1,42 @@
+name: ZEP Tests 
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  ebeam-lib-pcell-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Pull zep_siepic_klayout image
+        run: docker pull ghcr.io/jasminabrar/siepicfab-ebeam-zep-pdk/zep_siepic_klayout:master-latest
+
+      - name: Run docker container from image
+        run: docker run -itd --name zep_test -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --security-opt label=type:container_runtime_t ghcr.io/jasminabrar/siepicfab-ebeam-zep-pdk/zep_siepic_klayout:master-latest
+
+      - name: Copy pymacros folder to docker container
+        run: docker cp $GITHUB_WORKSPACE/SiEPICfab_EBeam_ZEP/pymacros zep_test:/home/pymacros
+
+      - name: Run KLayout Python script inside container and capture exit code 
+        run: docker exec zep_test klayout -zz -r pymacros/ZEP_Lib_PCellTests.py || echo "KLAYOUT_EXIT_CODE=$?" >> $GITHUB_ENV
+        continue-on-error: true
+
+      - name: Stop container and remove it 
+        run: |
+                docker stop zep_test
+                docker rm zep_test
+
+      - name: Fail job if exit code is non-zero
+        run: |
+                if [ $KLAYOUT_EXIT_CODE -ne 0 ]; then
+                        echo "KLayout exited with non-zero exit code"
+                        exit 1
+                fi

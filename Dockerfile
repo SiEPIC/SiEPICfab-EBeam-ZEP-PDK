@@ -12,12 +12,16 @@ RUN wget https://www.klayout.org/downloads/CentOS_8/klayout-0.28.12-0.x86_64.rpm
 # Clone SiEPIC-Tools and SiEPIC_EBeam_PDK
 RUN mkdir -p /root/.klayout/salt && \
     cd /root/.klayout/salt && \
-    git clone --branch v0.4.5 https://github.com/SiEPIC/SiEPIC-Tools.git && \
-    git clone https://github.com/SiEPIC/SiEPIC_EBeam_PDK.git
+    git clone --branch v0.4.5 https://github.com/SiEPIC/SiEPIC-Tools.git
+
+# Create the working directory for SiEPICfab-EBeam-ZEP-PDK
+RUN mkdir -p /root/Github
+
+# Set the working directory for SiEPICfab-EBeam-ZEP-PDK
+WORKDIR /root/Github
 
 # Clone ZEP PDK
-RUN cd /root/.klayout/salt && \
-    git clone https://github.com/your-username/SiEPICfab-EBeam-ZEP-PDK.git
+RUN git clone https://github.com/your-username/SiEPICfab-EBeam-ZEP-PDK.git .
 
 # Install ZEP PDK by creating a symbolic link from the repo folder into the KLayout tech folder
 RUN mkdir -p /root/.klayout/tech && \

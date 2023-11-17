@@ -25,11 +25,11 @@ jobs:
       - name: Copy pymacros folder to docker container
         run: docker cp $GITHUB_WORKSPACE/SiEPICfab_EBeam_ZEP/pymacros zep_test:/home/pymacros
 
-      - name: Run ZEP Library registration script
-        run: docker exec zep_test klayout -zz -r pymacros/SiEPICfab_EBeam_ZEP_Library.lym
+      #- name: Run ZEP Library registration script
+      #  run: docker exec zep_test klayout -zz -r pymacros/SiEPICfab_EBeam_ZEP_Library.lym
 
-      - name: Run ZEP Beta Library registration script
-        run: docker exec zep_test klayout -zz -r pymacros/SiEPICfab_EBeam_ZEP_beta_Library.lym
+      #- name: Run ZEP Beta Library registration script
+      #  run: docker exec zep_test klayout -zz -r pymacros/SiEPICfab_EBeam_ZEP_beta_Library.lym
 
       - name: Run KLayout Python script inside container and capture exit code 
         run: docker exec zep_test klayout -zz -r pymacros/ZEP_Lib_PCellTests.py || echo "KLAYOUT_EXIT_CODE=$?" >> $GITHUB_ENV

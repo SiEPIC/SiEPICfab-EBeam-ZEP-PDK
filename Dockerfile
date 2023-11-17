@@ -19,7 +19,7 @@ RUN mkdir -p /root/.klayout/salt && \
 RUN cd /root/.klayout/salt && \
     git clone https://github.com/your-username/SiEPICfab-EBeam-ZEP-PDK.git
 
-# Create a symbolic link from the repo PDK folder into your KLayout tech folder
+# Install ZEP PDK by creating a symbolic link from the repo folder into the KLayout tech folder
 RUN mkdir -p /root/.klayout/tech && \
     ln -s /root/.klayout/salt/SiEPICfab-EBeam-ZEP-PDK/SiEPICfab_EBeam_ZEP /root/.klayout/tech
 

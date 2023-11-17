@@ -21,7 +21,7 @@ RUN mkdir -p /root/Github
 WORKDIR /root/Github
 
 # Clone ZEP PDK
-RUN git clone https://github.com/your-username/SiEPICfab-EBeam-ZEP-PDK.git .
+RUN git clone https://github.com/SiEPIC/SiEPICfab-EBeam-ZEP-PDK.git .
 
 # Install ZEP PDK by creating a symbolic link from the repo folder into the KLayout tech folder
 RUN mkdir -p /root/.klayout/tech && \

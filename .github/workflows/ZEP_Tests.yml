@@ -38,7 +38,7 @@ jobs:
       #  run: docker exec zep_test klayout -zz -r pymacros/SiEPICfab_EBeam_ZEP_beta_Library.lym
 
       - name: Run KLayout Python script inside container and capture exit code 
-        run: docker exec zep_test klayout -zz -r /home/Github/SiEPICfab-EBeam-ZEP-PDK/SiEPICfab_EBeam_ZEP/pymacros/ZEP_Lib_PCellTests.py || echo "KLAYOUT_EXIT_CODE=$?" >> $GITHUB_ENV
+        run: docker exec zep_test klayout -zz -r /root/Github/SiEPICfab_EBeam_ZEP/pymacros/ZEP_Lib_PCellTests.py || echo "KLAYOUT_EXIT_CODE=$?" >> $GITHUB_ENV
         continue-on-error: true
 
       - name: Stop container and remove it 

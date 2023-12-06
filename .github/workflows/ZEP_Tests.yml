@@ -59,7 +59,7 @@ jobs:
               filename=$(basename "$file")
 
               # Define the destination path in the Docker container
-              destination_path="/root/Github/SiEPICfab_EBeam_ZEP"
+              destination_path="/root/Github"
 
               # Perform docker cp for each file
               docker cp "$GITHUB_WORKSPACE/$file" zep_test:"$destination_path/$file"

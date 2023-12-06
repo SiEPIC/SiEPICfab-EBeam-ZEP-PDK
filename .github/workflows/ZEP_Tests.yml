@@ -1,6 +1,7 @@
 name: ZEP Tests 
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - '**'

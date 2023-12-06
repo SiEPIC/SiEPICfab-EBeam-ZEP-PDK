@@ -9,7 +9,7 @@ on:
       - master
 
 jobs:
-  ebeam-lib-pcell-test:
+  zep-lib-pcell-test:
     runs-on: ubuntu-latest
     permissions: write-all
 

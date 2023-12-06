@@ -44,6 +44,8 @@ jobs:
             # If we are in a forked repository or another branch, copy changed files to ebeam_test
             changed_files=$(git diff --name-only FETCH_HEAD)
 
+            echo "changed files= $changed_files"
+
             IFS=$'\n' # Set Internal Field Separator to newline to handle multiple files
 
             for file in $changed_files; do

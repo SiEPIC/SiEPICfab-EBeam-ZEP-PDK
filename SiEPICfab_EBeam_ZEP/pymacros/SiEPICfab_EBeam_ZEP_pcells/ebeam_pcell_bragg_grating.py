@@ -52,7 +52,7 @@ class ebeam_pcell_bragg_grating(pya.PCellDeclarationHelper):
     return False
     
   def produce_impl(self):
-  
+    1/0
     # fetch the parameters
     dbu = self.layout.dbu
     ly = self.layout

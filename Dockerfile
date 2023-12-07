@@ -8,7 +8,7 @@ RUN dnf -y update && \
 RUN pip3 install numpy
 
 # Install the newest version of KLayout
-RUN wget https://www.klayout.org/downloads/CentOS_8/klayout-0.28.12-0.x86_64.rpm -O ~/klayout.rpm && \
+RUN wget https://www.klayout.org/downloads/CentOS_8/klayout-0.28.13-0.x86_64.rpm -O ~/klayout.rpm && \
     dnf -y localinstall ~/klayout.rpm && \
     rm ~/klayout.rpm
 
@@ -25,11 +25,11 @@ RUN mkdir -p /root/Github
 WORKDIR /root/Github
 
 # Clone ZEP PDK
-RUN git clone https://github.com/SiEPIC/SiEPICfab-EBeam-ZEP-PDK.git .
+RUN git clone https://github.com/SiEPIC/SiEPICfab-EBeam-ZEP-PDK.git
 
 # Install ZEP PDK by creating a symbolic link from the repo folder into the KLayout tech folder
 RUN mkdir -p /root/.klayout/tech && \
-    ln -s /root/Github/SiEPICfab_EBeam_ZEP /root/.klayout/tech
+    ln -s /root/Github/SiEPICfab-EBeam-ZEP-PDK/SiEPICfab_EBeam_ZEP /root/.klayout/tech
 
 # Set the working directory
 WORKDIR /home

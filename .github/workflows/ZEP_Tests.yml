@@ -38,11 +38,11 @@ jobs:
         run: |
 
           if [ "${{ github.repository }}" == "${{ env.GITHUB_REPOSITORY }}" ]; then
-            # If we are in the main repository, copy entire siepic_ebeam_pdk/klayout/ folder to docker container ebeam_test
+            # If we are in the main repository, copy all contents of siepicfab ebeam zep folder to docker container 
             docker exec ebeam_test rm -r /root/Github/SiEPICfab-EBeam-ZEP-PDK/SiEPICfab_EBeam_ZEP/*
             docker cp $GITHUB_WORKSPACE/SiEPICfab_EBeam_ZEP/. zep_test:/root/Github/SiEPICfab-EBeam-ZEP-PDK/SiEPICfab_EBeam_ZEP/
           else 
-            # If we are in a forked repository or another branch, copy changed files to ebeam_test
+            # If we are in a forked repository or another branch, copy changed files to zep_test
             changed_files=$(git diff --name-only FETCH_HEAD)
 
             echo "changed files= $changed_files"

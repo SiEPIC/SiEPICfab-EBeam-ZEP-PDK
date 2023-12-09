@@ -26,7 +26,7 @@ class clipp_side(pya.PCellDeclarationHelper):
     self.param("clad", self.TypeLayer, "Cladding Layer", default = TECHNOLOGY['Si_clad'])
     self.param("wg_width", self.TypeDouble, "Waveguide Width", default = 0.5)
     self.param("clad_width", self.TypeDouble, "Cladding Width", default = 2)
-    self.param("mlayer", self.TypeLayer, "Metal Layer", default = TECHNOLOGY['12_M2'])
+    self.param("mlayer", self.TypeLayer, "Metal Layer", default = TECHNOLOGY['M1'])
     self.param("m_clipp_width", self.TypeDouble, "Metal CLIPP Width", default = 5)
     self.param("m_clipp_wg_offset", self.TypeDouble, "Metal CLIPP Offset from waveguide", default = 3)
     self.param("m_si_offset", self.TypeDouble, "Metal to Silicon offset", default = 5)

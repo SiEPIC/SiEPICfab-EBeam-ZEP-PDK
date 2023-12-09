@@ -1,0 +1,86 @@
+name: ZEP Tests 
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  zep-lib-pcell-test:
+    runs-on: ubuntu-latest
+    permissions: write-all
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+            repository: ${{ github.repository_owner }}/SiEPICfab-EBeam-ZEP-PDK
+            ref: ${{ github.ref }}
+
+      - name: Pull zep_siepic_klayout image
+        run: docker pull ghcr.io/jasminabrar/siepicfab-ebeam-zep-pdk/zep_siepic_klayout:master-latest
+
+      - name: Run docker container from image
+        run: docker run -itd --name zep_test -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --security-opt label=type:container_runtime_t ghcr.io/jasminabrar/siepicfab-ebeam-zep-pdk/zep_siepic_klayout:master-latest
+
+      - name: Copy pymacros folder to docker container
+        run: docker cp $GITHUB_WORKSPACE/SiEPICfab_EBeam_ZEP/pymacros zep_test:/home/pymacros
+
+      - name: Fetch changes from main repository
+        run: git fetch https://github.com/SiEPIC/SiEPICfab-EBeam-ZEP-PDK.git master
+
+      - name: Find files that are different
+        id: changed-files
+        run: |
+
+          if [ "${{ github.repository }}" == "${{ env.GITHUB_REPOSITORY }}" ]; then
+            # If we are in the main repository, copy all contents of siepicfab ebeam zep folder to docker container 
+            docker exec ebeam_test rm -r /root/Github/SiEPICfab-EBeam-ZEP-PDK/SiEPICfab_EBeam_ZEP/*
+            docker cp $GITHUB_WORKSPACE/SiEPICfab_EBeam_ZEP/. zep_test:/root/Github/SiEPICfab-EBeam-ZEP-PDK/SiEPICfab_EBeam_ZEP/
+          else 
+            # If we are in a forked repository or another branch, copy changed files to zep_test
+            changed_files=$(git diff --name-only FETCH_HEAD)
+
+            echo "changed files= $changed_files"
+
+            IFS=$'\n' # Set Internal Field Separator to newline to handle multiple files
+
+            for file in $changed_files; do
+              # Determine the library folder based on the file path
+              folder=$(dirname "$file")
+
+              # Extract the last part of the path (directory name)
+              folder=$(basename "$folder")
+
+              # Extract the filename
+              filename=$(basename "$file")
+
+              # Define the destination path in the Docker container
+              destination_path="/root/Github/SiEPICfab-EBeam-ZEP-PDK"
+
+              # Perform docker cp for each file
+              docker cp "$GITHUB_WORKSPACE/$file" zep_test:"$destination_path/$file"
+
+              echo "Copied $file to $destination_path/$file"
+            done
+          fi
+
+      - name: Run KLayout Python script inside container and capture exit code 
+        run: docker exec zep_test klayout -zz -r pymacros/ZEP_Lib_PCellTests.py || echo "KLAYOUT_EXIT_CODE=$?" >> $GITHUB_ENV
+        continue-on-error: true
+
+      - name: Stop container and remove it 
+        run: |
+                docker stop zep_test
+                docker rm zep_test
+
+      - name: Fail job if exit code is non-zero
+        run: |
+                if [ $KLAYOUT_EXIT_CODE -ne 0 ]; then
+                        echo "KLayout exited with non-zero exit code"
+                        exit 1
+                fi

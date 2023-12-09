@@ -8,6 +8,7 @@
  <doc/>
  <autorun>true</autorun>
  <autorun-early>false</autorun-early>
+ <priority>0</priority>
  <shortcut/>
  <show-in-menu>false</show-in-menu>
  <group-name/>
@@ -77,7 +78,7 @@ class SiEPICfab_EBeam_ZEP_Library(Library):
     print("Initializing '%s' Library." % library)
 
     # Set the description
-    self.description = "v0.0.2, Components"
+    self.description = "v0.0.3, Components"
 
     # Save the path, used for loading WAVEGUIDES.XML
     import os
@@ -97,7 +98,12 @@ class SiEPICfab_EBeam_ZEP_Library(Library):
         mm = m.__name__.replace('SiEPICfab_EBeam_ZEP_pcells.','')
         mm2 = m.__name__+'.'+mm+'()'
         print(' - register_pcell %s, %s' % (mm,mm2))
-        self.layout().register_pcell(mm, eval(mm2))
+        if mm == 'ebeam_pcell_waveguide_spiral':
+          self.layout().register_pcell(mm, SiEPICfab_EBeam_ZEP_pcells.ebeam_pcell_waveguide_spiral.ebeam_pcell_waveguide_spiral(tech_name, 'Strip TE 1550 nm, w=500 nm (core-clad)'))
+        elif mm == 'ebeam_pcell_waveguide_spiral_square':
+          self.layout().register_pcell(mm, SiEPICfab_EBeam_ZEP_pcells.ebeam_pcell_waveguide_spiral_square.ebeam_pcell_waveguide_spiral_square(tech_name, 'Strip TE 1550 nm, w=500 nm (core-clad)'))
+        else:
+          self.layout().register_pcell(mm, eval(mm2))
     print(' done with SiEPICfab_EBeam_ZEP_pcells')
        
     # Register us the library with the technology name

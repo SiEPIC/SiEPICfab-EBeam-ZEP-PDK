@@ -46,7 +46,7 @@ jobs:
 
           if [ "${{ github.repository }}" == "${{ env.GITHUB_REPOSITORY }}" ]; then
             # If we are in the main repository, copy all contents of siepicfab ebeam zep folder to docker container 
-            docker exec ebeam_test rm -r /root/Github/SiEPICfab-EBeam-ZEP-PDK/SiEPICfab_EBeam_ZEP/*
+            docker exec zep_test rm -r /root/Github/SiEPICfab-EBeam-ZEP-PDK/SiEPICfab_EBeam_ZEP/*
             docker cp $GITHUB_WORKSPACE/SiEPICfab_EBeam_ZEP/. zep_test:/root/Github/SiEPICfab-EBeam-ZEP-PDK/SiEPICfab_EBeam_ZEP/
           else 
             # If we are in a forked repository or another branch, copy changed files to zep_test

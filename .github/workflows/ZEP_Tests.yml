@@ -21,6 +21,13 @@ jobs:
             repository: ${{ github.repository_owner }}/SiEPICfab-EBeam-ZEP-PDK
             ref: ${{ github.ref }}
 
+      - name: Connect to Container Registry
+        uses: docker/login-action@v2.1.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Pull zep_siepic_klayout image
         run: docker pull ghcr.io/jasminabrar/siepicfab-ebeam-zep-pdk/zep_siepic_klayout:master-latest
 

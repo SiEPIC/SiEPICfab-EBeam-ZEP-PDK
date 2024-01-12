@@ -29,10 +29,10 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Pull zep_siepic_klayout image
-        run: docker pull ghcr.io/jasminabrar/siepicfab-ebeam-zep-pdk/zep_siepic_klayout:master-latest
+        run: docker pull ghcr.io/siepic/siepicfab-ebeam-zep-pdk/zep_siepic_klayout:master-latest
 
       - name: Run docker container from image
-        run: docker run -itd --name zep_test -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --security-opt label=type:container_runtime_t ghcr.io/jasminabrar/siepicfab-ebeam-zep-pdk/zep_siepic_klayout:master-latest
+        run: docker run -itd --name zep_test -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix --security-opt label=type:container_runtime_t ghcr.io/siepic/siepicfab-ebeam-zep-pdk/zep_siepic_klayout:master-latest
 
       - name: Copy pymacros folder to docker container
         run: docker cp $GITHUB_WORKSPACE/SiEPICfab_EBeam_ZEP/pymacros zep_test:/home/pymacros

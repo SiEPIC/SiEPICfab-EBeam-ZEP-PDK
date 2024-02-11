@@ -333,6 +333,11 @@
 	    <width>4</width>
 	    <offset>0.0</offset>
 	  </component>
+	  <component>
+	    <layer>DevRec</layer>
+	    <width>4.2</width>
+	    <offset>0.0</offset>
+	  </component>
 	</waveguide>
 	<waveguide>
 	  <name>Multimode Strip TE 1310 nm, w=3000 nm</name>
@@ -354,6 +359,11 @@
 	  <component>
 	    <layer>Si_clad</layer>
 	    <width>4.0</width>
+	    <offset>0.0</offset>
+	  </component>
+	  <component>
+	    <layer>DevRec</layer>
+	    <width>4.2</width>
 	    <offset>0.0</offset>
 	  </component>
 	</waveguide>
@@ -379,6 +389,11 @@
 	    <width>2.0</width>
 	    <offset>0.0</offset>
 	  </component>
+	  <component>
+	    <layer>DevRec</layer>
+	    <width>2.2</width>
+	    <offset>0.0</offset>
+	  </component>
 	</waveguide>
 	<waveguide>
 	  <name>Multimode Strip TE 1310 nm, w=2000 nm</name>
@@ -400,6 +415,11 @@
 	  <component>
 	    <layer>Si_clad</layer>
 	    <width>3.0</width>
+	    <offset>0.0</offset>
+	  </component>
+	  <component>
+	    <layer>DevRec</layer>
+	    <width>3.2</width>
 	    <offset>0.0</offset>
 	  </component>
 	</waveguide>

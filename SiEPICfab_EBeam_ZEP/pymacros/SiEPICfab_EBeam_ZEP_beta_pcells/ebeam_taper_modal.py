@@ -15,7 +15,7 @@ class ebeam_taper_modal(pya.PCellDeclarationHelper):
     # declare the parameters
     self.param("silayer", self.TypeLayer, "Si Layer", default = TECHNOLOGY['Si_core'])
     self.param("clad_layer", self.TypeLayer, "Clad Layer", default = TECHNOLOGY['Si_clad'])
-    self.param("io_length", self.TypeDouble, "IO Length", default = 1)
+    self.param("io_length", self.TypeDouble, "IO Length", default = 0)
     self.param("wg_width1", self.TypeDouble, "Waveguide Width1", default = 0.5)
     self.param("wg_width2", self.TypeDouble, "Waveguide Width2", default = 3)
     self.param("wg_length", self.TypeDouble, "Waveguide Length", default = 20)

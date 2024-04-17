@@ -10,17 +10,17 @@ class ebeam_taper_modal(pya.PCellDeclarationHelper):
 
     # Important: initialize the super class
     super(ebeam_taper_modal, self).__init__()
-    TECHNOLOGY = get_technology_by_name('EBeam')
+    TECHNOLOGY = get_technology_by_name('SiEPICfab_EBeam_ZEP')
 
     # declare the parameters
-    self.param("silayer", self.TypeLayer, "Si Layer", default = TECHNOLOGY['Si'])
-    self.param("clad_layer", self.TypeLayer, "Clad Layer", default = TECHNOLOGY['Si'])
+    self.param("silayer", self.TypeLayer, "Si Layer", default = TECHNOLOGY['Si_core'])
+    self.param("clad_layer", self.TypeLayer, "Clad Layer", default = TECHNOLOGY['Si_clad'])
     self.param("io_length", self.TypeDouble, "IO Length", default = 1)
     self.param("wg_width1", self.TypeDouble, "Waveguide Width1", default = 0.5)
     self.param("wg_width2", self.TypeDouble, "Waveguide Width2", default = 3)
-    self.param("wg_length", self.TypeDouble, "Waveguide Length", default = 10)
-    self.param("taper_type", self.TypeString, "Taper Type (lin, par, ell, cpar, cell, s, ctl)", default = r"E:\Documents\Academics\UBC\Academics\Grad School\02_Courses\ELEC 584\Repo\ELEC584_Proj\sean\taper_v1\results\taper_ctl_par_inc_v5_segments.csv")
-    self.param("ctl_file", self.TypeString, "Segments Files (For Custom Taper)", default = r"E:\Documents\Academics\UBC\Academics\Grad School\02_Courses\ELEC 584\Repo\ELEC584_Proj\sean\taper_v1\results\taper_ctl_par_inc_v5_segments.csv")
+    self.param("wg_length", self.TypeDouble, "Waveguide Length", default = 20)
+    self.param("taper_type", self.TypeString, "Taper Type (lin, par, ell, cpar, cell, s, ctl)", default = "s")
+    self.param("ctl_file", self.TypeString, "Segments Files (For Custom Taper)", default = "")
     self.param("pinrec", self.TypeLayer, "PinRec Layer", default = TECHNOLOGY['PinRec'])
     self.param("devrec", self.TypeLayer, "DevRec Layer", default = TECHNOLOGY['DevRec'])
     # hidden parameters, can be used to query this component:

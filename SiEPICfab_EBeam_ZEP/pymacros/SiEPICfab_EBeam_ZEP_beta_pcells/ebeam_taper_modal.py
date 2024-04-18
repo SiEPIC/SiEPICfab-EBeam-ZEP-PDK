@@ -30,7 +30,7 @@ class ebeam_taper_modal(pya.PCellDeclarationHelper):
 
   def display_text_impl(self):
     # Provide a descriptive text for the cell
-    return "ebeam_taper(R=" + ('%.3f-%.3f-%.3f' % (self.wg_width1,self.wg_width2,self.wg_length) ) + ")"
+    return "ebeam_taper(" + ('%.3f-%.3f-%.3f' % (self.wg_width1,self.wg_width2,self.wg_length) ) + ")"
 
   def can_create_from_shape_impl(self):
     return False

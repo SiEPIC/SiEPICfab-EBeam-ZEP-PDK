@@ -78,4 +78,4 @@ class Waveguide(pya.PCellDeclarationHelper):
     from SiEPIC.utils.layout import layout_waveguide4
     self.waveguide_length = layout_waveguide4(self.cell, self.path, self.waveguide_type)
 
-    print("SiEPICfab_EBeam_ZEP.%s: length %.3f um, complete" % (self.cellName, self.waveguide_length*self.layout.dbu))
+    # print("SiEPICfab_EBeam_ZEP.%s: length %.3f um, complete" % (self.cellName, self.waveguide_length*self.layout.dbu))

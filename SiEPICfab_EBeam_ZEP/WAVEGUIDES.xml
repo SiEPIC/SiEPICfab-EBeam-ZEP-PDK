@@ -461,9 +461,9 @@
     <name>Si routing TE 1550 nm (compound waveguide)</name>
     <compound_waveguide>
       <singlemode>Strip TE 1550 nm, w=500 nm (core-clad)</singlemode>
-      <multimode>Multimode Strip TE 1310 nm, w=2000 nm</multimode>
+      <multimode>Multimode Strip TE 1550 nm, w=3000 nm</multimode>
       <taper_library>SiEPICfab_EBeam_ZEP</taper_library>
-      <taper_cell>ebeam_taper_500nm_2000nm_te1550</taper_cell>
+      <taper_cell>ebeam_taper_modal_te1550_500_3000_40um</taper_cell>
       <taper_pin_sm>opt1</taper_pin_sm>
       <taper_pin_mm>opt2</taper_pin_mm>
     </compound_waveguide>

@@ -1,11 +1,11 @@
 [tool.setuptools]
 packages = [
-  "siepicfab_ebeam_zep_pdk",
+  "siepicfab_ebeam_zep",
 ]
 
 
 [project]
-name = "siepicfab_ebeam_zep_pdk"
+name = "siepicfab_ebeam_zep"
 version = "0.1.1"
 authors = [
   { name="Lukas Chrostowski", email="lukasc@ece.ubc.ca" },

@@ -15,6 +15,7 @@
   <xfill>false</xfill>
   <animation>0</animation>
   <name>Silicon (full etch)</name>
+  <expanded>true</expanded>
   <source>*/*@*</source>
   <group-members>
    <frame-color>#d12b31</frame-color>
@@ -270,6 +271,7 @@
   <xfill>false</xfill>
   <animation>0</animation>
   <name>Virtual</name>
+  <expanded>true</expanded>
   <source>*/*@*</source>
   <group-members>
    <frame-color>#0000ff</frame-color>

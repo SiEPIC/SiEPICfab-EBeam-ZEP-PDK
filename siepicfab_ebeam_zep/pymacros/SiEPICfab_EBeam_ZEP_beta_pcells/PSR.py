@@ -1,6 +1,8 @@
 from . import *
 from pya import *
 from SiEPIC.utils.layout import layout_waveguide2, layout_taper, layout_waveguide_sbend
+import pya
+from SiEPIC.utils import get_technology_by_name
 
 class PSR(pya.PCellDeclarationHelper):
     """

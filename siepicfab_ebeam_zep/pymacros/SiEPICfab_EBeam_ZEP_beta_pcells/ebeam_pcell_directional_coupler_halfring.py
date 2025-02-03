@@ -3,6 +3,8 @@
 
 from . import *
 from pya import *
+import pya
+from SiEPIC.utils import get_technology_by_name
 
 class ebeam_pcell_directional_coupler_halfring(pya.PCellDeclarationHelper):
   """

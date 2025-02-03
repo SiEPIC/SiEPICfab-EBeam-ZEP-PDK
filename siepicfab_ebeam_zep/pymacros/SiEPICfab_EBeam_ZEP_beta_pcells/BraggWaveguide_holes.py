@@ -1,6 +1,8 @@
 
 from . import *
 from pya import *
+import pya
+from SiEPIC.utils import get_technology_by_name
 import math
 class BraggWaveguide_holes(pya.PCellDeclarationHelper):
   """

@@ -1,0 +1,75 @@
+# This workflow will upload a Python Package using Twine when a release is created
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python#publishing-to-package-registries
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Upload Python Package
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check status of 'run-layout-tests.yml' workflow
+      id: check-status
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+          owner=$(echo $GITHUB_REPOSITORY | cut -d'/' -f1)
+          repo=$(echo $GITHUB_REPOSITORY | cut -d'/' -f2)
+          workflow_name="Run SiEPIC-Tools Layout tests"
+          
+          # Fetch the latest workflow run for 'Run SiEPIC-Tools Layout tests'
+          run_id=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/$owner/$repo/actions/workflows/run-layout-tests.yml/runs?status=completed&per_page=1" \
+            | jq -r '.workflow_runs[0].conclusion')
+
+          echo "Workflow status: $run_id"
+          if [[ "$run_id" != "success" ]]; then
+            echo "Previous workflow did not succeed. Exiting."
+            exit 1
+          fi
+
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.x'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install build
+    - name: Build package
+      run: |
+        python -m build
+        # cd klayout
+        # ./make_PyPI
+        # cp -a dist ..
+    - name: Publish package
+      uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
+      with:
+        user: __token__
+        password: ${{ secrets.PYPI_API_TOKEN }}
+        
+    - name: Publish on KLayout Salt server
+      run: |
+          # Extract the tag from GITHUB_REF (e.g., 'refs/tags/v1.0.0' -> 'v1.0.0')
+          RELEASE_TAG=${GITHUB_REF#refs/tags/}
+          echo "Release tag: $RELEASE_TAG"
+          
+          # Use the tag in your script
+          # ./your-script.sh "$RELEASE_TAG"
+      
+          curl "https://sami.klayout.org/register_request?user=Lukas+Chrostowski&mail=lukasc%40ece.ubc.ca&provider=5&url_path=siepic%2FSiEPICfab_EBeam_ZEP_PDK.git%2Ftags%2F$RELEASE_TAG%2Fklayout&agree_terms=1"
+      

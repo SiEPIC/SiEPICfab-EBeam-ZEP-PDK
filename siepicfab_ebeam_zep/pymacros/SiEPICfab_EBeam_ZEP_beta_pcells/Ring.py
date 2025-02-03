@@ -1,6 +1,8 @@
 import math 
 from . import *
 from pya import *
+import pya
+from SiEPIC.utils import get_technology_by_name
      
 class Ring(pya.PCellDeclarationHelper):
   def __init__(self):

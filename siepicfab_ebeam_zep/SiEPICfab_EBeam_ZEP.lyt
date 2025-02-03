@@ -70,6 +70,7 @@
    <read-lef-with-def>true</read-lef-with-def>
    <macro-resolution-mode>default</macro-resolution-mode>
    <separate-groups>false</separate-groups>
+   <joined-paths>false</joined-paths>
    <map-file/>
   </lefdef>
   <dxf>

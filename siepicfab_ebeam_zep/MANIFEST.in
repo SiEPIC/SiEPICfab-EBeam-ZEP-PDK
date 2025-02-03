@@ -1,0 +1,8 @@
+
+global-include *.gds *.GDS *.oas *.OAS *.lydrc *.lyp *.lyt *.xml *.py
+
+# graft siepic_ebeam_pdk/pymacros/opics_ebeam
+# prune siepic_ebeam_pdk/pymacros/broken
+
+global-exclude *.py[cod] # for some reason this line adds all the other root folders
+prune dist

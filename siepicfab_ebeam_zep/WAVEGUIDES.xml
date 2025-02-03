@@ -22,12 +22,12 @@
 	  </component>
 	  <component>
 	    <layer>Si_clad</layer>
-	    <width>4.35</width>
+	    <width>4.0</width>
 	    <offset>0.0</offset>
 	  </component>
 	  <component>
 	    <layer>DevRec</layer>
-	    <width>4.35</width>
+	    <width>4.0</width>
 	    <offset>0.0</offset>
 	  </component>
 	</waveguide>

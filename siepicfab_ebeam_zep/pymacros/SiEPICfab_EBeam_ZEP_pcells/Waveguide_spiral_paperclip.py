@@ -18,7 +18,7 @@ import pya
 from pya import *
 from SiEPIC.utils import get_technology_by_name
 
-class ebeam_pcell_waveguide_spiral_paperclip(pya.PCellDeclarationHelper):
+class Waveguide_spiral_paperclip(pya.PCellDeclarationHelper):
 
     def __init__(self):
         # Important: initialize the super class

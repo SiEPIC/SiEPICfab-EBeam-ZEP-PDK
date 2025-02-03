@@ -5,12 +5,16 @@ on:
   push:
     paths:
       - '**'
+    paths-ignore:
+      - '**/*.md'
     branches:
       - '**'
   pull_request:
     branches:
       - main
       - master
+    paths-ignore:
+      - '**/*.md'
 
 
 jobs:

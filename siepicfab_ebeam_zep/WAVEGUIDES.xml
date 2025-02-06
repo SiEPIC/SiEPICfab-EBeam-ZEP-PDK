@@ -2,7 +2,7 @@
 <waveguides>
 
 	<waveguide>
-	  <name>Strip TE 1310nm, w=350 nm (air-clad, ZEP process)</name>
+	  <name>Strip TE 1310nm, w=350 nm (air clad)</name>
 	  <CML>SiEPICfab_EBeam_ZEP</CML>
 	  <model>wg_strip_integral_te1310_air</model>
 	  <wavelength>1310</wavelength>
@@ -33,7 +33,7 @@
 	</waveguide>
 
 	<waveguide>
-	  <name>Strip TE 1310nm, w=410 nm (air-clad, ZEP process)</name>
+	  <name>Strip TE 1310nm, w=410 nm (air clad)</name>
 	  <CML>SiEPICfab_EBeam_ZEP</CML>
 	  <model>wg_strip_integral_te1310_air</model>
 	  <wavelength>1310</wavelength>

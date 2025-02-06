@@ -17,8 +17,8 @@ if KLAYOUT_VERSION < 28:
     pya.QMessageBox_StandardButton(question.exec_())
 
 from packaging.version import Version
-if Version(SiEPIC.__version__) < Version('0.5.14'):
-    raise Exception ('This PDK requires SiEPIC-Tools v0.5.14 or greater.')
+if Version(SiEPIC.__version__) < Version('0.5.22'):
+    raise Exception ('This PDK requires SiEPIC-Tools v0.5.22 or greater.')
 
 # Load the KLayout technology, when running in Script mode
 import pya

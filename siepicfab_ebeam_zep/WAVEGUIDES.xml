@@ -2,6 +2,73 @@
 <waveguides>
 
 	<waveguide>
+	  <name>Strip TE 1310nm, w=350 nm (air clad)</name>
+	  <CML>SiEPICfab_EBeam_ZEP</CML>
+	  <model>wg_strip_integral_te1310_air</model>
+	  <wavelength>1310</wavelength>
+	  <bezier>0.20</bezier>
+      <radius>10.0</radius>
+      <width>0.35</width>
+	  <sbends>true</sbends>
+  	  <component>
+  	    <layer>Waveguide</layer>
+  	    <width>0.35</width>
+  	    <offset>0</offset>
+  	  </component>
+	  <component>
+	    <layer>Si_core</layer>
+	    <width>0.35</width>
+	    <offset>0.0</offset>
+	  </component>
+	  <component>
+	    <layer>Si_clad</layer>
+	    <width>3.0</width>
+	    <offset>0.0</offset>
+	  </component>
+	  <component>
+	    <layer>DevRec</layer>
+	    <width>3.0</width>
+	    <offset>0.0</offset>
+	  </component>
+	</waveguide>
+
+	<waveguide>
+	  <name>Strip TE 1310nm, w=410 nm (air clad)</name>
+	  <CML>SiEPICfab_EBeam_ZEP</CML>
+	  <model>wg_strip_integral_te1310_air</model>
+	  <wavelength>1310</wavelength>
+	  <bezier>0.20</bezier>
+      <radius>10.0</radius>
+      <width>0.41</width>
+	  <sbends>true</sbends>
+  	  <component>
+  	    <layer>Waveguide</layer>
+  	    <width>0.41</width>
+  	    <offset>0</offset>
+  	  </component>
+	  <component>
+	    <layer>Si_core</layer>
+	    <width>0.41</width>
+	    <offset>0.0</offset>
+	  </component>
+	  <component>
+	    <layer>Si_clad</layer>
+	    <width>3.0</width>
+	    <offset>0.0</offset>
+	  </component>
+	  <component>
+	    <layer>DevRec</layer>
+	    <width>3.0</width>
+	    <offset>0.0</offset>
+	  </component>
+	</waveguide>
+
+
+
+
+
+
+	<waveguide>
 	  <name>Strip TE 1310 nm, w=350 nm (core-clad)</name>
 	  <CML>SiEPICfab_EBeam_ZEP</CML>
 	  <model>wg_strip_integral_te1310</model>

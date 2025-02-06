@@ -17,7 +17,7 @@
  <dsl-interpreter-name/>
  <text>'''
 Export layout for fabrication, by stripping it of problematic characters, removing pcells, doing boolean operations
-by Lukas Chrostowski, 2021
+by Lukas Chrostowski, 2025
 
 '''
 

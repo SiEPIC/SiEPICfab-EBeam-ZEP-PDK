@@ -64,7 +64,7 @@ tol = 1e-3  # if a design uses exactly the min feature size,
             # for curves, this typically leads to many false errors.
 
 Layer_Si_core.width(0.06-tol, angle_limit(80)).output("Si_width","Si minimum feature size violation; min 60 nm")
-Layer_Si_core.space(0.06-tol).output("Si_space","Si minimum space violation; min 60 nm)
+Layer_Si_core.space(0.06-tol).output("Si_space","Si minimum space violation; min 60 nm")
 
 # Metal  minimum feature size and spacing
 LayerM.width(5.0, angle_limit(80)).output("M_width","Metal minimum feature size violation; min 5 µm")

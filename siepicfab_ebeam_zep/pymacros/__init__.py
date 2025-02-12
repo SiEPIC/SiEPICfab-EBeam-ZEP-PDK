@@ -1,6 +1,6 @@
 # $autorun
 
-version = "0.1.4"
+version = "0.1.5"
 
 print('SiEPICfab-EBeam-ZEP Python module: pymacros, v%s' % version)
 
@@ -18,6 +18,10 @@ load_klayout_library(tech, 'SiEPICfab_EBeam_ZEP', "v%s, Components with models" 
 load_klayout_library(tech, 'SiEPICfab_EBeam_ZEP_Beta', "v%s, Beta components" % version, 
     'pymacros/SiEPICfab_EBeam_ZEP_beta_fixed','pymacros/SiEPICfab_EBeam_ZEP_beta_pcells', 
     verbose=verbose)
+
+# List the libraries loaded       
+from SiEPIC.scripts import technology_libraries
+technology_libraries(tech)
 
 
 # Load OPICS simulation library

@@ -130,6 +130,39 @@
 	  </component>
 	</waveguide>
 
+
+
+	<waveguide>
+	  <name>Strip TE 1310 nm, w=350 nm clad=1um (core-clad)</name>
+	  <CML>SiEPICfab_EBeam</CML>
+	  <model>ebeam_wg_strip_TE_1310</model>
+    <wavelength>1310</wavelength>
+	  <bezier>0.20</bezier>
+      <radius>10.0</radius>
+      <width>0.35</width>
+	  <sbends>true</sbends>
+  	  <component>
+  	    <layer>Waveguide</layer>
+  	    <width>0.35</width>
+  	    <offset>0</offset>
+  	  </component>
+	  <component>
+	    <layer>Si_core</layer>
+	    <width>0.35</width>
+	    <offset>0.0</offset>
+	  </component>
+	  <component>
+	    <layer>Si_clad</layer>
+	    <width>2.35</width>
+	    <offset>0.0</offset>
+	  </component>
+	  <component>
+	    <layer>DevRec</layer>
+	    <width>2.35</width>
+	    <offset>0.0</offset>
+	  </component>
+	</waveguide>
+
 	<waveguide>
 	  <name>Strip TM 1550 nm, w=500 nm (core-clad)</name>
 	  <CML>SiEPICfab_EBeam</CML>
@@ -191,6 +224,38 @@
 	    <offset>0.0</offset>
 	  </component>
 	</waveguide>
+
+	<waveguide>
+	  <name>Strip TE 1550 nm, w=500 nm clad = 1um (core-clad)</name>
+	  <CML>SiEPICfab_EBeam</CML>
+	  <model>ebeam_wg_strip_TE_1550</model>
+    <wavelength>1550</wavelength>
+	  <bezier>0.20</bezier>
+      <radius>10.0</radius>
+      <width>0.5</width>
+	  <sbends>true</sbends>
+ 	  <component>
+ 	    <layer>Waveguide</layer>
+ 	    <width>0.5</width>
+ 	    <offset>0</offset>
+ 	  </component>
+	  <component>
+	    <layer>Si_core</layer>
+	    <width>0.5</width>
+	    <offset>0.0</offset>
+	  </component>
+	  <component>
+	    <layer>Si_clad</layer>
+	    <width>2.5</width>
+	    <offset>0.0</offset>
+	  </component>
+	  <component>
+	    <layer>DevRec</layer>
+	    <width>2.5</width>
+	    <offset>0.0</offset>
+	  </component>
+	</waveguide>
+	
 	<waveguide>
 	  <name>Strip TE 1550 nm, w=410 nm (core-clad)</name>
 	  <CML>SiEPICfab_EBeam</CML>
@@ -221,8 +286,9 @@
 	    <offset>0.0</offset>
 	  </component>
 	</waveguide>
+	
 	<waveguide>
-	  <name>Strip TE 1550 nm, w=500 nm (etch)</name>
+	  <name>Strip TE 1550 nm, w=500 nm (etch overlap=100 nm))</name>
 	  <CML>SiEPICfab_EBeam</CML>
 	  <model>ebeam_wg_strip_TE_1550</model>
     <wavelength>1550</wavelength>
@@ -262,6 +328,248 @@
 	  </component>
 	</waveguide>
 
+<<<<<<< Updated upstream:siepicfab_ebeam_zep/WAVEGUIDES.xml
+=======
+<waveguide>
+	  <name>Strip TE 1310 nm, w=350 nm (etch overlap=100 nm)</name>
+	  <CML>SiEPICfab_EBeam</CML>
+	  <model>ebeam_wg_strip_TE_1310</model>
+    <wavelength>1310</wavelength>
+	  <bezier>0.20</bezier>
+      <radius>10.0</radius>
+      <width>0.35</width>
+	  <sbends>true</sbends>
+ 	  <component>
+ 	    <layer>Waveguide</layer>
+ 	    <width>0.35</width>
+ 	    <offset>0</offset>
+ 	  </component>
+	  <component>
+	    <layer>Si_etch_highres</layer>
+	    <width>0.5</width>
+	    <offset>0.425</offset>
+	  </component>
+	  <component>
+	    <layer>Si_etch_highres</layer>
+	    <width>0.5</width>
+	    <offset>-0.425</offset>
+	  </component>
+	  <component>
+	    <layer>Si_etch_lowres</layer>
+	    <width>1.6</width>
+	    <offset>1.375</offset>
+	  </component>
+	  <component>
+	    <layer>Si_etch_lowres</layer>
+	    <width>1.6</width>
+	    <offset>-1.375</offset>
+	  </component>
+	  <component>
+	    <layer>DevRec</layer>
+	    <width>4.35</width>
+	    <offset>0.0</offset>
+	  </component>
+	</waveguide>
+
+	<waveguide>
+	  <name>Strip TE 1550 nm, w=500 nm (etch overlap=50 nm)</name>
+	  <CML>SiEPICfab_EBeam</CML>
+	  <model>ebeam_wg_strip_TE_1550</model>
+    <wavelength>1550</wavelength>
+	  <bezier>0.20</bezier>
+      <radius>10.0</radius>
+      <width>0.5</width>
+	  <sbends>true</sbends>
+ 	  <component>
+ 	    <layer>Waveguide</layer>
+ 	    <width>0.5</width>
+ 	    <offset>0</offset>
+ 	  </component>
+	  <component>
+	    <layer>Si_etch_highres</layer>
+	    <width>0.5</width>
+	    <offset>0.5</offset>
+	  </component>
+	  <component>
+	    <layer>Si_etch_highres</layer>
+	    <width>0.5</width>
+	    <offset>-0.5</offset>
+	  </component>
+	  <component>
+	    <layer>Si_etch_lowres</layer>
+	    <width>1.55</width>
+	    <offset>1.475</offset>
+	  </component>
+	  <component>
+	    <layer>Si_etch_lowres</layer>
+	    <width>1.55</width>
+	    <offset>-1.475</offset>
+	  </component>
+	  <component>
+	    <layer>DevRec</layer>
+	    <width>4.5</width>
+	    <offset>0.0</offset>
+	  </component>
+	</waveguide>
+	
+	<waveguide>
+	  <name>Strip TE 1310 nm, w=350 nm (etch overlap=50 nm)</name>
+	  <CML>SiEPICfab_EBeam</CML>
+	  <model>ebeam_wg_strip_TE_1310</model>
+    <wavelength>1310</wavelength>
+	  <bezier>0.20</bezier>
+      <radius>10.0</radius>
+      <width>0.35</width>
+	  <sbends>true</sbends>
+ 	  <component>
+ 	    <layer>Waveguide</layer>
+ 	    <width>0.35</width>
+ 	    <offset>0</offset>
+ 	  </component>
+	  <component>
+	    <layer>Si_etch_highres</layer>
+	    <width>0.5</width>
+	    <offset>0.5</offset>
+	  </component>
+	  <component>
+	    <layer>Si_etch_highres</layer>
+	    <width>0.5</width>
+	    <offset>-0.5</offset>
+	  </component>
+	  <component>
+	    <layer>Si_etch_lowres</layer>
+	    <width>1.55</width>
+	    <offset>1.475</offset>
+	  </component>
+	  <component>
+	    <layer>Si_etch_lowres</layer>
+	    <width>1.55</width>
+	    <offset>-1.475</offset>
+	  </component>
+	  <component>
+	    <layer>DevRec</layer>
+	    <width>4.5</width>
+	    <offset>0.0</offset>
+	  </component>
+	</waveguide>
+
+	<waveguide>
+	  <name>Strip TE 1550 nm, w=500 nm (high res=300 nm)</name>
+	  <CML>SiEPICfab_EBeam</CML>
+	  <model>ebeam_wg_strip_TE_1550</model>
+    <wavelength>1550</wavelength>
+	  <bezier>0.20</bezier>
+      <radius>10.0</radius>
+      <width>0.5</width>
+	  <sbends>true</sbends>
+ 	  <component>
+ 	    <layer>Waveguide</layer>
+ 	    <width>0.5</width>
+ 	    <offset>0</offset>
+ 	  </component>
+	  <component>
+	    <layer>Si_etch_highres</layer>
+	    <width>0.3</width>
+	    <offset>0.4</offset>
+	  </component>
+	  <component>
+	    <layer>Si_etch_highres</layer>
+	    <width>0.3</width>
+	    <offset>-0.4</offset>
+	  </component>
+	  <component>
+	    <layer>Si_etch_lowres</layer>
+	    <width>1.8</width>
+	    <offset>1.35</offset>
+	  </component>
+	  <component>
+	    <layer>Si_etch_lowres</layer>
+	    <width>1.8</width>
+	    <offset>-1.35</offset>
+	  </component>
+	  <component>
+	    <layer>DevRec</layer>
+	    <width>4.5</width>
+	    <offset>0.0</offset>
+	  </component>
+	</waveguide>
+	
+	<waveguide>
+	  <name>Strip TE 1310 nm, w=350 nm (high res=300 nm)</name>
+	  <CML>SiEPICfab_EBeam</CML>
+	  <model>ebeam_wg_strip_TE_1310</model>
+    <wavelength>1310</wavelength>
+	  <bezier>0.20</bezier>
+      <radius>10.0</radius>
+      <width>0.5</width>
+	  <sbends>true</sbends>
+ 	  <component>
+ 	    <layer>Waveguide</layer>
+ 	    <width>0.35</width>
+ 	    <offset>0</offset>
+ 	  </component>
+	  <component>
+	    <layer>Si_etch_highres</layer>
+	    <width>0.3</width>
+	    <offset>0.325</offset>
+	  </component>
+	  <component>
+	    <layer>Si_etch_highres</layer>
+	    <width>0.3</width>
+	    <offset>-0.325</offset>
+	  </component>
+	  <component>
+	    <layer>Si_etch_lowres</layer>
+	    <width>1.8</width>
+	    <offset>1.275</offset>
+	  </component>
+	  <component>
+	    <layer>Si_etch_lowres</layer>
+	    <width>1.8</width>
+	    <offset>-1.275</offset>
+	  </component>
+	  <component>
+	    <layer>DevRec</layer>
+	    <width>4.35</width>
+	    <offset>0.0</offset>
+	  </component>
+	</waveguide>
+
+
+
+
+	<waveguide>
+	  <name>Strip TE 1310 nm, w=350 nm (core-clad)</name>
+	  <CML>SiEPICfab_EBeam</CML>
+	  <model>ebeam_wg_strip_TM_1310</model>
+    <wavelength>1310</wavelength>
+	  <bezier>0.20</bezier>
+      <radius>10.0</radius>
+      <width>0.35</width>
+	  <sbends>true</sbends>
+  	  <component>
+  	    <layer>Waveguide</layer>
+  	    <width>0.35</width>
+  	    <offset>0</offset>
+  	  </component>
+	  <component>
+	    <layer>Si_core</layer>
+	    <width>0.35</width>
+	    <offset>0.0</offset>
+	  </component>
+	  <component>
+	    <layer>Si_clad</layer>
+	    <width>4.35</width>
+	    <offset>0.0</offset>
+	  </component>
+	  <component>
+	    <layer>DevRec</layer>
+	    <width>4.35</width>
+	    <offset>0.0</offset>
+	  </component>
+	</waveguide>
+
+>>>>>>> Stashed changes:SiEPICfab_EBeam_ZEP/WAVEGUIDES.xml
 	<waveguide>
 	  <name>Strip TM 1310 nm, w=350 nm (core-clad)</name>
 	  <CML>SiEPICfab_EBeam</CML>
@@ -292,6 +600,7 @@
 	    <offset>0.0</offset>
 	  </component>
 	</waveguide>
+
 	<waveguide>
 	  <name>Strip TE 1310 nm, w=385 nm (core-clad)</name>
 	  <CML>SiEPICfab_EBeam</CML>
@@ -321,6 +630,7 @@
 	    <offset>0.0</offset>
 	  </component>
 	</waveguide>
+
 	<waveguide>
 	  <name>Strip TE 1270 nm, w=450 nm (core-clad)</name>
 	  <CML>SiEPICfab_EBeam</CML>
@@ -350,6 +660,7 @@
 	    <offset>0.0</offset>
 	  </component>
 	</waveguide>
+
 	<waveguide>
 	  <name>Strip TE 1270 nm, w=450 nm (etch)</name>
 	  <CML>SiEPICfab_EBeam</CML>
@@ -379,6 +690,7 @@
 	    <offset>0.0</offset>
 	  </component>
 	</waveguide>
+
 	<waveguide>
 	  <name>Multimode Strip TE 1550 nm, w=3000 nm</name>
 	  <CML>SiEPICfab_EBeam</CML>
@@ -407,6 +719,7 @@
 	    <offset>0.0</offset>
 	  </component>
 	</waveguide>
+
 	<waveguide>
 	  <name>Multimode Strip TE 1310 nm, w=3000 nm</name>
 	  <CML>SiEPICfab_EBeam</CML>
@@ -435,6 +748,7 @@
 	    <offset>0.0</offset>
 	  </component>
 	</waveguide>
+
 	<waveguide>
 	  <name>Multimode Strip TE 1310 nm, w=1000 nm</name>
 	  <CML>SiEPICfab_EBeam</CML>
@@ -463,6 +777,7 @@
 	    <offset>0.0</offset>
 	  </component>
 	</waveguide>
+
 	<waveguide>
 	  <name>Multimode Strip TE 1310 nm, w=2000 nm</name>
 	  <CML>SiEPICfab_EBeam</CML>
@@ -491,6 +806,7 @@
 	    <offset>0.0</offset>
 	  </component>
 	</waveguide>
+
 	<waveguide>
 	  <name>Slot TE 1550 nm, w=500 nm, gap=100nm</name>
 	  <CML>SiEPICfab_EBeam</CML>
@@ -549,5 +865,46 @@
     </compound_waveguide>
     <radius>10.0</radius>
   </waveguide>
+
+	<waveguide>
+	  <name>Strip TE 1550 nm, w=500 nm (etch)</name>
+	  <CML>SiEPICfab_EBeam</CML>
+	  <model>ebeam_wg_strip_TE_1550</model>
+    <wavelength>1550</wavelength>
+	  <bezier>0.20</bezier>
+      <radius>10.0</radius>
+      <width>0.5</width>
+	  <sbends>true</sbends>
+ 	  <component>
+ 	    <layer>Waveguide</layer>
+ 	    <width>0.5</width>
+ 	    <offset>0</offset>
+ 	  </component>
+	  <component>
+	    <layer>Si_etch_highres</layer>
+	    <width>0.5</width>
+	    <offset>0.5</offset>
+	  </component>
+	  <component>
+	    <layer>Si_etch_highres</layer>
+	    <width>0.5</width>
+	    <offset>-0.5</offset>
+	  </component>
+	  <component>
+	    <layer>Si_etch_lowres</layer>
+	    <width>1.6</width>
+	    <offset>1.45</offset>
+	  </component>
+	  <component>
+	    <layer>Si_etch_lowres</layer>
+	    <width>1.6</width>
+	    <offset>-1.45</offset>
+	  </component>
+	  <component>
+	    <layer>DevRec</layer>
+	    <width>4.5</width>
+	    <offset>0.0</offset>
+	  </component>
+	</waveguide>
 
 </waveguides>

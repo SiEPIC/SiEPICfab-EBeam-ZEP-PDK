@@ -21,6 +21,15 @@ Export layout for fabrication, by stripping it of problematic characters, removi
 by Lukas Chrostowski, 2022
 
 '''
+
+
+from pathlib import Path
+import sys
+path_root = Path(__file__).parents[0]
+sys.path.append(str(path_root))
+print(sys.path)
+print(path_root)
+
 import SiEPICfab_ZEP_export
 
 from importlib import reload

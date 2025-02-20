@@ -141,7 +141,7 @@ def export_for_fabrication(flatten=False, replace_IP=False):
         #['GC_1270_te_220_Blackbox','GC_1270_te_220', 'SiEPICfab_EBeam_ZEP_UBC'], 
 #        ['GC_1290_te_220_Blackbox','GC_1290_te_220', 'SiEPICfab_EBeam_ZEP_UBC'], 
         #['GC_1310_te_220_Blackbox','GC_1310_te_220', 'SiEPICfab_EBeam_ZEP_UBC'], 
-        #['GC_1550_te_220_Blackbox','GC_1550_te_220', 'SiEPICfab_EBeam_ZEP_UBC'], 
+        ['GC_1550_te_220','ebeam_GC_Air_te1550', 'SiEPICfab_EBeam_ZEP_UBC'], 
         ['ebeam_GC_Air_te1550_BB','ebeam_GC_Air_te1550', 'SiEPICfab_EBeam_ZEP_UBC'], 
         ['ebeam_GC_Air_te1310_BB','ebeam_GC_Air_te1310', 'SiEPICfab_EBeam_ZEP_UBC'], 
         ['GC_Air_te1310_BB','ebeam_GC_Air_te1310', 'SiEPICfab_EBeam_ZEP_UBC'], 

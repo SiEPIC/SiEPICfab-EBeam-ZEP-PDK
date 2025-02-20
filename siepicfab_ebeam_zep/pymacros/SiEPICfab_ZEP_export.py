@@ -135,17 +135,17 @@ def export_for_fabrication(flatten=False, replace_IP=False):
     if replace_IP:
         ly.technology_name='SiEPICfab_EBeam_ZEP'
         cell_list = [
-        ['GC_1550_220_Blackbox', 'GC_1550_te_220', 'SiEPICfab_EBeam_ZEP_UBC'],
-        ['ebeam_gc_te1550', 'GC_1550_te_220', 'SiEPICfab_EBeam_ZEP_UBC'],
+        #['GC_1550_220_Blackbox', 'GC_1550_te_220', 'SiEPICfab_EBeam_ZEP_UBC'],
+        #['ebeam_gc_te1550', 'GC_1550_te_220', 'SiEPICfab_EBeam_ZEP_UBC'],
         ['y_splitter_1310', 'drp_o_y_splitter', 'SiEPICfab_EBeam_ZEP_UBC'],
-        ['GC_1270_te_220_Blackbox','GC_1270_te_220', 'SiEPICfab_EBeam_ZEP_UBC'], 
+        #['GC_1270_te_220_Blackbox','GC_1270_te_220', 'SiEPICfab_EBeam_ZEP_UBC'], 
 #        ['GC_1290_te_220_Blackbox','GC_1290_te_220', 'SiEPICfab_EBeam_ZEP_UBC'], 
-        ['GC_1310_te_220_Blackbox','GC_1310_te_220', 'SiEPICfab_EBeam_ZEP_UBC'], 
-        ['GC_1550_te_220_Blackbox','GC_1550_te_220', 'SiEPICfab_EBeam_ZEP_UBC'], 
+        #['GC_1310_te_220_Blackbox','GC_1310_te_220', 'SiEPICfab_EBeam_ZEP_UBC'], 
+        #['GC_1550_te_220_Blackbox','GC_1550_te_220', 'SiEPICfab_EBeam_ZEP_UBC'], 
         ['ebeam_GC_Air_te1550_BB','ebeam_GC_Air_te1550', 'SiEPICfab_EBeam_ZEP_UBC'], 
-        ['ebeam_GC_Air_te1310_BB','GC_1310_te_220', 'SiEPICfab_EBeam_ZEP_UBC'], 
-        ['GC_Air_te1310_BB','GC_1310_te_220', 'SiEPICfab_EBeam_ZEP_UBC'], 
-        ['GC_TE_1550_8degOxide_BB','GC_1550_te_220', 'SiEPICfab_EBeam_ZEP_UBC'], 
+        ['ebeam_GC_Air_te1310_BB','ebeam_GC_Air_te1310', 'SiEPICfab_EBeam_ZEP_UBC'], 
+        ['GC_Air_te1310_BB','ebeam_GC_Air_te1310', 'SiEPICfab_EBeam_ZEP_UBC'], 
+        ['GC_TE_1550_8degOxide_BB','ebeam_GC_Air_te1550', 'SiEPICfab_EBeam_ZEP_UBC'], 
         #['ebeam_GC_Air_tm1310_BB','GC_1310_te_220', 'SiEPICfab_EBeam_ZEP_UBC'], 
         ['laser_1310nm_DFB_BB','laser_1270nm_DFB', 'SiEPICfab_EBeam_ZEP_UBC'], 
         ]

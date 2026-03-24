@@ -244,12 +244,12 @@
 	    <offset>-0.5</offset>
 	  </component>
 	  <component>
-	    <layer>Si_etch_lowres</layer>
+	    <layer>Si_etch_highres_nobias</layer>
 	    <width>1.6</width>
 	    <offset>1.45</offset>
 	  </component>
 	  <component>
-	    <layer>Si_etch_lowres</layer>
+	    <layer>Si_etch_highres_nobias</layer>
 	    <width>1.6</width>
 	    <offset>-1.45</offset>
 	  </component>
@@ -362,12 +362,12 @@
   	    <offset>0</offset>
   	  </component>
   	  <component>
-  	    <layer>Si_etch_lowres</layer>
+  	    <layer>Si_etch_highres_nobias</layer>
   	    <width>2.0</width>
   	    <offset>1.225</offset>
   	  </component>
   	  <component>
-  	    <layer>Si_etch_lowres</layer>
+  	    <layer>Si_etch_highres_nobias</layer>
   	    <width>2.0</width>
   	    <offset>-1.225</offset>
   	  </component>

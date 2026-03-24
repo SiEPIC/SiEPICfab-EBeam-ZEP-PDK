@@ -37,7 +37,7 @@ class ebeam_pcell_taper_nanobeam_cw(pya.PCellDeclarationHelper):
         self.param("pinrec", self.TypeLayer, "PinRec Layer", default=TECHNOLOGY['PinRec'])
         self.param("devrec", self.TypeLayer, "DevRec Layer", default=TECHNOLOGY['DevRec'])
         self.param("etch", self.TypeLayer, "oxide etch layer", default=TECHNOLOGY['Si_etch_highres'])
-        self.param("extra_Si", self.TypeLayer, "Extra Si Layer", default=TECHNOLOGY['Si_etch_highres'])
+        self.param("extra_Si", self.TypeLayer, "Extra Si Layer", default=TECHNOLOGY['Si_etch_highres_nobias'])
         self.param("truncation_ext", self.TypeDouble,"Extra waveguide length (microns) for PreFab truncation handling", default=0.0)
 
 
@@ -66,7 +66,7 @@ class ebeam_pcell_taper_nanobeam_cw(pya.PCellDeclarationHelper):
         LayerDevRecN = ly.layer(self.devrec)
         LayerCladN = ly.layer(self.cladlayer)
         LayerEtch = ly.layer(self.etch)
-        LayerExtraSi = ly.layer(self.extra_Si)
+        LayerHighResHoles = ly.layer(self.extra_Si)
 
         # Fetch all the parameters:
         s = self.s / dbu
@@ -196,7 +196,7 @@ class ebeam_pcell_taper_nanobeam_cw(pya.PCellDeclarationHelper):
         for i in range(len(r_all)):
             hole_poly = Polygon(circle(0, 0, r_all[i]))
             hole.insert(hole_poly.transformed(Trans(Trans.R0, x_all[i], 0)))
-        self.cell.shapes(LayerExtraSi).insert(hole)
+        self.cell.shapes(LayerHighResHoles).insert(hole)
 
         beam_l = max(abs(x_all[0]) if x_all else 0, abs(x_all[-1]) if x_all else 0) + wg_l
 

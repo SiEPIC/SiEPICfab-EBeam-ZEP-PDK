@@ -65,7 +65,7 @@ class ebeam_pcell_nanobeam_cavity(pya.PCellDeclarationHelper):
     LayerDevRecN = ly.layer(self.devrec)
     LayerCladN = ly.layer(self.cladlayer)
     LayerEtch = ly.layer(self.etch)
-    LayerExtraSi = ly.layer(self.extra_Si)
+    LayerHighResHoles = ly.layer(self.extra_Si)
 
     # Fetch all the parameters:
     s = self.s/dbu
@@ -193,7 +193,7 @@ class ebeam_pcell_nanobeam_cavity(pya.PCellDeclarationHelper):
         hole_trans = Trans(Trans.R0,hole_x,hole_y)
         hole_t = hole_poly.transformed(hole_trans)
         hole.insert(hole_t)  
-        self.cell.shapes(LayerExtraSi).insert(hole) 
+        self.cell.shapes(LayerHighResHoles).insert(hole) 
 
     if n_type == 1:      
       trench_length = round(hole_x*2+16.666/dbu)

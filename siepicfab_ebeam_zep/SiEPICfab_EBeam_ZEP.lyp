@@ -82,7 +82,7 @@
    <marked>false</marked>
    <xfill>false</xfill>
    <animation>0</animation>
-   <name>Si_etch_lowres</name>
+   <name>Si_etch_highres_nobias</name>
    <source>101/0@1</source>
   </group-members>
  </properties>

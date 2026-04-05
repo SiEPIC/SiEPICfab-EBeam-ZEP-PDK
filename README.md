@@ -33,21 +33,23 @@ SiEPIC Program EBeam PDK for the ZEP process
  
 
 ## Layer table
-| Name            | Layer/datatype | Description                                                                          |
-|-----------------|----------------|--------------------------------------------------------------------------------------|
-| Si_core         | 1/0            |             Layer to draw silicon waveguides; will be XORed with Si_clad.            |
-| Si_clad         | 1/2            |         Layer to draw the extent of the Si etch, including cladding and core.        |
-| Si_etch_highres | 100/0          | High Resolution Layer to draw fully etched trenches, but use SLS/Shape PEC. (trench) |
-| Si_etch_lowres  | 101/0          | Low Resolution Layer to draw fully etched trenches but use no-SLS or PEC. (trench)   |
-| M1              | 11/0           | Layer to draw metal routing, heaters, etc  				          |
-| DeepTrench	  | 201/0          | Layer to define deep trench etch regions. For edge couplers			  |
-| Floorplan       | 99/0           |                             Marks the layout design area.                            |
-| text            | 10/0           | Text labels for automated measurements.                                              |
-| DevRec          | 68/0           |                           Device recognition layer for DRC.                          |
-| PinRec          | 1/10           | Port/pins recognition layer for snapping and connectivity checks.                    |
-| Waveguide       | 1/99           | Virtual layer, guiding shape for waveguide, used for length calculation              |
-| SEM             | 200/0          | Requests for SEM images. Rectangles in a 4:3 aspect.                                 |
-| EBL-Regions     | 8100/0         | EBL Litho Manual Write Field Regions                                                 |
+| Name                    | Layer/datatype | Description                                                                          |
+|-------------------------|----------------|--------------------------------------------------------------------------------------|
+| Si_core                 | 1/0            |             Layer to draw silicon waveguides; will be XORed with Si_clad.            |
+| Si_clad                 | 1/2            |         Layer to draw the extent of the Si etch, including cladding and core.        |
+| Si_etch_highres         | 100/0          | High Resolution Layer to draw fully etched trenches, but use SLS/Shape PEC. (trench) |
+| Si_etch_highres_nobias  | 101/0          | High Resolution Layer with no bias: Small features are resolved true to GDS sizing   |
+| M1                      | 11/0           | Layer to draw metal routing, heaters, etc  				                                  |
+| DeepTrench	            | 201/0          | Layer to define deep trench etch regions. For edge couplers			                    |
+| Floorplan               | 99/0           |                             Marks the layout design area.                            |
+| text                    | 10/0           | Text labels for automated measurements.                                              |
+| DevRec                  | 68/0           |                           Device recognition layer for DRC.                          |
+| PinRec                  | 1/10           | Port/pins recognition layer for snapping and connectivity checks.                    |
+| Waveguide               | 1/99           | Virtual layer, guiding shape for waveguide, used for length calculation              |
+| SEM                     | 200/0          | Requests for SEM images. Rectangles in a 4:3 aspect.                                 |
+| EBL-Regions             | 8100/0         | EBL Litho Manual Write Field Regions                                                 |
+| NbTiN                   | 12/0           | Superconducting Niobium Titanium Nitride                                             |
+| TiAu                    | 13/0           | Titanium Gold for NbTiN (Check with the fabricator if you should use TiAu or M1)     |
 
 ### EBL Write Field Regions
 - layer “EBL-Regions”: Designer draws a rectangle to designate a write field. Maximum size of 1x1 mm. Everything inside is written in one EBL field. 
@@ -70,6 +72,7 @@ SiEPIC Program EBeam PDK for the ZEP process
 - Mustafa Hammood (PCM)
 - Sheri Jahan Chowdhury (laser integration to biosensor)
 - Wangning Cai (inverse design)
+- Mateo Branion-Calles (Quantum Integration)
 
 ## Run schedule
 - SiEPICfab process development runs, typically monthly

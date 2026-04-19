@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<verification>
+	<shapes-inside-components>
+		<deviceonly-layers>[ [1,0], [1,2] ]</deviceonly-layers>
+	</shapes-inside-components>
+	<minimum-radius-check>False</minimum-radius-check>
+	<ignore-pins-on-floorplan>True</ignore-pins-on-floorplan>
+
+</verification>

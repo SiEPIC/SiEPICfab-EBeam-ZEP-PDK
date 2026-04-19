@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<waveguides>
+
+
+
+	<waveguide>
+	  <name>Strip TE 1550 nm, w=400 nm (core-clad)</name>
+	  <CML>SiEPICfab_EBeam</CML>
+	  <model>ebeam_wg_strip_TE_1550</model>
+    <wavelength>1550</wavelength>
+	  <bezier>0.20</bezier>
+      <radius>10.0</radius>
+      <width>0.4</width>
+	  <sbends>true</sbends>
+ 	  <component>
+ 	    <layer>Waveguide</layer>
+ 	    <width>0.4</width>
+ 	    <offset>0</offset>
+ 	  </component>
+	  <component>
+	    <layer>Si_core</layer>
+	    <width>0.4</width>
+	    <offset>0.0</offset>
+	  </component>
+	  <component>
+	    <layer>Si_clad</layer>
+	    <width>4.5</width>
+	    <offset>0.0</offset>
+	  </component>
+	  <component>
+	    <layer>DevRec</layer>
+	    <width>4.5</width>
+	    <offset>0.0</offset>
+	  </component>
+	</waveguide>
+
+
+	<waveguide>
+	  <name>Strip TE 1550 nm, w=300 nm (core-clad)</name>
+	  <CML>SiEPICfab_EBeam</CML>
+	  <model>ebeam_wg_strip_TE_1550</model>
+    <wavelength>1550</wavelength>
+	  <bezier>0.20</bezier>
+      <radius>10.0</radius>
+      <width>0.3</width>
+	  <sbends>true</sbends>
+ 	  <component>
+ 	    <layer>Waveguide</layer>
+ 	    <width>0.3</width>
+ 	    <offset>0</offset>
+ 	  </component>
+	  <component>
+	    <layer>Si_core</layer>
+	    <width>0.3</width>
+	    <offset>0.0</offset>
+	  </component>
+	  <component>
+	    <layer>Si_clad</layer>
+	    <width>4.5</width>
+	    <offset>0.0</offset>
+	  </component>
+	  <component>
+	    <layer>DevRec</layer>
+	    <width>4.5</width>
+	    <offset>0.0</offset>
+	  </component>
+	</waveguide>
+
+
+	<waveguide>
+	  <name>Strip TE 1550 nm, w=200 nm (core-clad)</name>
+	  <CML>SiEPICfab_EBeam</CML>
+	  <model>ebeam_wg_strip_TE_1550</model>
+    <wavelength>1550</wavelength>
+	  <bezier>0.20</bezier>
+      <radius>10.0</radius>
+      <width>0.2</width>
+	  <sbends>true</sbends>
+ 	  <component>
+ 	    <layer>Waveguide</layer>
+ 	    <width>0.2</width>
+ 	    <offset>0</offset>
+ 	  </component>
+	  <component>
+	    <layer>Si_core</layer>
+	    <width>0.2</width>
+	    <offset>0.0</offset>
+	  </component>
+	  <component>
+	    <layer>Si_clad</layer>
+	    <width>4.5</width>
+	    <offset>0.0</offset>
+	  </component>
+	  <component>
+	    <layer>DevRec</layer>
+	    <width>4.5</width>
+	    <offset>0.0</offset>
+	  </component>
+	</waveguide>
+
+</waveguides>

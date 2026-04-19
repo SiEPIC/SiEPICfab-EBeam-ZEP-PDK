@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<waveguides>
+
+
+	<waveguide>
+	  <name>Strip 1310 nm, w=350 nm (core-clad)</name>
+	  <CML>SiEPICfab_EBeam</CML>
+	  <model>ebeam_wg_strip_TE_1310</model>
+    <wavelength>1310</wavelength>
+	  <bezier>0.20</bezier>
+      <radius>10.0</radius>
+      <width>0.35</width>
+	  <sbends>true</sbends>
+  	  <component>
+  	    <layer>Waveguide</layer>
+  	    <width>0.35</width>
+  	    <offset>0</offset>
+  	  </component>
+	  <component>
+	    <layer>Si_core</layer>
+	    <width>0.35</width>
+	    <offset>0.0</offset>
+	  </component>
+	  <component>
+	    <layer>Si_clad</layer>
+	    <width>4.35</width>
+	    <offset>0.0</offset>
+	  </component>
+	  <component>
+	    <layer>DevRec</layer>
+	    <width>4.35</width>
+	    <offset>0.0</offset>
+	  </component>
+	</waveguide>
+
+</waveguides>

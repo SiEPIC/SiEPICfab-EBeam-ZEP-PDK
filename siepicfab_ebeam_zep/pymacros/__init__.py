@@ -1,6 +1,6 @@
 # $autorun
 
-version = "0.1.5"
+version = "0.1.6"
 
 print('SiEPICfab-EBeam-ZEP Python module: pymacros, v%s' % version)
 

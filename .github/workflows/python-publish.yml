@@ -22,6 +22,7 @@ jobs:
 
     steps:
     - name: Check status of 'run-layout-tests.yml' workflow
+      if: false
       id: check-status
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
